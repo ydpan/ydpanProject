@@ -1,0 +1,57 @@
+GridItem使用样例
+（1）构建replacewidget方法
+template<typename _Widget>
+_Widget* customGUIDemo::replaceWidget(QWidget *pSrcWidget)
+{
+/*	QWidget* pSrcWidget = GET_WIDGET_POINTER(name, QWidget);*/
+	if (!pSrcWidget) {
+		return nullptr;
+	}
+	QWidget* pParent = qobject_cast<QWidget*>(pSrcWidget->parent());
+	if (!pParent) {
+		return nullptr;
+	}
+	
+	QLayout *pLayout = pParent->layout();
+	if (!pLayout)
+		return nullptr;
+
+	_Widget* pDstWidget = new _Widget;
+	auto *pFrom = pLayout->replaceWidget(pSrcWidget, pDstWidget);
+	delete pFrom;
+	delete pSrcWidget;
+	return pDstWidget;
+}
+（2）声明UI类
+	CGridLayoutView *m_pgridView{ nullptr };
+	QSharedPointer<CGridProject> _pCGridProject;
+
+（3）初始化
+	m_pgridView = replaceWidget<CGridLayoutView>(ui.widget);
+	_pCGridProject = QSharedPointer<CGridProject>(new CGridProject);
+	_pCGridProject->LoadAndInit("C:\\1Documents\\PersonProject\\MyQtCustomLib\\layout_tray.txt");
+	if (m_pgridView)
+		m_pgridView->setScene(_pCGridProject->getScenePtr());
+
+（4）使用 如更新指定Item的颜色
+Q_SLOT void customGUIDemo::onTimer()
+{
+	int testI = 1;
+	int testJ = 10;
+	static int i = 0;
+	
+// 	static int b = 0;
+// 	b = b + 1;
+// 	testI = b + testI;
+
+	if (i++ % 2 == 0)
+		_pCGridProject->updateItem(testJ, testJ, GRID_DETECTED_A);
+	else
+		_pCGridProject->updateItem(testJ, testJ, GRID_DETECTED_B);
+}
+
+
+
+
+
+

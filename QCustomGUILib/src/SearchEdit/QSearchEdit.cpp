@@ -6,8 +6,9 @@ QSearchEdit::QSearchEdit(QWidget *parent)
 {
 	_pSearchLineEdit = new QLineEdit();
 	_pSearchButton = new QPushButton(this);
+	_pSearchLineEdit->setMinimumHeight(50);
 	_pSearchButton->setCursor(Qt::PointingHandCursor);
-	_pSearchButton->setFixedSize(100, 100);
+	_pSearchButton->setFixedSize(100, 50);
 	_pSearchButton->setToolTip(QString::fromLocal8Bit("ËÑË÷"));
 	//_pSearchButton->setStyleSheet("QPushButton{border-image:url(:/Resources/app8.png); background:transparent;} \
                                      QPushButton:hover{border-image:url(:/Resources/app8.png)} \
@@ -15,7 +16,7 @@ QSearchEdit::QSearchEdit(QWidget *parent)
 
 	QMargins margins = _pSearchLineEdit->textMargins();
 	_pSearchLineEdit->setTextMargins(margins.left(), margins.top(), _pSearchLineEdit->width(), margins.bottom());
-	_pSearchLineEdit->setPlaceholderText(QString::fromLocal8Bit("ÇëÊä³öËÑË÷ÄÚÈÝ"));
+	_pSearchLineEdit->setPlaceholderText(QString::fromLocal8Bit("place input search things"));
 	QHBoxLayout *pSearchLayout = new QHBoxLayout();
 	pSearchLayout->addStretch();
 	pSearchLayout->addWidget(_pSearchButton);
