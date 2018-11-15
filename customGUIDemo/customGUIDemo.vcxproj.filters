@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="gridItem">
+      <UniqueIdentifier>{7c33914e-af41-40cb-a489-4d4a13cc599c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="userCtrl">
+      <UniqueIdentifier>{bbb165e9-581f-4ee0-81f1-571c5fa97069}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="customGUIDemo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\QGraphviewGUI\GridItem\GridLayout.cpp">
+      <Filter>gridItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\QGraphviewGUI\GridItem\GridTray.cpp">
+      <Filter>gridItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserCtrl.cpp">
+      <Filter>userCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.cpp">
+      <Filter>userCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\QGraphviewGUI\userCtrl\QLoginDlg.cpp">
+      <Filter>userCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserDB.cpp">
+      <Filter>userCtrl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="customGUIDemo.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QGraphviewGUI\GridItem\GridLayout.h">
+      <Filter>gridItem</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QGraphviewGUI\GridItem\GridTray.h">
+      <Filter>gridItem</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QGraphviewGUI\userCtrl\QUserCtrl.h">
+      <Filter>userCtrl</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.h">
+      <Filter>userCtrl</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QGraphviewGUI\userCtrl\QLoginDlg.h">
+      <Filter>userCtrl</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="customGUIDemo.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.ui">
+      <Filter>userCtrl</Filter>
+    </QtUic>
+    <QtUic Include="..\QGraphviewGUI\userCtrl\QLoginDlg.ui">
+      <Filter>userCtrl</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="customGUIDemo.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\QGraphviewGUI\GridItem\layout_tray.txt">
+      <Filter>gridItem</Filter>
+    </Text>
+    <Text Include="..\QGraphviewGUI\GridItem\Example.txt">
+      <Filter>gridItem</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\QGraphviewGUI\userCtrl\QUserDB.h">
+      <Filter>userCtrl</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
