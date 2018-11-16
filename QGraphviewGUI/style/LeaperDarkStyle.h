@@ -1,21 +1,9 @@
-/*!
- * \file LeaperDarkStyle.h
- * \date 2018/02/28
- *
- * \author Lin, Chi
- * Contact: lin.chi@hzleaper.com
- *
- *
- * \note
-*/
-
 #ifndef __LeaperDarkStyle_h_
 #define __LeaperDarkStyle_h_
 
-#include "../3rdParty/Qt-Frameless-Window-DarkStyle/DarkStyle.h"
-#include "AngelaCommon.h"
+#include "DarkStyle.h"
 
-class ANGELA_DLLSPEC LeaperDarkStyle : public DarkStyle
+class  LeaperDarkStyle : public DarkStyle
 {
 	Q_OBJECT
 

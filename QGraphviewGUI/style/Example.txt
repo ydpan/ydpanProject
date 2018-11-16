@@ -1,0 +1,7 @@
+高分屏支持（Qt5.9.4测试通过） 
+QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);//高分屏支持
+
+DarkStyle使用样例
+包含头文件
+#include "DarkStyle.h"
+代码：ApplicatiApplication::setStyle(new DarkStyle);
