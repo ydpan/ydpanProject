@@ -11,6 +11,7 @@ boostSeriport::boostSeriport(QWidget *parent)
 	m_timer.start(5000);
 }
 
+
 boostSeriport::~boostSeriport()
 {
 	if(m_pSerialDevice)
