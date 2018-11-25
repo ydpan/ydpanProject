@@ -20,7 +20,7 @@ boostSeriport::~boostSeriport()
 void boostSeriport::InitSerialDevice()
 {
 	m_serialParams.baudRate = 115200;
-	m_serialParams.serialPort = "COM5";
+	m_serialParams.serialPort = "COM4";
 	m_serialParams.flowControl = 0;
 	m_serialParams.parity = 0;
 	m_serialParams.stopBits = 0;

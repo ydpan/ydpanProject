@@ -144,6 +144,7 @@ void SerialPortDevice::start_a_write()
 	mutex::scoped_lock lock(m_serialMutex);
 	async_write(*m_pSerial, buffer(*(m_writeQueue.front())),
 		bind(&SerialPortDevice::writeHandler, this, boost::asio::placeholders::error));
+	
 }
 
 void SerialPortDevice::readHandler(const system::error_code &ec, size_t bytesTransferred)
