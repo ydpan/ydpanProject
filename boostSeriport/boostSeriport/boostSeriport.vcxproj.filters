@@ -39,6 +39,9 @@
     <ClCompile Include="SerialPortDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="robotwheel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="boostSeriport.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DataGram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="robotwheel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
