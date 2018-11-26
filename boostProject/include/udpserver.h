@@ -6,6 +6,12 @@
 #include <boost/smart_ptr.hpp>
 #include <boost/thread.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/ip/udp.hpp>
+#include <boost/bind.hpp>
+#include <boost/enable_shared_from_this.hpp>
+#include <boost/array.hpp>
+#include <iostream>
 #include <vector>
 #include <queue>
 #include <inttypes.h>
@@ -13,6 +19,7 @@
 using namespace std;
 using namespace boost;
 using namespace boost::asio;
+using  boost::asio::ip::udp;
 
 class UDPParams {
 public:
@@ -98,4 +105,55 @@ private:
 
 };
 
+std::string make_daytime_string()
+{
+	std::time_t now = time(0);
+	return ctime(&now);
+}
+class UdpTimeServer 
+{
+public:
+	UdpTimeServer(boost::asio::io_service &io_service):_sockUdp(io_service,udp::endpoint(udp::v4(),13))
+	{
+		RecvTime();
+	}
+private:
+	void RecvTime(void) 
+	{//接收收客户端的请求
+		_sockUdp.async_receive_from(
+			boost::asio::buffer(_recvBuf), _endpointRemote,
+			boost::bind(&UdpTimeServer::handleRecvTime, this,
+			boost::asio::placeholders::error,
+			boost::asio::placeholders::bytes_transferred));
+	}
+	void handleSendTime(boost::shared_ptr<std::string>, const boost::system::error_code&, std::size_t)
+	{//当发送时间字符串给客户端成功之后响应。
+
+	}
+	void handleRecvTime(const boost::system::error_code& error, std::size_t) 
+	{
+		//当收到客户端数据时，就进入本函数响应处理
+		if (!error || error == boost::asio::error::message_size)
+		{
+			boost::shared_ptr<std::string> strMessage(new std::string(make_daytime_string()));
+			_sockUdp.async_send_to(boost::asio::buffer(*strMessage), _endpointRemote,
+				boost::bind(&UdpTimeServer::handleSendTime, this, strMessage,
+				boost::asio::placeholders::error,
+				boost::asio::placeholders::bytes_transferred));
+
+			RecvTime();
+		}
+	}
+private:
+	udp::socket _sockUdp;
+	udp::endpoint _endpointRemote;
+	boost::array<char, 1> _recvBuf;
+};
+/*
+void TestUdp(void)
+{
+	boost::asio::io_service io_service;
+	UdpTimeServer udpTimeServer(io_service);
+	io_service.run();
+}*/
 #endif // _SERIALPORT_H_
