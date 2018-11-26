@@ -28,45 +28,54 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="udp">
+      <UniqueIdentifier>{266d9ba2-f6d9-4367-b344-efba61b6467d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="..\..\src\boostSeriport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="boostSeriport.cpp">
+    <ClCompile Include="..\..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SerialPortDevice.cpp">
+    <ClCompile Include="..\..\src\robotwheel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="robotwheel.cpp">
+    <ClCompile Include="..\..\src\SerialPortDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\udpserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="boostSeriport.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="boostSeriport.ui">
+    <QtUic Include="..\..\src\boostSeriport.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="boostSeriport.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
+    <QtMoc Include="..\..\include\boostSeriport.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SerialPortDevice.h">
+    <ClInclude Include="..\..\include\DataGram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataGram.h">
+    <ClInclude Include="..\..\include\robotwheel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="robotwheel.h">
+    <ClInclude Include="..\..\include\SerialPortDevice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\udpserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\..\Resources\boostSeriport.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

@@ -30,10 +30,11 @@ public:
 	Q_SLOT void onSpeed();
 	Q_SLOT void onSub();
 	Q_SLOT void onCtrl();
+	Q_SLOT void onT();
 	void startWheel();
 	void keyboardLoop(KEBOARDCMD keyval);
 private:
-	double walk_val_{ 0.25 };
+	double walk_val_{ 0.15 };
 	double run_val_{ 1.0 };
 	double yaw_rate_{ 1.0 };
 	double yaw_rate_run_{1.5};
@@ -82,6 +83,7 @@ private:
 	boost::shared_ptr<SerialPortDevice> m_pSerialDevice;
 
 	QTimer m_timer;
+	QTimer m_timer2;
 	COMMAND _command_state{ Shaking_Hands };
 };
 

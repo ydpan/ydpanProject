@@ -48,34 +48,34 @@
     <ClCompile Include="customGUIDemo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\GridItem\GridLayout.cpp">
-      <Filter>gridItem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\GridItem\GridTray.cpp">
-      <Filter>gridItem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserCtrl.cpp">
+    <ClCompile Include="..\..\src\userCtrl\QLoginDlg.cpp">
       <Filter>userCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.cpp">
+    <ClCompile Include="..\..\src\userCtrl\QUserCtrl.cpp">
       <Filter>userCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\userCtrl\QLoginDlg.cpp">
+    <ClCompile Include="..\..\src\userCtrl\QUserDB.cpp">
       <Filter>userCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserDB.cpp">
+    <ClCompile Include="..\..\src\userCtrl\QUserManagerDlg.cpp">
       <Filter>userCtrl</Filter>
     </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\style\DarkStyle.cpp">
+    <ClCompile Include="..\..\src\style\DarkStyle.cpp">
       <Filter>Style</Filter>
     </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\style\LeaperDarkStyle.cpp">
+    <ClCompile Include="..\..\src\style\LeaperDarkStyle.cpp">
       <Filter>Style</Filter>
     </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\framelesswindow\framelesswindow.cpp">
+    <ClCompile Include="..\..\src\GridItem\GridLayout.cpp">
+      <Filter>gridItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\GridItem\GridTray.cpp">
+      <Filter>gridItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\framelesswindow\framelesswindow.cpp">
       <Filter>framelesswindow</Filter>
     </ClCompile>
-    <ClCompile Include="..\QGraphviewGUI\framelesswindow\windowdragger.cpp">
+    <ClCompile Include="..\..\src\framelesswindow\windowdragger.cpp">
       <Filter>framelesswindow</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,31 +83,31 @@
     <QtMoc Include="customGUIDemo.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\GridItem\GridLayout.h">
-      <Filter>gridItem</Filter>
-    </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\GridItem\GridTray.h">
-      <Filter>gridItem</Filter>
-    </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\userCtrl\QUserCtrl.h">
+    <QtMoc Include="..\..\src\userCtrl\QLoginDlg.h">
       <Filter>userCtrl</Filter>
     </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.h">
+    <QtMoc Include="..\..\src\userCtrl\QUserCtrl.h">
       <Filter>userCtrl</Filter>
     </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\userCtrl\QLoginDlg.h">
+    <QtMoc Include="..\..\src\userCtrl\QUserManagerDlg.h">
       <Filter>userCtrl</Filter>
     </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\style\DarkStyle.h">
+    <QtMoc Include="..\..\src\style\DarkStyle.h">
       <Filter>Style</Filter>
     </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\style\LeaperDarkStyle.h">
+    <QtMoc Include="..\..\src\style\LeaperDarkStyle.h">
       <Filter>Style</Filter>
     </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\framelesswindow\framelesswindow.h">
+    <QtMoc Include="..\..\src\GridItem\GridLayout.h">
+      <Filter>gridItem</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\src\GridItem\GridTray.h">
+      <Filter>gridItem</Filter>
+    </QtMoc>
+    <QtMoc Include="..\..\src\framelesswindow\framelesswindow.h">
       <Filter>framelesswindow</Filter>
     </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\framelesswindow\windowdragger.h">
+    <QtMoc Include="..\..\src\framelesswindow\windowdragger.h">
       <Filter>framelesswindow</Filter>
     </QtMoc>
   </ItemGroup>
@@ -115,111 +115,123 @@
     <QtUic Include="customGUIDemo.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.ui">
+    <QtUic Include="..\..\src\userCtrl\QLoginDlg.ui">
       <Filter>userCtrl</Filter>
     </QtUic>
-    <QtUic Include="..\QGraphviewGUI\userCtrl\QLoginDlg.ui">
+    <QtUic Include="..\..\src\userCtrl\QUserManagerDlg.ui">
       <Filter>userCtrl</Filter>
     </QtUic>
-    <QtUic Include="..\QGraphviewGUI\framelesswindow\framelesswindow.ui">
+    <QtUic Include="..\..\src\framelesswindow\framelesswindow.ui">
       <Filter>framelesswindow</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="customGUIDemo.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-    <QtRcc Include="..\QGraphviewGUI\style\darkstyle.qrc">
-      <Filter>Style</Filter>
-    </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\QGraphviewGUI\GridItem\layout_tray.txt">
-      <Filter>gridItem</Filter>
-    </Text>
-    <Text Include="..\QGraphviewGUI\GridItem\Example.txt">
-      <Filter>gridItem</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\QGraphviewGUI\userCtrl\QUserDB.h">
+    <ClInclude Include="..\..\src\userCtrl\QUserDB.h">
       <Filter>userCtrl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\QGraphviewGUI\style\darkstyle\darkstyle.qss">
+    <None Include="..\..\src\style\darkstyle\darkstyle.qss">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_close.png">
+    <Image Include="..\..\src\style\darkstyle\icon_branch_closed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_restore.png">
+    <Image Include="..\..\src\style\darkstyle\icon_branch_end.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_undock.png">
+    <Image Include="..\..\src\style\darkstyle\icon_branch_more.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_branch_closed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_branch_open.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_branch_end.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_checked.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_branch_more.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_checked_disabled.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_branch_open.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_checked_pressed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_vline.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_indeterminate.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_checked.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_indeterminate_disabled.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_indeterminate.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_indeterminate_pressed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_unchecked.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_unchecked.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_checked_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_unchecked_disabled.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_indeterminate_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_unchecked_pressed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_unchecked_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_close.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_checked_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_checked.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_indeterminate_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_checked_disabled.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_unchecked_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_checked_pressed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_checked.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_unchecked.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_unchecked.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_unchecked_disabled.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_checked_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_unchecked_pressed.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_unchecked_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_restore.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_checked_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_undock.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_unchecked_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_vline.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\src\style\images\icon_window_close.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\style\images\icon_window_maximize.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\style\images\icon_window_minimize.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\style\images\icon_window_restore.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\src\style\Example.txt">
+      <Filter>Style</Filter>
+    </Text>
+    <Text Include="..\..\src\GridItem\Example.txt">
+      <Filter>gridItem</Filter>
+    </Text>
+    <Text Include="..\..\src\GridItem\layout_tray.txt">
+      <Filter>gridItem</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\..\src\style\darkstyle.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

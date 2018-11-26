@@ -140,10 +140,13 @@ void SerialPortDevice::start_a_read()
 
 void SerialPortDevice::start_a_write()
 {
-	cout << "SerialPortDevice::start_a_write() " << endl;
-	mutex::scoped_lock lock(m_serialMutex);
-	async_write(*m_pSerial, buffer(*(m_writeQueue.front())),
-		bind(&SerialPortDevice::writeHandler, this, boost::asio::placeholders::error));
+	if (m_pSerial) {
+		cout << "SerialPortDevice::start_a_write() " << endl;
+		mutex::scoped_lock lock(m_serialMutex);
+		async_write(*m_pSerial, buffer(*(m_writeQueue.front())),
+			bind(&SerialPortDevice::writeHandler, this, boost::asio::placeholders::error));
+	}
+
 	
 }
 

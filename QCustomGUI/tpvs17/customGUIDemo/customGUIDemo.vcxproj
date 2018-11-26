@@ -53,7 +53,7 @@
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;..\QGraphviewGUI\userCtrl;..\QGraphviewGUI\style;..\QGraphviewGUI\framelesswindow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\..\src\userCtrl;.\..\..\src\style;.\..\..\src\framelesswindow;.\..\..\src\GridItem;.\..\..\3PartLib\include;.\..\..\src\SearchEdit;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -62,14 +62,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;.\..\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;customguid.lib;Qt5Sqld.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;..\QGraphviewGUI\userCtrl;..\QGraphviewGUI\style;..\QGraphviewGUI\framelesswindow;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\..\src\userCtrl;.\..\..\src\style;.\..\..\src\framelesswindow;.\..\..\src\GridItem;.\..\..\3PartLib\include;.\..\..\src\SearchEdit;%(AdditionalIncludeDirectories)</IncludePath>
       <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
@@ -85,7 +85,7 @@
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;..\QGraphviewGUI\userCtrl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\..\src\userCtrl;.\..\..\src\style;.\..\..\src\framelesswindow;.\..\..\src\GridItem;.\..\..\3PartLib\include;.\..\..\src\SearchEdit;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -93,14 +93,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;.\..\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;customgui.lib;Qt5Sql.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;..\QGraphviewGUI\userCtrl;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\..\src\userCtrl;.\..\..\src\style;.\..\..\src\framelesswindow;.\..\..\src\GridItem;.\..\..\3PartLib\include;.\..\..\src\SearchEdit;%(AdditionalIncludeDirectories)</IncludePath>
       <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
@@ -113,16 +113,16 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\QGraphviewGUI\framelesswindow\framelesswindow.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\framelesswindow\windowdragger.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\GridItem\GridLayout.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\GridItem\GridTray.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\style\DarkStyle.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\style\LeaperDarkStyle.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\userCtrl\QLoginDlg.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserCtrl.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserDB.cpp" />
-    <ClCompile Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.cpp" />
+    <ClCompile Include="..\..\src\framelesswindow\framelesswindow.cpp" />
+    <ClCompile Include="..\..\src\framelesswindow\windowdragger.cpp" />
+    <ClCompile Include="..\..\src\GridItem\GridLayout.cpp" />
+    <ClCompile Include="..\..\src\GridItem\GridTray.cpp" />
+    <ClCompile Include="..\..\src\style\DarkStyle.cpp" />
+    <ClCompile Include="..\..\src\style\LeaperDarkStyle.cpp" />
+    <ClCompile Include="..\..\src\userCtrl\QLoginDlg.cpp" />
+    <ClCompile Include="..\..\src\userCtrl\QUserCtrl.cpp" />
+    <ClCompile Include="..\..\src\userCtrl\QUserDB.cpp" />
+    <ClCompile Include="..\..\src\userCtrl\QUserManagerDlg.cpp" />
     <ClCompile Include="customGUIDemo.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -130,181 +130,195 @@
     <QtMoc Include="customGUIDemo.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="..\QGraphviewGUI\framelesswindow\framelesswindow.ui" />
-    <QtUic Include="..\QGraphviewGUI\userCtrl\QLoginDlg.ui" />
-    <QtUic Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.ui" />
+    <QtUic Include="..\..\src\framelesswindow\framelesswindow.ui" />
+    <QtUic Include="..\..\src\userCtrl\QLoginDlg.ui" />
+    <QtUic Include="..\..\src\userCtrl\QUserManagerDlg.ui" />
     <QtUic Include="customGUIDemo.ui" />
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="..\QGraphviewGUI\style\darkstyle.qrc" />
-    <QtRcc Include="customGUIDemo.qrc" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="..\QGraphviewGUI\GridItem\GridLayout.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\layout</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="..\QGraphviewGUI\GridItem\GridTray.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\layout</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\QGraphviewGUI\GridItem\Example.txt" />
-    <Text Include="..\QGraphviewGUI\GridItem\layout_tray.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="..\QGraphviewGUI\userCtrl\QUserCtrl.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="..\QGraphviewGUI\userCtrl\QLoginDlg.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
-    </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\style\DarkStyle.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
-    </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\style\LeaperDarkStyle.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
-    </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\framelesswindow\framelesswindow.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
-    </QtMoc>
-    <QtMoc Include="..\QGraphviewGUI\framelesswindow\windowdragger.h">
+    <QtMoc Include="..\..\src\userCtrl\QLoginDlg.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
     </QtMoc>
-    <ClInclude Include="..\QGraphviewGUI\userCtrl\QUserDB.h" />
-    <QtMoc Include="..\QGraphviewGUI\userCtrl\QUserManagerDlg.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit</IncludePath>
-      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB</Define>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\..\src\userCtrl\QUserCtrl.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\QGraphviewGUI\style\darkstyle\darkstyle.qss">
+    <QtMoc Include="..\..\src\framelesswindow\windowdragger.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+    </QtMoc>
+    <QtMoc Include="..\..\src\framelesswindow\framelesswindow.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+    </QtMoc>
+    <QtMoc Include="..\..\src\GridItem\GridTray.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+    </QtMoc>
+    <QtMoc Include="..\..\src\GridItem\GridLayout.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+    </QtMoc>
+    <QtMoc Include="..\..\src\style\LeaperDarkStyle.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+    </QtMoc>
+    <QtMoc Include="..\..\src\style\DarkStyle.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+    </QtMoc>
+    <ClInclude Include="..\..\src\userCtrl\QUserDB.h" />
+    <QtMoc Include="..\..\src\userCtrl\QUserManagerDlg.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\GridItem;C:\1Documents\PersonProject\MyQtCustomLib\QGraphviewGUI\userCtrl;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl;.\..\QGraphviewGUI\style;.\..\QGraphviewGUI\framelesswindow</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;C:\1Documents\PersonProject\MyQtCustomLib\QCustomGUILib\src\SearchEdit;$(QTDIR)\include\QtSql;.\..\QGraphviewGUI\userCtrl</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_SQL_LIB</Define>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\..\src\style\darkstyle.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\style\darkstyle\darkstyle.qss">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_branch_closed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_branch_closed.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_branch_end.png">
+    <Image Include="..\..\src\style\darkstyle\icon_branch_end.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_branch_more.png">
+    <Image Include="..\..\src\style\darkstyle\icon_branch_more.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_branch_open.png">
+    <Image Include="..\..\src\style\darkstyle\icon_branch_open.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_checked.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_checked.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_checked_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_checked_disabled.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_checked_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_checked_pressed.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_indeterminate.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_indeterminate.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_indeterminate_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_indeterminate_disabled.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_indeterminate_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_indeterminate_pressed.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_unchecked.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_unchecked.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_unchecked_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_unchecked_disabled.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_checkbox_unchecked_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_checkbox_unchecked_pressed.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_close.png">
+    <Image Include="..\..\src\style\darkstyle\icon_close.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_checked.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_checked.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_checked_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_checked_disabled.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_checked_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_checked_pressed.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_unchecked.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_unchecked.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_unchecked_disabled.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_unchecked_disabled.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_radiobutton_unchecked_pressed.png">
+    <Image Include="..\..\src\style\darkstyle\icon_radiobutton_unchecked_pressed.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_restore.png">
+    <Image Include="..\..\src\style\darkstyle\icon_restore.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_undock.png">
+    <Image Include="..\..\src\style\darkstyle\icon_undock.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
-    <Image Include="..\QGraphviewGUI\style\darkstyle\icon_vline.png">
+    <Image Include="..\..\src\style\darkstyle\icon_vline.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Image>
+    <Image Include="..\..\src\style\images\icon_window_close.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\..\src\style\images\icon_window_maximize.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\..\src\style\images\icon_window_minimize.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+    <Image Include="..\..\src\style\images\icon_window_restore.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\src\GridItem\Example.txt" />
+    <Text Include="..\..\src\GridItem\layout_tray.txt" />
+    <Text Include="..\..\src\style\Example.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -58,7 +58,9 @@ boostSeriport::boostSeriport(QWidget *parent)
 
 	connect(this, SIGNAL(sgRecvData(QVariantMap)), this, SLOT(onRecvData(QVariantMap)));
 	connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeOut()));
+	connect(&m_timer2, SIGNAL(timeout()), this, SLOT(onT()));
 	m_timer.start(200);
+	m_timer2.start(500);
 	startWheel();
 }
 
@@ -72,7 +74,7 @@ boostSeriport::~boostSeriport()
 void boostSeriport::InitSerialDevice()
 {
 	m_serialParams.baudRate = 115200;
-	m_serialParams.serialPort = "COM10";
+	m_serialParams.serialPort = "COM12";
 	m_serialParams.flowControl = 0;
 	m_serialParams.parity = 0;
 	m_serialParams.stopBits = 0;
@@ -167,7 +169,7 @@ Q_SLOT void boostSeriport::onTimeOut()
 // 	p->data.push_back(2);
 // 	p->sender = 12;
 // 	p->receiver = 34;
-// 	DataGram_Callback(p);
+// 	DataGram_Callback(p);\
 	pub_Command(Read_Global_Coordinate);
 	pub_Float_Vector3(Set_Robot_Speed, Expect_Robot_Speed.X, Expect_Robot_Speed.Y, Expect_Robot_Speed.Z);
 }
@@ -243,6 +245,15 @@ Q_SLOT void boostSeriport::onCtrl()
 	if (strObj == "s_btn") {
 		keyboardLoop(KEY_S);
 	}
+}
+
+Q_SLOT void boostSeriport::onT()
+{
+	static int n = 0;
+	if(n++%3==0)
+		keyboardLoop(KEY_D);
+	else
+		keyboardLoop(KEY_W);
 }
 
 void boostSeriport::startWheel()
