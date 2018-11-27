@@ -32,17 +32,17 @@ typedef struct _MV_GIGE_DEVICE_INFO_
 typedef struct _MV_CC_DEVICE_INFO_
 {
     // common info
-    unsigned short      nMajorVer;
-    unsigned short      nMinorVer;
-    unsigned int        nDeviceMode;
-    unsigned int        nMacAddrHigh;               // MAC 地址
-    unsigned int        nMacAddrLow;
+	unsigned short      nMajorVer{0};
+    unsigned short      nMinorVer{ 0 };
+    unsigned int        nDeviceMode{ 0 };
+    unsigned int        nMacAddrHigh{ 0 };               // MAC 地址
+    unsigned int        nMacAddrLow{ 0 };
 
-    unsigned int        nTLayerType;                // 设备传输层协议类型，e.g. MV_GIGE_DEVICE
+    unsigned int        nTLayerType{ 0 };                // 设备传输层协议类型，e.g. MV_GIGE_DEVICE
 
     union
     {
-        MV_GIGE_DEVICE_INFO stGigEInfo;
+        MV_GIGE_DEVICE_INFO stGigEInfo{ 0 };
         // more ...
     };
 

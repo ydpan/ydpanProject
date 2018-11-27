@@ -53,15 +53,15 @@ class VirtualDevice
     int InitVtMem();
 
   private:
-    bool                         _bCancel;
+	  bool                         _bCancel{false};
     MV_CC_DEVICE_INFO			_DeviceInfo;
     std::string                  _strXmlFileName;
     uint32_t                     _nXmlFileSize;
 
-    double                       _fTriggerFrequency;  // TODO
+	double                       _fTriggerFrequency{10};  // TODO
     std::string					_strDeviceBinFilename;
     virtual_addr_t				_pVtMem;
-    uint32_t					_VtMemSize;
+	uint32_t					_VtMemSize{1024};
 
 	std::string striniFile;
 };
