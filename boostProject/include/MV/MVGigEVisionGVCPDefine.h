@@ -1,15 +1,6 @@
 // -*- coding: gb2312-dos -*-
 /***************************************************************************************************
- *
- * 版权信息：版权所有 (c) 2014, 杭州海康威视数字技术股份有限公司, 保留所有权利
- *
- * 文件名称：MVGiGEVisionGVCPDefine.h
- * 摘    要：机器视觉SDK库 GVCP定义头文件
- *
- * 当前版本：V1.0.0
- * 作    者：王川艳、陈祖文、卢易
- * 日    期：2014-12-18
- * 备    注：新建，基于2.0.03版本。
+
  ***************************************************************************************************/
 #ifndef __MV_GVCP_DEFINE_H__
 #define __MV_GVCP_DEFINE_H__
@@ -169,84 +160,7 @@ typedef struct _ACK_MSG_HEADER_
     unsigned short      nAckId;          // [16bits] 响应ID，与接收的CMD信息中的req_id相同
 } ACK_MSG_HEADER;
 
-/************************************************************************
- *  GVCP_PAYLOAD  负载定义。根据命令和确认信息的不同，有各自的定义
- ************************************************************************/
 
-/***************************************************
- *  1. [CMD] 设备发现，不需要负载 。
- *     flag字段说明：bit 0~2, 保留,置0；bit 3, 允许应答消息广播；bit 7 必须置1。
- *    【该命令设备必须支持】
- ***************************************************/
-
-/***************************************************
- *  2. [ACK] 设备应答，负载定义为结构体 DISCOVERY_ACK_MSG
- *    【该命令设备必须支持】
- ***************************************************/
-typedef struct _DISCOVERY_ACK_MSG_
-{
-    unsigned short nMajorVer;
-    unsigned short nMinorVer;
-    unsigned int   nDeviceMode;
-    unsigned short nRes1;
-    unsigned short nMacAddrHigh;
-    unsigned int   nMacAddrLow;
-    unsigned int   nIpCfgOption;
-    unsigned int   nIpCfgCurrent;       //IP configuration:bit31-static bit30-dhcp bit29-lla
-    unsigned int   nRes2[3];
-    unsigned int   nCurrentIp;
-    unsigned int   nRes3[3];
-    unsigned int   nCurrentSubNetMask;
-    unsigned int   nRes4[3];
-    unsigned int   nDefultGateWay;
-    unsigned char  chManufacturerName[32];
-    unsigned char  chModelName[32];
-    unsigned char  chDeviceVersion[32];
-    unsigned char  chManufacturerSpecificInfo[48];
-    unsigned char  chSerialNumber[16];
-    unsigned char  chUserDefinedName[16];
-} DISCOVERY_ACK_MSG;
-
-/***************************************************
- *  3. [CMD] 强制IP，负载定义为结构体 FORCEIP_CMD_MSG
- *     flag字段说明：bit 0~2, 保留,置0；bit 3, 允许应答消息广播；bit 7 必须置1。
- *    【该命令设备必须支持】
- ***************************************************/
-typedef struct _FORCEIP_CMD_MSG_
-{
-    unsigned char       nReserved0[2];
-    unsigned short      nMacAddrHigh;
-    unsigned int        nMacAddrLow;
-    unsigned int        nReserved1[3];
-    unsigned int        nStaticIp;      // 如果此字段为0，设备必须在全部的网络接口上重启IP配置，而不需要回复确认消息;
-    unsigned int        nReserved2[3];
-    unsigned int        nStaticSubNetMask;
-    unsigned int        nReserved3[3];
-    unsigned int        nStaticDefaultGateWay;
-
-} FORCEIP_CMD_MSG;
-
-/***************************************************
- *  4. [ACK] 强制IP，不需要负载。但IP包要使用新的IP发送
- *    【该命令设备必须支持】
- ***************************************************/
-
-/***************************************************
- *  5. [CMD] 读寄存器，负载为一系列32bits的寄存器地址（至少一个）
- *     flag字段说明：bit 0~2, 保留,置0；bit 3, 允许应答消息广播；bit 7 必须置1。
- *    【该命令设备必须支持】
- ***************************************************/
-
-/**************************************************
- *  6. [ACK] 读寄存器，负载为一系列32bits的值，这些值从CMD的寄存器地址中获取。
- *    【该命令设备必须支持】
- ***************************************************/
-
-/***************************************************
- *  7. [CMD] 写寄存器，负载为 WRITEREG_CMD_MSG 数组（至少一个，最多67个）
- *     lag字段说明：bit 0~2, 保留,置0；bit 3, 允许应答消息广播。
- *    【该命令设备必须支持】
- ***************************************************/
 typedef struct _WRITEREG_CMD_MSG_
 {
     unsigned long       nRegAddress;   // 寄存器地址
@@ -257,55 +171,33 @@ typedef struct _WRITEREG_CMD_MSG_
  *  8. [ACK] 写寄存器，负载为 WRITEREG_ACK_MSG。但第n个写入错误时，返回错误信息。之后的命令数据丢弃。
  *    【该命令设备必须支持】
  ***************************************************/
-#define MV_MAX_WRITEREG_INDEX      67
-typedef struct _WRITEREG_ACK_MSG_
-{
-    unsigned short      nReserved;   // 置0
-    unsigned short      nIndex;      // 表示第n（0-66）个写入出错。如果都正确，填67
-} WRITEREG_ACK_MSG;
+
 
 /***************************************************
  *  9. [CMD] 读内存，负载为 READMEM_CMD_MSG
  *     flag字段说明：bit 0~2, 保留,置0；bit 3, 允许应答消息广播；bit 7 必须置1。
  *    【该命令设备必须支持】
  ***************************************************/
-typedef struct _READMEM_CMD_MSG_
-{
-    unsigned long       nMemAddress;    // 4bytes 对齐的地址
-    unsigned short      nReserved;      // 置0
-    unsigned short      nMemLen;        // 读取的byte数量。（4的倍数）
-} READMEM_CMD_MSG;
+
 
 /***************************************************
  * 10. [ACK] 读内存，负载为 READMEM_ACK_MSG
  *    【该命令设备必须支持】
  ***************************************************/
-typedef struct _READMEM_ACK_MSG_
-{
-    unsigned long       nMemAddress;    // 4bytes 对齐的地址
-    unsigned char       chReadMemData[MV_GVCP_MAX_PAYLOAD_LEN]; // 读取的内存数据
-} READMEM_ACK_MSG;
+
 
 /***************************************************
  * 11. [CMD] 写内存，负载为 WRITEMEM_CMD_MSG
  *     flag字段说明：bit 0~2, 保留,置0；bit 3, 允许应答消息广播。
  *    【该命令设备必须支持】
  ***************************************************/
-typedef struct _WRITEMEM_CMD_MSG_
-{
-    unsigned long       nMemAddress;    // 4bytes 对齐的地址
-    unsigned char       chWriteMemData[MV_GVCP_MAX_PAYLOAD_LEN]; // 待写的内存数据
-} WRITEMEM_CMD_MSG;
+
 
 /***************************************************
  * 12. [ACK] 写内存，负载为 WRITEMEM_ACK_MSG
  *    【该命令设备必须支持】
  ***************************************************/
-typedef struct _WRITEMEM_ACK_MSG_
-{
-    unsigned short      nReserved;   // 置0
-    unsigned short      nIndex;      // 成功，填总写入数据量；失败，表示第n（0-535）个写入出错。
-} WRITEMEM_ACK_MSG;
+
 
 
 /***************************************************

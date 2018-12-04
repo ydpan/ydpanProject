@@ -34,15 +34,12 @@ void GetLocalIp(void* pInfo, unsigned int& nCurrentIp, unsigned int& nCurrentSub
 #ifdef WINDOWS
     if (pInfo)
     {
-		//((IP_ADAPTER_INFO*))pInfo->IpAddressList.IpAddress.String = string("192.168.8.152").c_str();
-		char strIP[16];
-		string st = string("192.168.242.152");
-			for (int i = 0; i < st.size(); i++)
-				strIP[i] = st[i];
-        nCurrentIp         = inet_addr(strIP/*((IP_ADAPTER_INFO*)pInfo)->IpAddressList.IpAddress.String*/);
-		//nCurrentIp = inet_addr(((IP_ADAPTER_INFO*)pInfo)->IpAddressList.IpAddress.String);
-        nCurrentSubNetMask = inet_addr(((IP_ADAPTER_INFO*)pInfo)->IpAddressList.IpMask.String);
-        nDefultGateWay     = inet_addr(((IP_ADAPTER_INFO*)pInfo)->GatewayList.IpAddress.String);
+		string strIP = string("192.168.8.153");
+		string strMask = string("255.255.255.0");
+		string strGateWay = string("192.168.8.1");
+        nCurrentIp         = inet_addr(strIP.c_str());
+        nCurrentSubNetMask = inet_addr(strMask.c_str());
+        nDefultGateWay     = inet_addr(strGateWay.c_str());
         nCurrentIp         = ntohl(nCurrentIp);
         nCurrentSubNetMask = ntohl(nCurrentSubNetMask);
         nDefultGateWay     = ntohl(nDefultGateWay);
@@ -50,7 +47,8 @@ void GetLocalIp(void* pInfo, unsigned int& nCurrentIp, unsigned int& nCurrentSub
 #endif
 }
 
-/* @fn          GetLocalMac
+ /*
+ * @fn          GetLocalMac
  * @brief       Get local MAC
  * @param[in]   pInfo
  * @param[out]  nMacAddrHigh

@@ -17,6 +17,7 @@
     <ClCompile Include="..\..\src\robotwheel.cpp" />
     <ClCompile Include="..\..\src\SerialPortDevice.cpp" />
     <ClCompile Include="..\..\src\udpserver.cpp" />
+    <ClCompile Include="gvcp.cpp" />
     <ClCompile Include="GVCPDevice.cpp" />
     <ClCompile Include="GVSPDevice.cpp" />
     <ClCompile Include="QUdpTestUI.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="..\..\include\SerialPortDevice.h" />
     <ClInclude Include="..\..\include\udpserver.h" />
     <ClInclude Include="..\..\include\VirtualDevice.h" />
+    <ClInclude Include="gvcp.h" />
     <ClInclude Include="GVCPDevice.h" />
     <ClInclude Include="GVSPDevice.h" />
     <QtMoc Include="QUdpTestUI.h">

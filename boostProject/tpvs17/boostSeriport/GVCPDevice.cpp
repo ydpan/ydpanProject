@@ -65,65 +65,73 @@ void GVCPDevice::handMsgCallBack(tagUdpData tagData)
 		//return;
 	std::string strAdressPort = tagData.fromPoint.address().to_string() + ":" + to_string(tagData.fromPoint.port());
 	unsigned char *pData = tagData._byteData->data();
-	CMD_MSG_HEADER* pCmdHdr = (CMD_MSG_HEADER*)(pData);
-	_pCmdHdr = pCmdHdr;
-	if (pCmdHdr->cKeyValue == MV_GVCP_CMD_KEY_VALUE)
+	ArvGvcpPacket* packet = (ArvGvcpPacket*)(pData);
+	if (packet == NULL)
+		return;
+	guint16 packet_type = arv_gvcp_packet_get_packet_type(packet);
+	unsigned char keyVal = packet_type >> 8;
+// 	if (packet_type != ARV_GVCP_PACKET_TYPE_CMD)
+// 	{
+// 		return;
+// 	}
+	if (keyVal != 0x42)
+		return;
+
+	switch (ntohs(packet->header.command))
 	{
-		switch (ntohs(pCmdHdr->nCommand))
-		{
-		case MV_GEV_DISCOVERY_CMD:
+		case ARV_GVCP_COMMAND_DISCOVERY_CMD://discover_cmd
 		{
 			DiscoveryAck(tagData);
 			break;
 		}
-		case MV_GEV_READREG_CMD:
+		case ARV_GVCP_COMMAND_READ_MEMORY_CMD://读内存
 		{
-			int a = 0;
+			ReadMemoryAck(tagData);
 			break;
 		}
-		case MV_GEV_WRITEREG_CMD:
+		case ARV_GVCP_COMMAND_WRITE_MEMORY_CMD://写内存
 		{
-			int a = 0;
+			WriteMemoryAck(tagData);
 			break;
 		}
-		case MV_GEV_READMEM_CMD:
+		case ARV_GVCP_COMMAND_READ_REGISTER_CMD://读寄存器
 		{
-			int a = 0;
+			ReadRegisterAck(tagData);
 			break;
 		}
-		case MV_GEV_WRITEMEM_CMD:
+		case ARV_GVCP_COMMAND_WRITE_REGISTER_CMD://写寄存器
 		{
-			int a = 0;
+			WriteRegisterAck(tagData);
+			break;
+		}
+		case ARV_GVCP_COMMAND_FOCUSIP_CMD:
+		{
+			FocusIPAck(tagData);
 			break;
 		}
 		default:
-			std::string str = to_string(pCmdHdr->nCommand);
+			std::string str = to_string(packet->header.command);
 			break;
-		}
 	}
-
 }
 
-int GVCPDevice::DiscoveryAck(tagUdpData &tagdata)
+void GVCPDevice::DiscoveryAck(tagUdpData &tagdata)
 {
-	int nRet = MV_OK;
-
-	char cSendData[MV_GVCP_MAX_MSG_LEN] = { 0 };
+	char cSendData[ARV_GVCP_MAX_MSG_LEN] = { 0 };
 	unsigned char *pData = tagdata._byteData->data();
-	CMD_MSG_HEADER* pCmdHdr = (CMD_MSG_HEADER*)(pData);
-	ACK_MSG_HEADER* pAckHdr = (ACK_MSG_HEADER*)cSendData;
-	pAckHdr->nStatus = htons(MV_GEV_STATUS_SUCCESS);
-	pAckHdr->nAckMsgValue = htons(MV_GEV_DISCOVERY_ACK);
-	pAckHdr->nLength = htons(sizeof(DISCOVERY_ACK_MSG));
-	pAckHdr->nAckId = htons(ntohs(pCmdHdr->nReqId));
+	ArvGvcpPacket* pCmdHdr = (ArvGvcpPacket*)(pData);
+	ArvGvcpHeader* pAckHdr = (ArvGvcpHeader*)cSendData;
+	pAckHdr->packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
+	pAckHdr->command = htons(ARV_GVCP_COMMAND_DISCOVERY_ACK);
+	pAckHdr->size = htons(sizeof(DISCOVERY_ACK_MSG));
+	pAckHdr->id = htons(ntohs(pCmdHdr->header.id));
 
-	if (_nLastAckId != ntohs(pCmdHdr->nReqId))
+	if (_nLastAckId != ntohs(pCmdHdr->header.id))
 	{
-		// Update last ack_id
-		_nLastAckId = ntohs(pCmdHdr->nReqId);
+		_nLastAckId = ntohs(pCmdHdr->header.id);
 	}
 
-	DISCOVERY_ACK_MSG* pAckMsg = (DISCOVERY_ACK_MSG*)(cSendData + sizeof(ACK_MSG_HEADER));
+	DISCOVERY_ACK_MSG* pAckMsg = (DISCOVERY_ACK_MSG*)(cSendData + sizeof(ArvGvcpHeader));
 	m_deveiceInfo = m_device.GetDeviceInfo();
 	pAckMsg->nMajorVer = htons(m_deveiceInfo.nMajorVer);
 	pAckMsg->nMinorVer = htons(m_deveiceInfo.nMinorVer);
@@ -145,7 +153,7 @@ int GVCPDevice::DiscoveryAck(tagUdpData &tagdata)
 
 	try
 	{
-		size_t nLen = sizeof(ACK_MSG_HEADER) + ntohs(pAckHdr->nLength);
+		size_t nLen = sizeof(ACK_MSG_HEADER) + ntohs(pAckHdr->size);
 
 		tagUdpData m_writeData;
 		m_writeData.fromPoint = tagdata.fromPoint;
@@ -159,30 +167,220 @@ int GVCPDevice::DiscoveryAck(tagUdpData &tagdata)
 	}
 	catch (std::exception &e)
 	{
-		nRet = MV_E_NETER;
-		return nRet;
+		
+	}
+}
+/*读寄存器*/
+void GVCPDevice::ReadRegisterAck(tagUdpData &tagdata)
+{
+	char cSendData[MV_GVCP_MAX_MSG_LEN] = { 0 };
+	unsigned char *pData = tagdata._byteData->data();
+	ArvGvcpPacket* packet = (ArvGvcpPacket*)(pData);
+	ArvGvcpHeader* pAckHdr = (ArvGvcpHeader*)cSendData;
+	pAckHdr->packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
+	pAckHdr->command = htons(ARV_GVCP_COMMAND_READ_REGISTER_ACK);
+	pAckHdr->id = htons(ntohs(packet->header.id));
+
+	if (_nLastAckId != ntohs(packet->header.id))
+	{
+		_nLastAckId = ntohs(packet->header.id);
 	}
 
-	return nRet;
-	return 0;
+	guint32 register_address = 0;
+	arv_gvcp_packet_get_read_register_cmd_infos(packet, &register_address);
+
+	/*
+	TODO : camera read register
+	根据地址获取数据 
+	*/
+	pAckHdr->size = packet->header.size;
+	size_t nLen = sizeof(ACK_MSG_HEADER) + ntohs(pAckHdr->size);
+
+	tagUdpData m_writeData;
+	m_writeData.fromPoint = tagdata.fromPoint;
+	m_writeData._byteData = boost::shared_ptr<ByteVector>(new ByteVector);
+	m_writeData._byteData->resize(nLen, 0);
+	unsigned char *pSendData = m_writeData._byteData->data();
+	memcpy(pSendData, cSendData, nLen);
+	std::string straddress = m_writeData.fromPoint.address().to_string() + ":" + to_string(m_writeData.fromPoint.port());
+
+	m_pUdpServer->writeRaw(m_writeData);
+
 }
 
-int GVCPDevice::ReadRegAck()
+void GVCPDevice::WriteRegisterAck(tagUdpData &tagdata)
 {
-	return 0;
+	char cSendData[MV_GVCP_MAX_MSG_LEN] = { 0 };
+	unsigned char *pData = tagdata._byteData->data();
+	ArvGvcpPacket* packet = (ArvGvcpPacket*)(pData);
+	ArvGvcpHeader* pAckHdr = (ArvGvcpHeader*)cSendData;
+	pAckHdr->packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
+	pAckHdr->command = htons(ARV_GVCP_COMMAND_WRITE_REGISTER_ACK);
+	pAckHdr->size = /*htons*/(packet->header.size);
+	pAckHdr->id = htons(ntohs(packet->header.id));
+
+	if (_nLastAckId != ntohs(packet->header.id))
+	{
+		_nLastAckId = ntohs(packet->header.id);
+	}
+	guint32 payload_size = packet->header.size;
+	guint32 register_address = 0;
+	guint32 register_value = 0;
+
+	arv_gvcp_packet_get_write_register_cmd_infos(packet, &register_address,&register_value);
+
+	/*
+	TODO : camera write register
+
+	*/
+	tag_WriteReg_ACK *pAck = (tag_WriteReg_ACK *)(cSendData + sizeof(ArvGvcpHeader));
+	pAck->nReserved = 0;
+	pAck->nIndex = htons(1);//写成功标识符
+
+	size_t nLen = sizeof(ACK_MSG_HEADER) + ntohs(pAckHdr->size);
+
+	tagUdpData m_writeData;
+	m_writeData.fromPoint = tagdata.fromPoint;
+	m_writeData._byteData = boost::shared_ptr<ByteVector>(new ByteVector);
+	m_writeData._byteData->resize(nLen, 0);
+	unsigned char *pSendData = m_writeData._byteData->data();
+	memcpy(pSendData, cSendData, nLen);
+	std::string straddress = m_writeData.fromPoint.address().to_string() + ":" + to_string(m_writeData.fromPoint.port());
+
+	m_pUdpServer->writeRaw(m_writeData);
 }
 
-int GVCPDevice::WriteRegAck()
+void GVCPDevice::ReadMemoryAck(tagUdpData &tagdata)
 {
-	return 0;
+	char cSendData[MV_GVCP_MAX_MSG_LEN] = { 0 };
+	unsigned char *pData = tagdata._byteData->data();
+	ArvGvcpPacket* packet = (ArvGvcpPacket*)(pData);
+	ArvGvcpHeader* pAckHdr = (ArvGvcpHeader*)cSendData;
+	pAckHdr->packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
+	pAckHdr->command = htons(ARV_GVCP_COMMAND_READ_MEMORY_ACK);
+	pAckHdr->size = htons(sizeof(tag_ReadMem_CMD));
+	pAckHdr->id = htons(ntohs(packet->header.id));
+
+	if (_nLastAckId != ntohs(packet->header.id))
+	{
+		_nLastAckId = ntohs(packet->header.id);
+	}
+	guint32 register_address = 0;
+	guint32 block_size = 0;
+	tag_ReadMem_CMD* preg =(tag_ReadMem_CMD*)packet->data;
+	register_address = preg->nMemAddress;
+	block_size = preg->count;
+
+	//arv_gvcp_packet_get_read_memory_cmd_infos(packet, &register_address,&block_size);
+
+	/*
+	TODO : camera read register
+
+	*/
+
+	tag_Readmem_ACK *pRegAck = (tag_Readmem_ACK *)(cSendData + sizeof(ArvGvcpHeader));
+	pRegAck->nMemAddress = register_address;
+	pRegAck->chReadMemData[0];//装载数据
+
+	size_t nLen = sizeof(ArvGvcpHeader) + ntohs(pAckHdr->size);
+	tagUdpData m_writeData;
+	m_writeData.fromPoint = tagdata.fromPoint;
+	m_writeData._byteData = boost::shared_ptr<ByteVector>(new ByteVector);
+	m_writeData._byteData->resize(nLen, 0);
+	unsigned char *pSendData = m_writeData._byteData->data();
+	memcpy(pSendData, cSendData, nLen);
+	std::string straddress = m_writeData.fromPoint.address().to_string() + ":" + to_string(m_writeData.fromPoint.port());
+
+	m_pUdpServer->writeRaw(m_writeData);
 }
 
-int GVCPDevice::ReadMemAck()
+void GVCPDevice::WriteMemoryAck(tagUdpData &tagdata)
 {
-	return 0;
+	char cSendData[MV_GVCP_MAX_MSG_LEN] = { 0 };
+	unsigned char *pData = tagdata._byteData->data();
+	ArvGvcpPacket* packet = (ArvGvcpPacket*)(pData);
+	ArvGvcpHeader* pAckHdr = (ArvGvcpHeader*)cSendData;
+
+	pAckHdr->packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
+	pAckHdr->command = htons(ARV_GVCP_COMMAND_WRITE_MEMORY_ACK);
+	pAckHdr->size = htons(sizeof(tag_WriteMem_ACK));
+	pAckHdr->id = htons(ntohs(packet->header.id));
+
+	if (_nLastAckId != ntohs(packet->header.id))
+	{
+		_nLastAckId = ntohs(packet->header.id);
+	}
+
+	tag_WriteMem_CMD* pWriteData = (tag_WriteMem_CMD*)packet->data;
+
+	guint32 block_address = pWriteData->nMemAddress;//数据的起始地址
+	pWriteData->chWriteMemData;//需要写入的数据
+
+	guint32 block_size = ntohs(packet->header.size)-sizeof(guint32);//数据大小  对齐
+	//arv_gvcp_packet_get_write_memory_cmd_infos(packet, &block_address,&block_size);
+
+	/*
+	TODO : camera write memory
+
+	*/
+	tag_WriteMem_ACK *pWData = (tag_WriteMem_ACK *)(cSendData + sizeof(ArvGvcpHeader));
+	pWData->nIndex = 536;
+	pWData->nReserved = 0;
+
+	size_t nLen = sizeof(ACK_MSG_HEADER) + ntohs(pAckHdr->size);
+
+	tagUdpData m_writeData;
+	m_writeData.fromPoint = tagdata.fromPoint;
+	m_writeData._byteData = boost::shared_ptr<ByteVector>(new ByteVector);
+	m_writeData._byteData->resize(nLen, 0);
+	unsigned char *pSendData = m_writeData._byteData->data();
+	memcpy(pSendData, cSendData, nLen);
+	std::string straddress = m_writeData.fromPoint.address().to_string() + ":" + to_string(m_writeData.fromPoint.port());
+
+	m_pUdpServer->writeRaw(m_writeData);
 }
 
-int GVCPDevice::WriteMemAck()
+void GVCPDevice::FocusIPAck(tagUdpData &tagdata)
 {
-	return 0;
+	char cSendData[MV_GVCP_MAX_MSG_LEN] = { 0 };
+	unsigned char *pData = tagdata._byteData->data();
+	ArvGvcpPacket* packet = (ArvGvcpPacket*)(pData);
+	/*
+	fOCUSIP 
+	
+	*/
+	Arv_FocusIP_Msg* pFocusIP = (Arv_FocusIP_Msg*)packet->data;
+	
+
+
+	ArvGvcpHeader* pAckHdr = (ArvGvcpHeader*)cSendData;
+	pAckHdr->packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
+	pAckHdr->command = htons(ARV_GVCP_COMMAND_FOCUSIP_ACK);
+	pAckHdr->size = htons(sizeof(DISCOVERY_ACK_MSG));
+	pAckHdr->id = htons(ntohs(packet->header.id));
+
+	if (_nLastAckId != ntohs(packet->header.id))
+	{
+		_nLastAckId = ntohs(packet->header.id);
+	}
+	guint32 block_address = 0;
+	guint32 block_size = 0;
+	arv_gvcp_packet_get_write_memory_cmd_infos(packet, &block_address, &block_size);
+
+	/*
+	TODO : camera write memory
+
+	*/
+
+	size_t nLen = sizeof(ACK_MSG_HEADER) + ntohs(pAckHdr->size);
+
+	tagUdpData m_writeData;
+	m_writeData.fromPoint = tagdata.fromPoint;
+	m_writeData._byteData = boost::shared_ptr<ByteVector>(new ByteVector);
+	m_writeData._byteData->resize(nLen, 0);
+	unsigned char *pSendData = m_writeData._byteData->data();
+	memcpy(pSendData, cSendData, nLen);
+	std::string straddress = m_writeData.fromPoint.address().to_string() + ":" + to_string(m_writeData.fromPoint.port());
+
+	m_pUdpServer->writeRaw(m_writeData);
 }
