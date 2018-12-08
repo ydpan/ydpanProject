@@ -9,7 +9,7 @@
 #include "MV/MVGigEVisionDeviceDefine.h"
 #include "MV/MVGigEVisionGVCPDefine.h"
 #include "MV/MVGiGEVisionGVCPRegisterDefine.h"
-#include "VirtualDevice.h"
+#include "DeviceInfo.h"
 #include "gvcp.h"
 
 using namespace boost;
@@ -36,8 +36,7 @@ private:
 	char                 _cRecvData[MV_GVCP_MAX_MSG_LEN];
 	unsigned int         _nLastAckId{0};
 
-	VirtualDevice m_device;
-	_MV_CC_DEVICE_INFO_ m_deveiceInfo;
+	DeviceInfo m_device;
 };
 
 #endif

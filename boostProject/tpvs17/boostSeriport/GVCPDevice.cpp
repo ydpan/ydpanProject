@@ -10,35 +10,6 @@ GVCPDevice::GVCPDevice()
 GVCPDevice::~GVCPDevice()
 {
 }
-// void GetLocalMac(std::string straddress, unsigned int& nMacAddrHigh, unsigned int& nMacAddrLow)
-// {
-// 	{
-// 		long long nMacAddr;
-// 		memcpy((unsigned char*)&nMacAddr, (unsigned char*)straddress.c_str(), straddress.size());
-// 		nMacAddrHigh = (nMacAddr & 0x0000000000ffff);
-// 		nMacAddrHigh = ntohl(nMacAddrHigh);
-// 		nMacAddrLow = (nMacAddr & 0xffffffffff0000) >> 16;
-// 		nMacAddrLow = ntohl(nMacAddrLow);
-// 	}
-// }
-
-// void GetLocalIp(void* pInfo, unsigned int& nCurrentIp, unsigned int& nCurrentSubNetMask, unsigned int& nDefultGateWay)
-// {
-// 	{
-// 		//((IP_ADAPTER_INFO*))pInfo->IpAddressList.IpAddress.String = string("192.168.8.152").c_str();
-// 		char strIP[16];
-// 		string st = string("192.168.242.152");
-// 		for (int i = 0; i < st.size(); i++)
-// 			strIP[i] = st[i];
-// 		nCurrentIp = inet_addr(strIP/*((IP_ADAPTER_INFO*)pInfo)->IpAddressList.IpAddress.String*/);
-// 		//nCurrentIp = inet_addr(((IP_ADAPTER_INFO*)pInfo)->IpAddressList.IpAddress.String);
-// 		nCurrentSubNetMask = inet_addr(((IP_ADAPTER_INFO*)pInfo)->IpAddressList.IpMask.String);
-// 		nDefultGateWay = inet_addr(((IP_ADAPTER_INFO*)pInfo)->GatewayList.IpAddress.String);
-// 		nCurrentIp = ntohl(nCurrentIp);
-// 		nCurrentSubNetMask = ntohl(nCurrentSubNetMask);
-// 		nDefultGateWay = ntohl(nDefultGateWay);
-// 	}
-// }
 
 void GVCPDevice::InitDevice()
 {
@@ -62,6 +33,7 @@ void GVCPDevice::handMsgCallBack(tagUdpData tagData)
 		return;
 	std::string strAdr = tagData.fromPoint.address().to_string();
 	if (strAdr != "192.168.8.254")
+		;
 		//return;
 	std::string strAdressPort = tagData.fromPoint.address().to_string() + ":" + to_string(tagData.fromPoint.port());
 	unsigned char *pData = tagData._byteData->data();
@@ -70,10 +42,6 @@ void GVCPDevice::handMsgCallBack(tagUdpData tagData)
 		return;
 	guint16 packet_type = arv_gvcp_packet_get_packet_type(packet);
 	unsigned char keyVal = packet_type >> 8;
-// 	if (packet_type != ARV_GVCP_PACKET_TYPE_CMD)
-// 	{
-// 		return;
-// 	}
 	if (keyVal != 0x42)
 		return;
 
@@ -132,7 +100,7 @@ void GVCPDevice::DiscoveryAck(tagUdpData &tagdata)
 	}
 
 	DISCOVERY_ACK_MSG* pAckMsg = (DISCOVERY_ACK_MSG*)(cSendData + sizeof(ArvGvcpHeader));
-	m_deveiceInfo = m_device.GetDeviceInfo();
+	MV_CC_DEVICE_INFO  m_deveiceInfo = m_device.GetDeviceInfo();
 	pAckMsg->nMajorVer = htons(m_deveiceInfo.nMajorVer);
 	pAckMsg->nMinorVer = htons(m_deveiceInfo.nMinorVer);
 	pAckMsg->nDeviceMode = htonl(m_deveiceInfo.nDeviceMode);
@@ -188,9 +156,11 @@ void GVCPDevice::ReadRegisterAck(tagUdpData &tagdata)
 
 	guint32 register_address = 0;
 	arv_gvcp_packet_get_read_register_cmd_infos(packet, &register_address);
-
+	guint32 data;
+	m_device.GetReg(register_address, data);
 	/*
 	TODO : camera read register
+	
 	根据地址获取数据 
 	*/
 	pAckHdr->size = packet->header.size;

@@ -60,10 +60,10 @@
     <ClCompile Include="GVCPDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\include\VirtualDevice.cpp">
+    <ClCompile Include="gvcp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gvcp.cpp">
+    <ClCompile Include="..\..\include\DeviceInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,10 +123,10 @@
     <ClInclude Include="GVCPDevice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\VirtualDevice.h">
+    <ClInclude Include="gvcp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gvcp.h">
+    <ClInclude Include="..\..\include\DeviceInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

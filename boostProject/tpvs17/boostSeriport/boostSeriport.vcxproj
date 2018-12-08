@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\include\VirtualDevice.cpp" />
+    <ClCompile Include="..\..\include\DeviceInfo.cpp" />
     <ClCompile Include="..\..\src\boostSeriport.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\robotwheel.cpp" />
@@ -41,7 +41,7 @@
     <ClInclude Include="..\..\include\robotwheel.h" />
     <ClInclude Include="..\..\include\SerialPortDevice.h" />
     <ClInclude Include="..\..\include\udpserver.h" />
-    <ClInclude Include="..\..\include\VirtualDevice.h" />
+    <ClInclude Include="..\..\include\DeviceInfo.h" />
     <ClInclude Include="gvcp.h" />
     <ClInclude Include="GVCPDevice.h" />
     <ClInclude Include="GVSPDevice.h" />

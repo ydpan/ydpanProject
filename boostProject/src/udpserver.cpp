@@ -5,10 +5,6 @@ using namespace boost;
 using namespace boost::asio;
 using boost::asio::ip::udp;
 
-// void Testfunc(pByteVector pByV)
-// {
-// 	int a = 0;
-// }
 
 void TestTagfunc(tagUdpData pByV)
 {
@@ -55,11 +51,6 @@ bool UDPService::stopThread()
 	m_pios.stop();
 	return true;
 }
-
-// void UDPService::setCallbackFunc(const boost::function<void(pByteVector)> &func)
-// {
-// 	m_dataCallbackFunc = func;
-// }
 
 void UDPService::setCallbackFunc(const boost::function<void(tagUdpData)> &func)
 {
