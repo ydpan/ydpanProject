@@ -5,10 +5,10 @@
 #include <boost/asio.hpp>
 #include "udpserver.h"
 
-#include "MV/MVErrorDefine.h"
-#include "MV/MVGigEVisionDeviceDefine.h"
-#include "MV/MVGigEVisionGVCPDefine.h"
-#include "MV/MVGiGEVisionGVCPRegisterDefine.h"
+// #include "MV/MVErrorDefine.h"
+// #include "MV/MVGigEVisionDeviceDefine.h"
+// #include "MV/MVGigEVisionGVCPDefine.h"
+// #include "MV/MVGiGEVisionGVCPRegisterDefine.h"
 #include "DeviceInfo.h"
 #include "gvcp.h"
 
@@ -33,7 +33,7 @@ private:
 private:
 	boost::shared_ptr<UDPService> m_pUdpServer;
 	boost::asio::ip::udp::endpoint _fromPoint;
-	char                 _cRecvData[MV_GVCP_MAX_MSG_LEN];
+	char                 _cRecvData[ARV_GVCP_MAX_MSG_LEN];
 	unsigned int         _nLastAckId{0};
 
 	DeviceInfo m_device;

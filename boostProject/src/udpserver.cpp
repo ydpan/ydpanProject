@@ -11,7 +11,7 @@ void TestTagfunc(tagUdpData pByV)
 	std::string strAddress = pByV.fromPoint.address().to_string() + ":" + to_string(pByV.fromPoint.port());
 	int a = 0;
 }
-UDPService::UDPService(int port):_socket(m_pios, udp::endpoint(boost::asio::ip::address::from_string("192.168.8.153")/*udp::v4()*/, port))
+UDPService::UDPService(int port):_socket(m_pios, udp::endpoint(boost::asio::ip::address::from_string("192.168.8.160")/*udp::v4()*/, port))
 {
 	m_dataRecvCallBackFunc = TestTagfunc;
 

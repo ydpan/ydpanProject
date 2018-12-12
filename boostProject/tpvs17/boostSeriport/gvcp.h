@@ -11,7 +11,7 @@ typedef unsigned int   guint32;
  * Standard device listening port for GVCP packets
  */
 #define ARV_GVCP_PORT	3956
-
+//device info
 #define ARV_GVBS_VERSION_OFFSET				0x00000000
 #define ARV_GVBS_VERSION_MINOR_MASK			0x0000ffff
 #define ARV_GVBS_VERSION_MINOR_POS			0
@@ -53,7 +53,7 @@ typedef unsigned int   guint32;
 
 #define ARV_GVBS_USER_DEFINED_NAME_OFFSET		0x000000e8
 #define ARV_GVBS_USER_DEFINED_NAME_SIZE			16
-
+//
 #define ARV_GVBS_DISCOVERY_DATA_SIZE			0xf8
 
 #define ARV_GVBS_XML_URL_0_OFFSET			0x00000200
@@ -96,7 +96,7 @@ typedef unsigned int   guint32;
 #define ARV_GVBS_TIMESTAMP_LATCHED_VALUE_HIGH_OFFSET	0x00000948
 #define ARV_GVBS_TIMESTAMP_LATCHED_VALUE_LOW_OFFSET	0x0000094c
 
-#define ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_OFFSET	0x00000a00
+#define ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_OFFSET	0x00000a00//control channel privilege
 #define ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_CONTROL	1 << 1
 #define ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_EXCLUSIVE	1 << 0
 
@@ -200,12 +200,13 @@ typedef enum {
  * GVCP packet header structure.
  */
 
-typedef struct {
+typedef struct tag_ArvGvcpHeader{
 	unsigned short packet_type;//constains 0x42 flag=1
 	unsigned short command;
-	unsigned short size;
-	unsigned short id;
+	unsigned short nlength;//结构体后负载数据长度
+	unsigned short nRequesd_Id;
 } ArvGvcpHeader;//for recved
+
 
 /**
  * ArvGvcpPacket:
@@ -217,7 +218,7 @@ typedef struct {
 
 typedef struct {
 	ArvGvcpHeader header;
-	unsigned char data[];
+	unsigned char bodydata[];
 } ArvGvcpPacket;
 
 typedef struct tag_Discovery_Ack
@@ -243,7 +244,6 @@ typedef struct tag_Discovery_Ack
 	unsigned char  chSerialNumber[16];
 	unsigned char  chUserDefinedName[16];
 } DISCOVERY_ACK_MSG;
-
 
 /*
 forceip_cmd
@@ -278,6 +278,12 @@ typedef struct tag_WriteReg_ACK
 	unsigned short      nIndex;      // 表示第n（0-66）个写入出错。如果都正确，填67
 } WRITEREG_ACK_MSG;
 
+typedef struct tag_WriteReg_CMD
+{
+	unsigned int       nRegAddress;   // 寄存器地址
+	unsigned int       nRegData;      // 地址对应的数据
+} WRITEREG_CMD_MSG;
+
 typedef struct tag_ReadMem_CMD
 {
 	unsigned int        nMemAddress;     // 4bytes 对齐的地址
@@ -288,13 +294,13 @@ typedef struct tag_ReadMem_CMD
 typedef struct tag_Readmem_ACK
 {
 	unsigned long       nMemAddress;    // 4bytes 对齐的地址
-	unsigned char       chReadMemData[ARV_GVCP_MAX_PAYLOAD_LEN]; // 读取的内存数据
+	unsigned char       cReadMemData[ARV_GVCP_MAX_PAYLOAD_LEN]; // 读取的内存数据
 } READMEM_ACK_MSG;
 
 typedef struct tag_WriteMem_CMD
 {
 	unsigned long       nMemAddress;    // 4bytes 对齐的地址
-	unsigned char       chWriteMemData[ARV_GVCP_MAX_PAYLOAD_LEN]; // 待写的内存数据
+	unsigned char       cWriteMemData[ARV_GVCP_MAX_PAYLOAD_LEN]; // 待写的内存数据
 } WRITEMEM_CMD_MSG;
 
 typedef struct tag_WriteMem_ACK
@@ -327,6 +333,7 @@ ArvGvcpPacket * arv_gvcp_packet_new_discovery_ack(size_t *packet_size);
  * Return value: The #ArvGvcpPacketType code of @packet.
  */
 
+//返回数据包类型
 static inline ArvGvcpPacketType arv_gvcp_packet_get_packet_type(ArvGvcpPacket *packet)
 {
 	if (packet == NULL)
@@ -353,7 +360,7 @@ static inline ArvGvcpCommand arv_gvcp_packet_get_command(ArvGvcpPacket *packet)
 static inline void arv_gvcp_packet_set_packet_id(ArvGvcpPacket *packet, unsigned short id)
 {
 	if (packet != NULL)
-		packet->header.id = htons(id);
+		packet->header.nRequesd_Id = htons(id);
 }
 
 static inline unsigned short arv_gvcp_packet_get_packet_id(ArvGvcpPacket *packet)
@@ -361,7 +368,7 @@ static inline unsigned short arv_gvcp_packet_get_packet_id(ArvGvcpPacket *packet
 	if (packet == NULL)
 		return 0;
 
-	return ntohs(packet->header.id);
+	return ntohs(packet->header.nRequesd_Id);
 }
 
 static inline void arv_gvcp_packet_get_read_memory_cmd_infos(const ArvGvcpPacket *packet, guint32 *address, guint32 *size)
@@ -402,7 +409,7 @@ static inline void arv_gvcp_packet_get_write_memory_cmd_infos(const ArvGvcpPacke
 	if (address != NULL)
 		*address = ntohl(*((guint32 *)((char *)packet + sizeof(ArvGvcpPacket))));
 	if (size != NULL)
-		*size = ntohs(packet->header.size) - sizeof(guint32);
+		*size = ntohs(packet->header.nlength) - sizeof(guint32);
 }
 
 static inline void * arv_gvcp_packet_get_write_memory_cmd_data(const ArvGvcpPacket *packet)

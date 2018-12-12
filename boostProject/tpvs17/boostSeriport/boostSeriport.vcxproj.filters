@@ -31,9 +31,6 @@
     <Filter Include="udp">
       <UniqueIdentifier>{266d9ba2-f6d9-4367-b344-efba61b6467d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MV">
-      <UniqueIdentifier>{0a6ec071-0fc0-4dae-9fe2-a3358c098f0f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\boostSeriport.cpp">
@@ -96,27 +93,6 @@
     <ClInclude Include="..\..\include\udpserver.h">
       <Filter>udp</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\MV\MVErrorDefine.h">
-      <Filter>MV</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\MV\MVGigEVisionDeviceDefine.h">
-      <Filter>MV</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\MV\MVGigEVisionGVCPDefine.h">
-      <Filter>MV</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\MV\MVGiGEVisionGVCPRegisterDefine.h">
-      <Filter>MV</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\MV\MVGiGEVisionGVSPDefine.h">
-      <Filter>MV</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\MV\MVGiGEVisionPixelFormatDefine.h">
-      <Filter>MV</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\MV\MVPixelType.h">
-      <Filter>MV</Filter>
-    </ClInclude>
     <ClInclude Include="GVSPDevice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -127,6 +103,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\DeviceInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceDefine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

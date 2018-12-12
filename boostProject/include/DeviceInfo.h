@@ -1,17 +1,13 @@
-#ifndef _VIRTUALDEVICE_H
-#define _VIRTUALDEVICE_H
+#ifndef _DEVICEINFO_H
+#define _DEVICEINFO_H
 
 #include <string>
+#include "DeviceDefine.h"
 
-#include "MV/MVErrorDefine.h"
-#include "MV/MVGigEVisionDeviceDefine.h"
-#include "MV/MVGiGEVisionGVCPRegisterDefine.h"
+#define GEV_BOOTSTRAP_REG_SIZE	0xA000
+#define GIGE_REG_MEMORY_SIZE    (1 << 20)  // 1MB XML文件起始地址
 
-#define MV_GEV_BOOTSTRAP_REG_SIZE 0xA000
-#define GIGE_REG_MEMORY_SIZE    (1 << 20)  // 1MB
-
-#define GIGE_XML_FILE_MAX_SIZE  (1 << 20)  // 1MB
-#define MV_GEV_XML_URL_LEN        512
+#define GIGE_XML_FILE_MAX_SIZE  (1 << 20)  // 1MB  XML文件最大内存限制
 
 // TODO: from XML
 #define REG_XML_AcquisitionStart_RegAddr  0x00030804
@@ -22,21 +18,29 @@
 #define REG_XML_OffsetY_RegAddr           0x00030420
 
 typedef unsigned char uchar;
-typedef unsigned int uchar_ptr;
-class DeviceInfo
+typedef unsigned int uint32;
+
+
+class DeviceInfo//设备信息
 {
   public:
 	DeviceInfo();
     virtual ~DeviceInfo();
 
-    int Init();
+    bool Init();
 
-    const MV_CC_DEVICE_INFO GetDeviceInfo();
-    int GetReg(uchar_ptr RegAddr, uint32_t& Data);
-    inline uint32_t GetReg(uchar_ptr RegAddr);
-    int SetReg(uchar_ptr RegAddr, const uint32_t Data);
-    int GetMem(uchar_ptr MemAddr, void* Data, const size_t Count);
-    bool SetMem(uchar_ptr MemAddr, const void* Data, const size_t Count);
+    const LP_DeviceInfo GetDeviceInfo();//获取设备信息
+	void SetDeviceInfo(const LP_DeviceInfo &devInfo);
+
+	bool ReadInfobyInIFile(std::string str);//虚拟相机 读取相机IP相关设备配置
+	bool ReadXMLbyxmlFile(std::string str);//设备描述文件读取
+
+    bool GetRegisterData(uint32 RegAddr, uint32_t& Data);
+    uint32_t GetRegisterData(uint32 RegAddr);
+    bool SetRegisterData(uint32 RegAddr, const uint32_t &Data);
+
+    bool GetMemoryData(uint32 MemAddr, void* Data, const size_t Count);
+    bool SetMemoryData(uint32 MemAddr, const void* Data, const size_t Count);
 
     uint32_t GetAcquisitionState();
     void SetTriggerFrequency(double frequency);
@@ -49,22 +53,23 @@ class DeviceInfo
     bool InitDevice();
 	void GetLocalIp(unsigned int& nCurrentIp, unsigned int& nCurrentSubNetMask, unsigned int& nDefultGateWay);
 	void GetLocalMac(std::string strmac, unsigned int& nMacAddrHigh, unsigned int& nMacAddrLow);
-  private:
-    MV_CC_DEVICE_INFO			_DeviceInfo;
-    std::string                  _strXmlFileName;
-    uint32_t                     _nXmlFileSize;
+private:
+    LP_DeviceInfo				_DeviceInfo;
+    std::string                 _strXmlFileName;
+    
 
-	double                       _fTriggerFrequency{10};  // TODO
+	double                      _fTriggerFrequency{10};  // TODO
     std::string					_strDeviceBinFilename;
-	uint8_t *					m_pMemory;
+	uint8_t						*m_pMemory;
+	char						*pXmlUrl;
 	uint32_t					m_totalMemSize{1024};
 
-	std::string striniFile;
+	std::string striniFile;				//iniFile path
 
-	std::string strLocalIP;//本设备IP地址
-	std::string strSubNetMask;//掩码
-	std::string strDefaultGateWay;//网关
+	std::string strLocalIP;				//本设备IP地址
+	std::string strSubNetMask;			//掩码
+	std::string strDefaultGateWay;		//网关
 };
 
 
-#endif /* _VIRTUALDEVICE_H */
+#endif

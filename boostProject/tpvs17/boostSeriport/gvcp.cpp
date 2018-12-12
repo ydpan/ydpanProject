@@ -33,11 +33,11 @@ ArvGvcpPacket * arv_gvcp_packet_new_read_memory_cmd(guint32 address, guint32 siz
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_CMD);
 	packet->header.command = htons(ARV_GVCP_COMMAND_READ_MEMORY_CMD);
-	packet->header.size = htons(2 * sizeof(guint32));
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(2 * sizeof(guint32));
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	memcpy(&packet->data, &n_address, sizeof(guint32));
-	memcpy(&packet->data[sizeof(guint32)], &n_size, sizeof(guint32));
+	memcpy(&packet->bodydata, &n_address, sizeof(guint32));
+	memcpy(&packet->bodydata[sizeof(guint32)], &n_size, sizeof(guint32));
 
 	return packet;
 }
@@ -68,10 +68,10 @@ arv_gvcp_packet_new_read_memory_ack(guint32 address, guint32 size, guint16 packe
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
 	packet->header.command = htons(ARV_GVCP_COMMAND_READ_MEMORY_ACK);
-	packet->header.size = htons(sizeof(guint32) + size);
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(sizeof(guint32) + size);
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	memcpy(&packet->data, &n_address, sizeof(guint32));
+	memcpy(&packet->bodydata, &n_address, sizeof(guint32));
 
 	return packet;
 }
@@ -102,10 +102,10 @@ arv_gvcp_packet_new_write_memory_cmd(guint32 address, guint32 size, guint16 pack
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_CMD);
 	packet->header.command = htons(ARV_GVCP_COMMAND_WRITE_MEMORY_CMD);
-	packet->header.size = htons(sizeof(guint32) + size);
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(sizeof(guint32) + size);
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	memcpy(&packet->data, &n_address, sizeof(guint32));
+	memcpy(&packet->bodydata, &n_address, sizeof(guint32));
 
 	return packet;
 }
@@ -137,10 +137,10 @@ arv_gvcp_packet_new_write_memory_ack(guint32 address,
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
 	packet->header.command = htons(ARV_GVCP_COMMAND_WRITE_MEMORY_ACK);
-	packet->header.size = htons(sizeof(guint32));
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(sizeof(guint32));
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	memcpy(&packet->data, &n_address, sizeof(guint32));
+	memcpy(&packet->bodydata, &n_address, sizeof(guint32));
 
 	return packet;
 }
@@ -172,10 +172,10 @@ arv_gvcp_packet_new_read_register_cmd(guint32 address,
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_CMD);
 	packet->header.command = htons(ARV_GVCP_COMMAND_READ_REGISTER_CMD);
-	packet->header.size = htons(sizeof(guint32));
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(sizeof(guint32));
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	memcpy(&packet->data, &n_address, sizeof(guint32));
+	memcpy(&packet->bodydata, &n_address, sizeof(guint32));
 
 	return packet;
 }
@@ -207,10 +207,10 @@ arv_gvcp_packet_new_read_register_ack(guint32 value,
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
 	packet->header.command = htons(ARV_GVCP_COMMAND_READ_REGISTER_ACK);
-	packet->header.size = htons(sizeof(guint32));
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(sizeof(guint32));
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	memcpy(&packet->data, &n_value, sizeof(guint32));
+	memcpy(&packet->bodydata, &n_value, sizeof(guint32));
 
 	return packet;
 }
@@ -245,11 +245,11 @@ arv_gvcp_packet_new_write_register_cmd(guint32 address,
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_CMD);
 	packet->header.command = htons(ARV_GVCP_COMMAND_WRITE_REGISTER_CMD);
-	packet->header.size = htons(2 * sizeof(guint32));
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(2 * sizeof(guint32));
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	memcpy(&packet->data, &n_address, sizeof(guint32));
-	memcpy(&packet->data[sizeof(guint32)], &n_value, sizeof(guint32));
+	memcpy(&packet->bodydata, &n_address, sizeof(guint32));
+	memcpy(&packet->bodydata[sizeof(guint32)], &n_value, sizeof(guint32));
 
 	return packet;
 }
@@ -281,10 +281,10 @@ arv_gvcp_packet_new_write_register_ack(guint32 data_index,
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
 	packet->header.command = htons(ARV_GVCP_COMMAND_WRITE_REGISTER_ACK);
-	packet->header.size = htons(sizeof(guint32));
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(sizeof(guint32));
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	memcpy(&packet->data, &n_data_index, sizeof(guint32));
+	memcpy(&packet->bodydata, &n_data_index, sizeof(guint32));
 
 	return packet;
 }
@@ -311,8 +311,8 @@ arv_gvcp_packet_new_discovery_cmd(size_t *packet_size)
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_CMD);
 	packet->header.command = htons(ARV_GVCP_COMMAND_DISCOVERY_CMD);
-	packet->header.size = htons(0x0000);
-	packet->header.id = htons(0xffff);
+	packet->header.nlength = htons(0x0000);
+	packet->header.nRequesd_Id = htons(0xffff);
 
 	return packet;
 }
@@ -339,8 +339,8 @@ arv_gvcp_packet_new_discovery_ack(size_t *packet_size)
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
 	packet->header.command = htons(ARV_GVCP_COMMAND_DISCOVERY_ACK);
-	packet->header.size = htons(ARV_GVBS_DISCOVERY_DATA_SIZE);
-	packet->header.id = htons(0xffff);
+	packet->header.nlength = htons(ARV_GVBS_DISCOVERY_DATA_SIZE);
+	packet->header.nRequesd_Id = htons(0xffff);
 
 	return packet;
 }
@@ -374,10 +374,10 @@ ArvGvcpPacket *arv_gvcp_packet_new_packet_resend_cmd(guint32 frame_id,
 
 	packet->header.packet_type = htons(ARV_GVCP_PACKET_TYPE_RESEND);
 	packet->header.command = htons(ARV_GVCP_COMMAND_PACKET_RESEND_CMD);
-	packet->header.size = htons(3 * sizeof(guint32));
-	packet->header.id = htons(packet_id);
+	packet->header.nlength = htons(3 * sizeof(guint32));
+	packet->header.nRequesd_Id = htons(packet_id);
 
-	data = (guint32 *)&packet->data;
+	data = (guint32 *)&packet->bodydata;
 
 	data[0] = htonl(frame_id);
 	data[1] = htonl(first_block);
