@@ -19,6 +19,11 @@ QUdpTestUI::QUdpTestUI(QWidget *parent)
 // 	m_device.SetRegisterData(0xd18, nCurrentSubNetMask);
 // 	unsigned int nc = m_device.GetRegisterData(0xd18);
 // 	int a= 0;
+
+	uint32_t a = 1;
+	uint32_t aa = ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_EXCLUSIVE;
+	uint32_t b = a & ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_EXCLUSIVE;
+	uint32_t c = b;
 }
 
 QUdpTestUI::~QUdpTestUI()

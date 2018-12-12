@@ -128,39 +128,6 @@ bool DeviceInfo::SetMemoryData(uint32 MemAddr, const void* Data, const size_t Co
     return true;
 }
 
-uint32_t DeviceInfo::GetAcquisitionState()
-{
-    return GetRegisterData((uint32)REG_XML_AcquisitionStart_RegAddr);
-}
-
-void DeviceInfo::SetTriggerFrequency(double frequency)
-{
-    _fTriggerFrequency = frequency;
-}
-
-uint32_t DeviceInfo::GetControlChannelPrivilege()
-{
-    return GetRegisterData((uint32)ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_OFFSET);
-}
-
-void DeviceInfo::SetControlChannelPrivilege(uint32_t privilege)
-{
-    SetRegisterData((uint32)ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_OFFSET, privilege);
-}
-
-uint32_t DeviceInfo::GetPayload()
-{
-    int width = GetRegisterData((uint32)REG_XML_Width_RegAddr);
-    int height = GetRegisterData((uint32)REG_XML_Height_RegAddr);
-
-    return width * height;
-}
-
-uint32_t DeviceInfo::GetHeartbeatTimeout()
-{
-    return GetRegisterData((uint32)ARV_GVBS_HEARTBEAT_TIMEOUT_OFFSET);
-}
-
 void DeviceInfo::GetLocalIp(unsigned int& nCurrentIp, unsigned int& nCurrentSubNetMask, unsigned int& nDefultGateWay)
 {
 	strLocalIP = string("192.168.8.160");
@@ -267,5 +234,282 @@ bool DeviceInfo::ReadXMLbyxmlFile(std::string str)
 		return false;
 	}
 	return true;
+}
+
+uint32_t DeviceInfo::GetSCP0()
+{
+	uint32_t nSCP0;
+	nSCP0 = GetRegisterData(ARV_GVBS_STREAM_CHANNEL_0_PACKET_DELAY_OFFSET);
+	return nSCP0;
+}
+
+uint32_t DeviceInfo::GetSCPS0()
+{// xihua
+	uint32_t nSCPS0;
+	nSCPS0 = GetRegisterData(ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_OFFSET);
+	return nSCPS0;
+}
+
+uint32_t DeviceInfo::GetPersistenDefaultGateway()
+{
+	uint32_t nGateway;
+	nGateway = GetRegisterData(ARV_GVBS_PERSISTENT_GATEWAY_0_OFFSET);
+	return nGateway;
+}
+
+uint32_t DeviceInfo::GetPersistentsubnetMask()
+{
+	uint32_t nSubNetMask;
+	nSubNetMask = GetRegisterData(ARV_GVBS_PERSISTENT_SUBNET_MASK_0_OFFSET);
+	return nSubNetMask;
+}
+
+uint32_t DeviceInfo::GetPersistenIPAddress()
+{
+	uint32_t nIPAddress;
+	nIPAddress = GetRegisterData(ARV_GVBS_PERSISTENT_IP_ADDRESS_0_OFFSET);
+	return nIPAddress;
+}
+
+uint32_t DeviceInfo::GetCurrentDefaultGateway()
+{
+	uint32_t nGateway;
+	nGateway = GetRegisterData(ARV_GVBS_CURRENT_GATEWAY_OFFSET);
+	return nGateway;
+}
+
+uint32_t DeviceInfo::GetCurrentsubnetMask()
+{
+	uint32_t nSubNetMask;
+	nSubNetMask = GetRegisterData(ARV_GVBS_CURRENT_SUBNET_MASK_OFFSET);
+	return nSubNetMask;
+}
+
+uint32_t DeviceInfo::GetCurrentIPAddress()
+{
+	uint32_t nIPAddress;
+	nIPAddress = GetRegisterData(ARV_GVBS_CURRENT_IP_ADDRESS_OFFSET);
+	return nIPAddress;
+}
+
+uint32_t DeviceInfo::GetCurrentIPConfig()
+{//
+	uint32_t nIPConfig;
+	nIPConfig = GetRegisterData(ARV_GVBS_CURRENT_IP_CONFIGURATION_OFFSET);
+	return nIPConfig;
+}
+
+uint32_t DeviceInfo::GetSupportIPConfiguration0()
+{
+	uint32_t nSIC0;
+	nSIC0 = GetRegisterData(ARV_GVBS_SUPPORTED_IP_CONFIGURATION_OFFSET);
+	return nSIC0;
+}
+
+uint32_t DeviceInfo::GetStreamChannelCapability()
+{
+	uint32_t nSCC;
+	nSCC = GetRegisterData(0x92c);
+	return nSCC;
+}
+
+uint32_t DeviceInfo::GetDeviceMacAddressHigh0()
+{
+	uint32_t nDAH0;
+	nDAH0 = GetRegisterData(ARV_GVBS_DEVICE_MAC_ADDRESS_HIGH_OFFSET);
+	return nDAH0;
+}
+
+uint32_t DeviceInfo::GetDeviceMacAddressLow0()
+{
+	uint32_t nDAL0;
+	nDAL0 = GetRegisterData(ARV_GVBS_DEVICE_MAC_ADDRESS_LOW_OFFSET);
+	return nDAL0;
+}
+
+uint32_t DeviceInfo::GetGVCPCapability()
+{//
+	uint32_t nGVCPC;
+	nGVCPC = GetRegisterData(ARV_GVBS_GVCP_CAPABILITY_OFFSET);
+	return nGVCPC;
+}
+
+uint32_t DeviceInfo::GetHeartbeatTimeout()
+{
+	return GetRegisterData((uint32)ARV_GVBS_HEARTBEAT_TIMEOUT_OFFSET);
+}
+
+uint32_t DeviceInfo::GetTimestampTickFrequencyHigh()
+{
+	uint32_t nTTFH;
+	nTTFH = GetRegisterData(ARV_GVBS_TIMESTAMP_TICK_FREQUENCY_HIGH_OFFSET);
+	return nTTFH;
+}
+
+uint32_t DeviceInfo::GetTimestampTickFrequencyLow()
+{
+	uint32_t nTTFL;
+	nTTFL = GetRegisterData(ARV_GVBS_TIMESTAMP_TICK_FREQUENCY_LOW_OFFSET);
+	return nTTFL;
+}
+uint32_t DeviceInfo::GetTimestampControl()
+{
+	uint32_t nTimecontrol;
+	nTimecontrol = GetRegisterData(ARV_GVBS_TIMESTAMP_CONTROL_OFFSET);
+	return nTimecontrol;
+}
+
+uint32_t DeviceInfo::GetTimestampLatchedValueHigh()
+{
+	uint32_t nTLVH;
+	nTLVH = GetRegisterData(ARV_GVBS_TIMESTAMP_LATCHED_VALUE_HIGH_OFFSET);
+	return nTLVH;
+}
+
+uint32_t DeviceInfo::GetTimestampLatchedValueLow()
+{
+	uint32_t nTLVL;
+	nTLVL = GetRegisterData(ARV_GVBS_TIMESTAMP_LATCHED_VALUE_LOW_OFFSET);
+	return nTLVL;
+}
+
+uint32_t DeviceInfo::GetGVCPConfiguration()
+{
+	uint32_t nGVCPConfig;
+	nGVCPConfig = GetRegisterData(0x954);
+	return nGVCPConfig;
+}
+
+uint32_t DeviceInfo::GetVersion()
+{
+	uint32_t nVersion;
+	nVersion = GetRegisterData(ARV_GVBS_VERSION_OFFSET);
+	return nVersion;
+}
+
+uint32_t DeviceInfo::GetLinkSpeed0()
+{
+	uint32_t nSpeed;
+	nSpeed = GetRegisterData(0x670);
+	return nSpeed;
+}
+
+uint32_t DeviceInfo::GetNumberOfNetworkInterfaces()
+{
+	uint32_t nNum;
+	nNum = GetRegisterData(ARV_GVBS_N_NETWORK_INTERFACES_OFFSET);
+	return nNum;
+}
+
+uint32_t DeviceInfo::GetUserDefineName()
+{//!!!
+	uint32_t sdata;
+	GetMemoryData(ARV_GVBS_USER_DEFINED_NAME_OFFSET, &sdata, ARV_GVBS_USER_DEFINED_NAME_SIZE);
+	return sdata;
+}
+
+uint32_t DeviceInfo::GetSerialNumber()
+{
+	uint32_t sSerialNum;
+	GetMemoryData(ARV_GVBS_SERIAL_NUMBER_OFFSET, &sSerialNum, ARV_GVBS_SERIAL_NUMBER_SIZE);
+	return sSerialNum;
+}
+
+uint32_t DeviceInfo::GetDeviceVersion()
+{
+	uint32_t sDeviceVersion;
+	GetMemoryData(ARV_GVBS_DEVICE_VERSION_OFFSET, &sDeviceVersion, ARV_GVBS_DEVICE_VERSION_SIZE);
+	return sDeviceVersion;
+}
+
+uint32_t DeviceInfo::GetManufactureSpecificInfo()
+{
+	uint32_t nInfo;
+	GetMemoryData(ARV_GVBS_MANUFACTURER_INFORMATIONS_OFFSET, &nInfo, ARV_GVBS_MANUFACTURER_INFORMATIONS_SIZE);
+	return nInfo;
+}
+
+uint32_t DeviceInfo::GetModelName()
+{
+	uint32_t nModelName;
+	GetMemoryData(ARV_GVBS_MODEL_NAME_OFFSET, &nModelName, ARV_GVBS_MODEL_NAME_SIZE);
+	return nModelName;
+}
+
+uint32_t DeviceInfo::GetManufactureName()
+{
+	uint32_t nMoanufactureName;
+	GetMemoryData(ARV_GVBS_MANUFACTURER_NAME_OFFSET, &nMoanufactureName, ARV_GVBS_MANUFACTURER_NAME_SIZE);
+	return nMoanufactureName;
+}
+
+uint32_t DeviceInfo::GetDeviceMode()
+{
+	uint32_t nDeviceMode;
+	nDeviceMode = GetRegisterData(ARV_GVBS_DEVICE_MODE_OFFSET);
+	return nDeviceMode;
+}
+
+uint32_t DeviceInfo::GetNumofStreamChannels()
+{
+	uint32_t nNumStreamChannels;
+	nNumStreamChannels = GetRegisterData(ARV_GVBS_N_STREAM_CHANNELS_OFFSET);
+	return nNumStreamChannels;
+}
+
+uint32_t DeviceInfo::GetDestinationAddress()
+{
+	uint32_t nAddress;
+	nAddress = GetRegisterData(ARV_GVBS_STREAM_CHANNEL_0_IP_ADDRESS_OFFSET);
+	return nAddress;
+}
+
+uint32_t DeviceInfo::GetDestinationPort()
+{
+	uint32_t nDestinationPort;
+	nDestinationPort = GetRegisterData(ARV_GVBS_STREAM_CHANNEL_0_PORT_OFFSET);
+	return nDestinationPort;
+}
+
+uint32_t DeviceInfo::GetCCP()
+{
+	uint32_t nCCP;
+	nCCP = GetRegisterData(0x930);
+	return nCCP;
+	//recv status 0x8003
+}
+
+uint32_t DeviceInfo::GetAcquisitionState()
+{
+	return GetRegisterData((uint32)REG_XML_AcquisitionStart_RegAddr);
+}
+
+void DeviceInfo::SetTriggerFrequency(double frequency)
+{
+	_fTriggerFrequency = frequency;
+}
+
+uint32_t DeviceInfo::GetControlChannelPrivilege()
+{
+	return GetRegisterData((uint32)ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_OFFSET);
+}
+
+void DeviceInfo::SetControlChannelPrivilege(uint32_t privilege)
+{
+	SetRegisterData((uint32)ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_OFFSET, privilege);
+}
+
+uint32_t DeviceInfo::GetPayload()
+{
+	int width = GetRegisterData((uint32)REG_XML_Width_RegAddr);
+	int height = GetRegisterData((uint32)REG_XML_Height_RegAddr);
+
+	return width * height;
+}
+
+uint32_t DeviceInfo::GetDeviceLinkSpeed()
+{
+	uint32_t nVal = GetRegisterData(ARV_GVBS_DEVICE_LINK_SPEED_0_OFFSET);
+	return nVal;
 }
 
