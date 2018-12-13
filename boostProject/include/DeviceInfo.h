@@ -79,7 +79,7 @@ public:
 	uint32_t GetNumofStreamChannels();
 	uint32_t GetDestinationAddress();
 	uint32_t GetDestinationPort();
-	uint32_t GetCCP();
+	uint32_t GetCCP();//检查控制权限 control_switchover_key
 	uint32_t GetTimestampControl();
 	uint32_t GetTimestampLatchedValueHigh();
 	uint32_t GetTimestampLatchedValueLow();

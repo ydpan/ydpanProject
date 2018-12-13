@@ -20,7 +20,7 @@ GVCPDevice::~GVCPDevice()
 void GVCPDevice::InitDevice()
 {
 	readDeViceInfo();
-	m_pUdpServer = boost::make_shared<UDPService>(ARV_GVCP_PORT);
+	m_pUdpServer = boost::make_shared<UDPService>("127.0.0.1",ARV_GVCP_PORT);
 	m_pUdpServer->setCallbackFunc(boost::bind(&GVCPDevice::handMsgCallBack, this, _1));
 	m_pUdpServer->startThread();
 }
@@ -131,7 +131,7 @@ void GVCPDevice::DiscoveryAck(tagUdpData &tagdata)
 
 		tagUdpData m_writeData;
 		m_writeData.fromPoint = tagdata.fromPoint;
-		m_writeData._byteData = boost::shared_ptr<ByteVector>( new ByteVector);
+		m_writeData._byteData = boost::make_shared<ByteVector>();// boost::shared_ptr<ByteVector>(new ByteVector);
 		m_writeData._byteData->resize(nLen, 0);
 		unsigned char *pData = m_writeData._byteData->data();
 		memcpy(pData, cSendData, nLen);

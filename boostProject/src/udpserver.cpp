@@ -11,7 +11,15 @@ void TestTagfunc(tagUdpData pByV)
 	std::string strAddress = pByV.fromPoint.address().to_string() + ":" + to_string(pByV.fromPoint.port());
 	int a = 0;
 }
-UDPService::UDPService(int port):_socket(m_pios, udp::endpoint(boost::asio::ip::address::from_string("192.168.8.160")/*udp::v4()*/, port))
+
+UDPService::UDPService(std::string addr, int port) :_socket(m_pios, udp::endpoint(boost::asio::ip::address::from_string(addr), port))
+{
+	m_dataRecvCallBackFunc = TestTagfunc;
+
+	m_tempBuf.resize(m_bufSize, 0);//1024bytes
+}
+
+UDPService::UDPService(boost::asio::ip::udp::endpoint serverPoint):_socket(m_pios,serverPoint)
 {
 	m_dataRecvCallBackFunc = TestTagfunc;
 
@@ -139,7 +147,7 @@ void UDPService::writeOnce()
 		std::string sendMsg;
 		boost::asio::ip::udp::endpoint targetpoint = v.fromPoint;
 		std::string straddress = targetpoint.address().to_string() + ":" + to_string(targetpoint.port());
-
+		string ss =  targetpoint.address().to_string();
 		_socket.async_send_to(boost::asio::buffer(v._byteData->data(),v._byteData->size()), targetpoint,
 			boost::bind(&UDPService::writeHandler, this, strMessage,
 				boost::asio::placeholders::error,
@@ -172,10 +180,14 @@ void UDPService::readHandler(const system::error_code &ec, size_t bytesTransferr
 	readOnce();
 }
 
-void UDPService::writeHandler(boost::shared_ptr<std::string>, const boost::system::error_code& ec, std::size_t)
+
+void UDPService::writeHandler(boost::shared_ptr<std::string> st, const boost::system::error_code& ec, std::size_t)
 {
 	if (ec) {
+		string s = ec.message();
 		int a = 0;
+		mutex::scoped_lock lock(m_writeQueueMutex);
+		m_writeQueue.pop();
 	}
 	else
 	{

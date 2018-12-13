@@ -142,7 +142,9 @@ int UdpLinkServer::SendData(char *pBuffer,int nBufferSize,bool bAsync)
 void UdpLinkServer::RecvDataProcess(RecvDataCallback pfunc,DWORD dwUserData1,DWORD dwUserData2)
 {
 	//异步接收数据
-	m_sockUdp->async_receive_from(boost::asio::buffer(m_recvBuf),m_endpointRemote,boost::bind(&UdpLinkServer::handleRecvData,this,boost::asio::placeholders::error,boost::asio::placeholders::bytes_transferred,pfunc,dwUserData1,dwUserData2));
+	m_sockUdp->async_receive_from(boost::asio::buffer(m_recvBuf),\
+	m_endpointRemote,boost::bind(&UdpLinkServer::handleRecvData,\
+	this,boost::asio::placeholders::error,boost::asio::placeholders::bytes_transferred,pfunc,dwUserData1,dwUserData2));
 }
  
 //接收数据处理（手动），就进入本函数响应处理

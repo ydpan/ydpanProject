@@ -28,6 +28,9 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="udp">
+      <UniqueIdentifier>{7dbed2bc-29ca-48df-a536-a20517b1772d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="CamSDK.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\boostProject\src\udpserver.cpp">
+      <Filter>udp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,5 +57,13 @@
     <QtRcc Include="CamSDK.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\boostProject\include\udpserver.h">
+      <Filter>udp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\boostProject\include\DataGram.h">
+      <Filter>udp</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -31,7 +31,9 @@ class UDPService
 {
 public:
 	/*UDPService();*/
-	UDPService(int port = 13);
+	UDPService(std::string addr, int port);
+	UDPService(boost::asio::ip::udp::endpoint serverPoint);
+
 	virtual ~UDPService();
 
 	void setTimeOut(int timeout = 3000);
