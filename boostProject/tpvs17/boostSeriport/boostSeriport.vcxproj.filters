@@ -63,6 +63,15 @@
     <ClCompile Include="..\..\include\DeviceInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gvsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fakeCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\..\src\boostSeriport.ui">
@@ -106,6 +115,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DeviceDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gvsp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fakeCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

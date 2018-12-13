@@ -4,11 +4,6 @@
 #include <vector>
 #include <boost/asio.hpp>
 #include "udpserver.h"
-
-// #include "MV/MVErrorDefine.h"
-// #include "MV/MVGigEVisionDeviceDefine.h"
-// #include "MV/MVGigEVisionGVCPDefine.h"
-// #include "MV/MVGiGEVisionGVCPRegisterDefine.h"
 #include "DeviceInfo.h"
 #include "gvcp.h"
 
