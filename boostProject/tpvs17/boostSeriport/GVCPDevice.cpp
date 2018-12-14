@@ -13,6 +13,11 @@ GVCPDevice::GVCPDevice()
 }
 
 
+GVCPDevice::GVCPDevice(IDevice *pDev)
+{
+	m_pDevice = pDev;
+}
+
 GVCPDevice::~GVCPDevice()
 {
 }
@@ -20,14 +25,14 @@ GVCPDevice::~GVCPDevice()
 void GVCPDevice::InitDevice()
 {
 	readDeViceInfo();
-	m_pUdpServer = boost::make_shared<UDPService>("127.0.0.1",ARV_GVCP_PORT);
+	m_pUdpServer = boost::make_shared<UDPService>("192.168.8.160",ARV_GVCP_PORT);
 	m_pUdpServer->setCallbackFunc(boost::bind(&GVCPDevice::handMsgCallBack, this, _1));
 	m_pUdpServer->startThread();
 }
 
 void GVCPDevice::readDeViceInfo()
 {
-	m_device.Init();
+	//m_device.Init();
 }
 
 void GVCPDevice::handMsgCallBack(tagUdpData tagData)
@@ -87,6 +92,20 @@ void GVCPDevice::handMsgCallBack(tagUdpData tagData)
 			std::string str = to_string(packet->header.command);
 			break;
 	}
+
+	//处理权限
+	if (m_pDevice->controler_address.to_string() == "0.0.0.0"
+		&&m_pDevice->GetControlChannelPrivilege() != 0)
+	{
+		m_pDevice->UpdateCtroller_time();
+		m_pDevice->controler_address = tagData.fromPoint.address();
+	}
+	else if (m_pDevice->controler_address.to_string() != "0.0.0.0"
+		&&m_pDevice->GetControlChannelPrivilege() == 0) 
+	{
+		m_pDevice->UpdateCtroller_time();
+		m_pDevice->controler_address = boost::asio::ip::address::from_string("0.0.0.0");
+	}
 }
 
 void GVCPDevice::DiscoveryAck(tagUdpData &tagdata)
@@ -106,25 +125,27 @@ void GVCPDevice::DiscoveryAck(tagUdpData &tagdata)
 	}
 
 	DISCOVERY_ACK_MSG* pAckMsg = (DISCOVERY_ACK_MSG*)(cSendData + sizeof(ArvGvcpHeader));
-	LP_DeviceInfo  m_deveiceInfo = m_device.GetDeviceInfo();
-	pAckMsg->nMajorVer = htons(m_deveiceInfo.nMaxorVer);
-	pAckMsg->nMinorVer = htons(m_deveiceInfo.nMinorVer);
-	pAckMsg->nDeviceMode = htonl(m_deveiceInfo.nDeviceMode);
-	pAckMsg->nMacAddrHigh = htonl(m_deveiceInfo.nMacAddrHigh) & 0xffff;
-	pAckMsg->nMacAddrLow = htonl(m_deveiceInfo.nMacAddrLow);
-	pAckMsg->nIpCfgOption = htonl(m_deveiceInfo.st_gigeInfo.nIpConfigOption);
-	pAckMsg->nIpCfgCurrent = htonl(m_deveiceInfo.st_gigeInfo.nIpConfigCurrent);
-	pAckMsg->nCurrentIp = htonl(m_deveiceInfo.st_gigeInfo.nCurrentIp);
-	pAckMsg->nCurrentSubNetMask = htonl(m_deveiceInfo.st_gigeInfo.nCurrentSubNetMask);
-	pAckMsg->nDefultGateWay = htonl(m_deveiceInfo.st_gigeInfo.nDefultGateWay);
+	if (m_pDevice)
+	{
+		LP_DeviceInfo  m_deveiceInfo = m_pDevice->GetDeviceInfo();
+		pAckMsg->nMajorVer = htons(m_deveiceInfo.nMaxorVer);
+		pAckMsg->nMinorVer = htons(m_deveiceInfo.nMinorVer);
+		pAckMsg->nDeviceMode = htonl(m_deveiceInfo.nDeviceMode);
+		pAckMsg->nMacAddrHigh = htonl(m_deveiceInfo.nMacAddrHigh) & 0xffff;
+		pAckMsg->nMacAddrLow = htonl(m_deveiceInfo.nMacAddrLow);
+		pAckMsg->nIpCfgOption = htonl(m_deveiceInfo.st_gigeInfo.nIpConfigOption);
+		pAckMsg->nIpCfgCurrent = htonl(m_deveiceInfo.st_gigeInfo.nIpConfigCurrent);
+		pAckMsg->nCurrentIp = htonl(m_deveiceInfo.st_gigeInfo.nCurrentIp);
+		pAckMsg->nCurrentSubNetMask = htonl(m_deveiceInfo.st_gigeInfo.nCurrentSubNetMask);
+		pAckMsg->nDefultGateWay = htonl(m_deveiceInfo.st_gigeInfo.nDefultGateWay);
 
-	memcpy(pAckMsg->chManufacturerName, m_deveiceInfo.st_gigeInfo.cManufacturerName, 32);
-	memcpy(pAckMsg->chModelName, m_deveiceInfo.st_gigeInfo.cModelName, 32);
-	memcpy(pAckMsg->chDeviceVersion, m_deveiceInfo.st_gigeInfo.cDeviceVersion, 32);
-	memcpy(pAckMsg->chManufacturerSpecificInfo, m_deveiceInfo.st_gigeInfo.cManufacturerSpecificInfo, 48);
-	memcpy(pAckMsg->chSerialNumber, m_deveiceInfo.st_gigeInfo.cSerialNumber, 16);
-	memcpy(pAckMsg->chUserDefinedName, m_deveiceInfo.st_gigeInfo.cUserDefinedName, 16);
-
+		memcpy(pAckMsg->chManufacturerName, m_deveiceInfo.st_gigeInfo.cManufacturerName, 32);
+		memcpy(pAckMsg->chModelName, m_deveiceInfo.st_gigeInfo.cModelName, 32);
+		memcpy(pAckMsg->chDeviceVersion, m_deveiceInfo.st_gigeInfo.cDeviceVersion, 32);
+		memcpy(pAckMsg->chManufacturerSpecificInfo, m_deveiceInfo.st_gigeInfo.cManufacturerSpecificInfo, 48);
+		memcpy(pAckMsg->chSerialNumber, m_deveiceInfo.st_gigeInfo.cSerialNumber, 16);
+		memcpy(pAckMsg->chUserDefinedName, m_deveiceInfo.st_gigeInfo.cUserDefinedName, 16);
+	}
 	try
 	{
 		size_t nLen = sizeof(ArvGvcpHeader) + ntohs(pAckHdr->nlength);
@@ -154,11 +175,6 @@ void GVCPDevice::ReadRegisterAck(tagUdpData &tagdata)
 	pAckHeader->packet_type = htons(ARV_GVCP_PACKET_TYPE_ACK);
 	pAckHeader->command = htons(ARV_GVCP_COMMAND_READ_REGISTER_ACK);
 	pAckHeader->nRequesd_Id = htons(ntohs(pRecvPacket->header.nRequesd_Id));
-
-// 	if (_nLastAckId != ntohs(pRecvPacket->header.nRequesd_Id))
-// 	{
-// 		_nLastAckId = ntohs(pRecvPacket->header.nRequesd_Id);
-// 	}
 	unsigned short nlength = ntohs(pRecvPacket->header.nlength);
 	unsigned int *pRegAddress = (unsigned int *)pRecvPacket->bodydata;
 	unsigned int *pMomeryData = (unsigned int *)(cSendData + sizeof(ArvGvcpHeader));
@@ -169,13 +185,11 @@ void GVCPDevice::ReadRegisterAck(tagUdpData &tagdata)
 		nRegAddr = ntohl(nRegAddr);
 		unsigned int *pGetData = pMomeryData + i * sizeof(unsigned int);
 		unsigned int nData = 0;
-		m_device.GetRegisterData(nRegAddr, nData);
+		if(m_pDevice)
+			m_pDevice->GetRegisterData(nRegAddr, nData);
 		*pGetData = htonl(nData);
 	}
-// 	guint32 register_address = 0;
-// 	arv_gvcp_packet_get_read_register_cmd_infos(pRecvPacket, &register_address);
-// 	guint32 data;
-// 	m_device.GetRegisterData(register_address, data);
+
 	/*
 	TODO : camera read register
 	
@@ -191,7 +205,8 @@ void GVCPDevice::ReadRegisterAck(tagUdpData &tagdata)
 	unsigned char *pSendData = m_writeData._byteData->data();
 	memcpy(pSendData, cSendData, nLen);
 	std::string straddress = m_writeData.fromPoint.address().to_string() + ":" + to_string(m_writeData.fromPoint.port());
-
+	if ((*pRegAddress) == ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_OFFSET)
+		m_pDevice->UpdateCtroller_time();
 	m_pUdpServer->writeRaw(m_writeData);
 
 }
@@ -219,14 +234,15 @@ void GVCPDevice::WriteRegisterAck(tagUdpData &tagdata)
 		pCurCmdMsg = (WRITEREG_CMD_MSG*)pCurCmdMsg + i * sizeof(WRITEREG_CMD_MSG);
 		unsigned int RegData = ntohl(pCurCmdMsg->nRegData);
 		unsigned int nRegAddress = ntohl(pCurCmdMsg->nRegAddress);
-		if (m_device.SetRegisterData(nRegAddress, RegData) == false)
+		if (m_pDevice)
 		{
-			nIndex = i;
-			break;
+			if (m_pDevice->SetRegisterData(nRegAddress, RegData) == false)
+			{
+				nIndex = i;
+				break;
+			}
 		}
 	}
-	//arv_gvcp_packet_get_write_register_cmd_infos(pRecvPacket, &register_address,&register_value);
-
 	tag_WriteReg_ACK *pAck = (tag_WriteReg_ACK *)(cSendData + sizeof(ArvGvcpHeader));
 	pAck->nReserved = 0;
 	pAck->nIndex = htons(nIndex);//写成功标识符
@@ -242,6 +258,10 @@ void GVCPDevice::WriteRegisterAck(tagUdpData &tagdata)
 	std::string straddress = m_writeData.fromPoint.address().to_string() + ":" + to_string(m_writeData.fromPoint.port());
 
 	m_pUdpServer->writeRaw(m_writeData);
+	if (!m_pDevice->bWrite_Access)
+	{
+		cout << "write register";
+	}
 }
 
 void GVCPDevice::ReadMemoryAck(tagUdpData &tagdata)
@@ -250,10 +270,6 @@ void GVCPDevice::ReadMemoryAck(tagUdpData &tagdata)
 	unsigned char *pRecvData = tagdata._byteData->data();
 	ArvGvcpPacket* pRecvPacket = (ArvGvcpPacket*)(pRecvData);
 	
-// 	if (_nLastAckId != ntohs(pRecvPacket->header.nRequesd_Id))
-// 	{
-// 		_nLastAckId = ntohs(pRecvPacket->header.nRequesd_Id);
-// 	}
 	//取出数据体部分
 	tag_ReadMem_CMD* pRecvBody =(tag_ReadMem_CMD*)pRecvPacket->bodydata;
 	//获取网络数据 转换
@@ -261,8 +277,8 @@ void GVCPDevice::ReadMemoryAck(tagUdpData &tagdata)
 	unsigned short block_size = ntohs(pRecvBody->count);
 
 	tag_Readmem_ACK *pReadMem = (tag_Readmem_ACK *)(cSendData + sizeof(ArvGvcpHeader));
-	
-	m_device.GetMemoryData(register_address, (unsigned char *)pReadMem->cReadMemData, block_size);
+	if(m_pDevice)
+		m_pDevice->GetMemoryData(register_address, (unsigned char *)pReadMem->cReadMemData, block_size);
 	
 	//发送前 数据转换
 	pReadMem->nMemAddress = htonl(register_address);
@@ -305,7 +321,8 @@ void GVCPDevice::WriteMemoryAck(tagUdpData &tagdata)
 	unsigned int block_address = ntohl(pWriteData->nMemAddress);//数据的起始地址
 	//pWriteData->cWriteMemData;//需要写入的数据
 	unsigned short block_size = ntohs(pRecvPacket->header.nlength) - sizeof(pWriteData->nMemAddress);//数据大小  对齐
-	m_device.SetMemoryData(block_address, (unsigned char *)pWriteData->cWriteMemData, block_size);
+	if(m_pDevice)
+		m_pDevice->SetMemoryData(block_address, (unsigned char *)pWriteData->cWriteMemData, block_size);
 
 	tag_WriteMem_ACK *pAckData = (tag_WriteMem_ACK *)(cSendData + sizeof(ArvGvcpHeader));
 	pAckData->nIndex = htons(ntohs(pRecvPacket->header.nlength) - sizeof(char*));
@@ -323,6 +340,10 @@ void GVCPDevice::WriteMemoryAck(tagUdpData &tagdata)
 	std::string straddress = m_writeData.fromPoint.address().to_string() + ":" + to_string(m_writeData.fromPoint.port());
 
 	m_pUdpServer->writeRaw(m_writeData);
+	if (!m_pDevice->bWrite_Access)
+	{
+		cout << "write momery";
+	}
 }
 
 void GVCPDevice::FocusIPAck(tagUdpData &tagdata)

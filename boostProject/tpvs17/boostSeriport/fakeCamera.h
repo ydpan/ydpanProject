@@ -5,32 +5,42 @@
 #include "DeviceInfo.h"
 #include "GVCPDevice.h"
 #include "GVSPDevice.h"
-
-class fakeCamera
+#include <boost/thread/thread.hpp>
+#include <boost/make_shared.hpp>
+//#include <QImage>
+class FakeCamera
 {
 public:
-	fakeCamera();
-	~fakeCamera();
+	FakeCamera();
+	~FakeCamera();
 
-	void arv_gv_fake_camera_new();
-	bool arv_gv_fake_camera_start();
-	void arv_gv_fake_camera_stop();
+	void Init();
+	bool camera_start();
+	void camera_stop();
 	void MainLoop();
+
+	void ReadImageData();
 private:
 	bool bInit{ false };
 	bool bStop{ false };
 
-	DeviceInfo m_deviceInfo;
-	GVCPDevice m_gvcpDevice;//本机地址 port 3956
-	GVCPDevice m_DiscoveryDevice;//?? IP地址为255.255.255.255 port 3956
-	GVSPDevice m_gscpDevice;//初始化 本机地址 port 0
-
+	DeviceInfo *m_pdeviceInfo{NULL};
+	boost::shared_ptr<GVCPDevice> m_pGVCPD;//本机地址 port 3956
+	boost::shared_ptr<GVSPDevice> m_pGVSPDevice;//初始化 本机地址 port 0
 
 	boost::asio::ip::address m_controlAddress;
 	unsigned long long m_controller_time;
 
-
+	bool bcontrol{ false };
 	//thread 线程
+
+	unsigned char* _pImageData{NULL};
+	size_t         _nImageLen{0};
+	uint32_t       _nSizeX{100};
+	uint32_t       _nSizeY{100};
+
+	//QImage image;
+	ArvBuffer *image_buffer{ NULL };
 };
 
 #endif

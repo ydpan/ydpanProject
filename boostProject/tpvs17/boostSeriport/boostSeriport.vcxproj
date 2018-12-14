@@ -18,7 +18,7 @@
     <ClCompile Include="..\..\src\SerialPortDevice.cpp" />
     <ClCompile Include="..\..\src\udpserver.cpp" />
     <ClCompile Include="ImageBuffer.cpp" />
-    <ClCompile Include="fakeCamera.cpp" />
+    <ClCompile Include="FakeCamera.cpp" />
     <ClCompile Include="gvcp.cpp" />
     <ClCompile Include="GVCPDevice.cpp" />
     <ClCompile Include="gvsp.cpp" />
@@ -38,13 +38,15 @@
     <ClInclude Include="..\..\include\SerialPortDevice.h" />
     <ClInclude Include="..\..\include\udpserver.h" />
     <ClInclude Include="..\..\include\DeviceInfo.h" />
+    <ClInclude Include="IDevice.h" />
     <ClInclude Include="ImageBuffer.h" />
     <ClInclude Include="DeviceDefine.h" />
-    <ClInclude Include="fakeCamera.h" />
+    <ClInclude Include="FakeCamera.h" />
     <ClInclude Include="gvcp.h" />
     <ClInclude Include="GVCPDevice.h" />
     <ClInclude Include="gvsp.h" />
     <ClInclude Include="GVSPDevice.h" />
+    <ClInclude Include="pixformat.h" />
     <QtMoc Include="QUdpTestUI.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtPrintSupport;.\..\..\..\..\boost_1_64_0;.\..\..\include</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtPrintSupport</IncludePath>

@@ -6,7 +6,7 @@
 #include "ui_QUdpTestUI.h"
 #include "udpserver.h"
 #include <boost/shared_ptr.hpp>
-#include "GVCPDevice.h"
+#include "FakeCamera.h"
 class QUdpTestUI : public QWidget
 {
 	Q_OBJECT
@@ -17,8 +17,7 @@ public:
 	void InitUDP();
 private:
 	Ui::QUdpTestUI ui;
-	boost::shared_ptr<UDPService> m_pUdpServer;
-	boost::shared_ptr<GVCPDevice> m_pGVSPDevice;
+	boost::shared_ptr<FakeCamera> m_pFackCamera;
 };
 
 #endif // ifndef QUDPTESTUI_H_

@@ -6,6 +6,8 @@
 #include "DeviceInfo.h"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+
 #include "gvcp.h"
 #define WINDOWS
 #ifdef WINDOWS
@@ -17,9 +19,37 @@
 #include <netinet/in.h>
 #endif
 
+unsigned int iptoInt(std::string addrIP) {
+	unsigned int ret = 0;
+	unsigned char tmp = 0;
+	const char *p = addrIP.c_str();
+	while (1)
+	{
+		if (*p != '\0' && *p != '.')
+			tmp = tmp * 10 + *p - '0';
+		else
+		{
+			ret = (ret << 8) + tmp;
+			if (*p == '\0')
+				break;
+			tmp = 0;
+		}
+		p++;
+	}
+	return ret;
+}
+
+std::string InttoIp(unsigned int ipNum)
+{
+	std::string strIP;
+	unsigned char *val = (unsigned char *)&ipNum;
+	char *p = (char*)strIP.c_str();
+	sprintf(p, "%u.%u.%u.%u", val[3], val[2], val[1], val[1]);
+	return strIP;
+}
+
 
 using namespace std;
-
 DeviceInfo::DeviceInfo():m_pMemory(NULL), m_totalMemSize(GIGE_REG_MEMORY_SIZE + GIGE_XML_FILE_MAX_SIZE)
 {
 	m_pMemory = new unsigned char[m_totalMemSize];
@@ -27,7 +57,7 @@ DeviceInfo::DeviceInfo():m_pMemory(NULL), m_totalMemSize(GIGE_REG_MEMORY_SIZE + 
 
 	pXmlUrl = new char[ARV_GVBS_XML_URL_SIZE];
 
-	_strXmlFileName = "E:\\LeaperProject\\ydpanProject\\virtual-camera.zip";
+	_strXmlFileName = "E:\\LeaperProject\\ydpanProject\\arv-fake-camera.xml";
 	striniFile = "E:\\LeaperProject\\ydpanProject\\VirtualDevice.ini";
 }
 
@@ -70,11 +100,34 @@ bool DeviceInfo::InitDevice()
 
     // MISC
     SetRegisterData((uint32)ARV_GVBS_CONTROL_CHANNEL_PRIVILEGE_OFFSET, 0);
-    SetRegisterData((uint32)ARV_GVBS_HEARTBEAT_TIMEOUT_OFFSET, 3000);
+    SetRegisterData((uint32)ARV_GVBS_HEARTBEAT_TIMEOUT_OFFSET, 30000);
     SetRegisterData((uint32)ARV_GVBS_TIMESTAMP_TICK_FREQUENCY_HIGH_OFFSET, 0);
     SetRegisterData((uint32)ARV_GVBS_TIMESTAMP_TICK_FREQUENCY_LOW_OFFSET, 1000000000);
     SetRegisterData((uint32)ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_OFFSET, 2000);
     SetRegisterData((uint32)ARV_GVBS_N_STREAM_CHANNELS_OFFSET, 1);
+	SetRegisterData((uint32_t)0x670,1000);
+	SetRegisterData((uint32_t)0xd00, 0);
+	SetRegisterData((uint32_t)0xd08, 1000);
+
+
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_WIDTH, ARV_FAKE_CAMERA_WIDTH_DEFAULT);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_HEIGHT, ARV_FAKE_CAMERA_HEIGHT_DEFAULT);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_PIXEL_FORMAT, ARV_PIXEL_FORMAT_MONO_8);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_SENSOR_WIDTH, ARV_FAKE_CAMERA_SENSOR_WIDTH);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_SENSOR_HEIGHT, ARV_FAKE_CAMERA_SENSOR_HEIGHT);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_X_OFFSET, 0);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_Y_OFFSET, 0);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_BINNING_HORIZONTAL, ARV_FAKE_CAMERA_BINNING_HORIZONTAL_DEFAULT);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_BINNING_VERTICAL, ARV_FAKE_CAMERA_BINNING_HORIZONTAL_DEFAULT);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_ACQUISITION, 0);
+	
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_ACQUISITION_MODE, 1);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_ACQUISITION_FRAME_PERIOD_US, 1000000.0 / ARV_FAKE_CAMERA_ACQUISITION_FRAME_RATE_DEFAULT);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_EXPOSURE_TIME_US, ARV_FAKE_CAMERA_EXPOSURE_TIME_US_DEFAULT);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_GAIN_RAW, 0);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_GAIN_MODE, 1);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_TEST, ARV_FAKE_CAMERA_TEST_REGISTER_DEFAULT);
+	
 	ReadXMLbyxmlFile(_strXmlFileName);
 
     return ret;
@@ -243,7 +296,7 @@ uint32_t DeviceInfo::GetSCP0()
 	return nSCP0;
 }
 
-uint32_t DeviceInfo::GetSCPS0()
+uint32_t DeviceInfo::GetStream_Channel_0_Packet_Size()
 {// xihua
 	uint32_t nSCPS0;
 	nSCPS0 = GetRegisterData(ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_OFFSET);
@@ -471,17 +524,17 @@ uint32_t DeviceInfo::GetDestinationPort()
 	return nDestinationPort;
 }
 
-uint32_t DeviceInfo::GetCCP()
-{
-	uint32_t nCCP;
-	nCCP = GetRegisterData(0x930);
-	return nCCP;
-	//recv status 0x8003
-}
+// uint32_t DeviceInfo::GetControlChannelPrivilege()
+// {
+// 	uint32_t nCCP;
+// 	nCCP = GetRegisterData(0x930);
+// 	return nCCP;
+// 	//recv status 0x8003
+// }
 
-uint32_t DeviceInfo::GetAcquisitionState()
+uint32_t DeviceInfo::GetAcquisitionStatus()
 {
-	return GetRegisterData((uint32)REG_XML_AcquisitionStart_RegAddr);
+	return GetRegisterData((uint32)ARV_FAKE_CAMERA_REGISTER_ACQUISITION);
 }
 
 void DeviceInfo::SetTriggerFrequency(double frequency)
@@ -501,8 +554,8 @@ void DeviceInfo::SetControlChannelPrivilege(uint32_t privilege)
 
 uint32_t DeviceInfo::GetPayload()
 {
-	int width = GetRegisterData((uint32)REG_XML_Width_RegAddr);
-	int height = GetRegisterData((uint32)REG_XML_Height_RegAddr);
+	int width = GetRegisterData((uint32)ARV_FAKE_CAMERA_REGISTER_WIDTH);
+	int height = GetRegisterData((uint32)ARV_FAKE_CAMERA_REGISTER_HEIGHT);
 
 	return width * height;
 }
@@ -511,5 +564,55 @@ uint32_t DeviceInfo::GetDeviceLinkSpeed()
 {
 	uint32_t nVal = GetRegisterData(ARV_GVBS_DEVICE_LINK_SPEED_0_OFFSET);
 	return nVal;
+}
+
+void DeviceInfo::SetAcquisitionStatus(uint32_t val)
+{
+	SetRegisterData((uint32)ARV_FAKE_CAMERA_REGISTER_ACQUISITION,val);
+}
+
+uint32_t DeviceInfo::GetTrigerModel()
+{
+	return GetRegisterData(ARV_FAKE_CAMERA_REGISTER_TRIGGER_MODE);
+}
+
+uint32_t DeviceInfo::GetAcquisitionFramePeridUS()
+{
+	return GetRegisterData(ARV_FAKE_CAMERA_REGISTER_ACQUISITION_FRAME_PERIOD_US);
+}
+
+uint64_t DeviceInfo::Get_Sleep_time_for_next_frame(uint64_t next_timestamp)
+{
+	uint64_t time_us;
+	uint64_t sleep_time_us;
+	uint64_t frame_period_time_us;
+	if (GetTrigerModel() == 1)
+		frame_period_time_us = 1000000 / triger_frequency;
+	else
+		frame_period_time_us = (uint64_t)GetAcquisitionFramePeridUS();
+	if (frame_period_time_us == 0)
+		frame_period_time_us = 1000000;
+
+	time_us = getcurrentTime();//获取系统时间
+	sleep_time_us = frame_period_time_us - (time_us%frame_period_time_us);
+
+	next_timestamp = time_us + sleep_time_us;
+	return sleep_time_us;
+}
+
+int DeviceInfo::getcurrentTime()
+{
+	const boost::posix_time::ptime time_now = boost::posix_time::microsec_clock::local_time();
+	const boost::posix_time::time_duration td = time_now.time_of_day();
+	int hh = td.hours();
+	int mm = td.minutes();
+	int ss = td.seconds();
+	int ms = td.total_microseconds() - ((hh * 3600 + mm * 60 + ss) * 1000);
+	return ms;
+}
+
+void DeviceInfo::UpdateCtroller_time()
+{
+	controller_time = getcurrentTime();
 }
 

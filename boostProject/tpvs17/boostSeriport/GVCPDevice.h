@@ -4,7 +4,7 @@
 #include <vector>
 #include <boost/asio.hpp>
 #include "udpserver.h"
-#include "DeviceInfo.h"
+#include "IDevice.h"
 #include "gvcp.h"
 
 using namespace boost;
@@ -13,6 +13,7 @@ class GVCPDevice
 {
 public:
 	GVCPDevice();
+	GVCPDevice(IDevice *pDev);
 	~GVCPDevice();
 	void InitDevice();
 	void readDeViceInfo();
@@ -31,7 +32,7 @@ private:
 	char                 _cRecvData[ARV_GVCP_MAX_MSG_LEN];
 	unsigned int         _nLastAckId{0};
 
-	DeviceInfo m_device;
+	IDevice *m_pDevice{NULL};
 };
 
 #endif

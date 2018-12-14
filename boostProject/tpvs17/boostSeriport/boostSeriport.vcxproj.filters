@@ -66,10 +66,10 @@
     <ClCompile Include="gvsp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fakeCamera.cpp">
+    <ClCompile Include="ImageBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ImageBuffer.cpp">
+    <ClCompile Include="FakeCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -120,10 +120,16 @@
     <ClInclude Include="gvsp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fakeCamera.h">
+    <ClInclude Include="ImageBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ImageBuffer.h">
+    <ClInclude Include="IDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FakeCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixformat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
