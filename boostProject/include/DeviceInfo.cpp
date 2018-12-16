@@ -103,7 +103,7 @@ bool DeviceInfo::InitDevice()
     SetRegisterData((uint32)ARV_GVBS_HEARTBEAT_TIMEOUT_OFFSET, 30000);
     SetRegisterData((uint32)ARV_GVBS_TIMESTAMP_TICK_FREQUENCY_HIGH_OFFSET, 0);
     SetRegisterData((uint32)ARV_GVBS_TIMESTAMP_TICK_FREQUENCY_LOW_OFFSET, 1000000000);
-    SetRegisterData((uint32)ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_OFFSET, 8192);
+    SetRegisterData((uint32)ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_OFFSET, 2048);
     SetRegisterData((uint32)ARV_GVBS_N_STREAM_CHANNELS_OFFSET, 1);
 	SetRegisterData((uint32_t)0x670,1000);
 	SetRegisterData((uint32_t)0xd00, 0);
@@ -153,11 +153,15 @@ bool DeviceInfo::SetRegisterData(uint32 RegAddr, const uint32_t &Data)
 
 bool DeviceInfo::GetMemoryData(uint32 MemAddr, void* Data, const size_t Count)
 {
+	if (Data == NULL)
+		return false;
+
 	boost::mutex::scoped_lock lock(m_udpMutex);
     if (MemAddr <= m_totalMemSize)
     {
         uint8_t *pMemdata = m_pMemory + MemAddr;
-        memcpy((unsigned char*)Data, (unsigned char*)pMemdata, Count);
+		if(pMemdata)
+			memcpy((unsigned char*)Data, (unsigned char*)pMemdata, Count);
     }
     else
     {
@@ -169,11 +173,14 @@ bool DeviceInfo::GetMemoryData(uint32 MemAddr, void* Data, const size_t Count)
 
 bool DeviceInfo::SetMemoryData(uint32 MemAddr, const void* Data, const size_t Count)
 {
+	if (Data == NULL)
+		return false;
 	boost::mutex::scoped_lock lock(m_udpMutex);
     if (MemAddr <= m_totalMemSize)
     {
         uint8_t *pMemAddr = m_pMemory + MemAddr;
-        memcpy((unsigned char*)pMemAddr, (unsigned char*)Data, Count);
+		if(pMemAddr)
+			memcpy((unsigned char*)pMemAddr, (unsigned char*)Data, Count);
     }
     else
     {
@@ -302,7 +309,13 @@ uint32_t DeviceInfo::GetStream_Channel_0_Packet_Size()
 {// xihua
 	uint32_t nSCPS0;
 	nSCPS0 = GetRegisterData(ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_OFFSET);
-	return nSCPS0;
+	uint32_t packSizeMask = nSCPS0 & ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_MASK;
+	uint32_t packSizePos = nSCPS0 & ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_POS;
+	uint32_t packSizeBig = nSCPS0 & ARV_GVBS_STREAM_CHANNEL_0_PACKET_BIG_ENDIAN;
+	uint32_t packSizedoNot = nSCPS0 & ARV_GVBS_STREAM_CHANNEL_0_PACKET_DO_NOT_FRAGMENT;
+	uint32_t packSizeFiRE = nSCPS0 & ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_FIRE_TEST;
+
+	return packSizeMask;
 }
 
 uint32_t DeviceInfo::GetPersistenDefaultGateway()

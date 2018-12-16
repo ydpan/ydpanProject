@@ -16,6 +16,19 @@ typedef struct {
 	size_t size;
 }GInputVector;
 
+
+int getcurrentTime()
+{
+	//const boost::posix_time::ptime time_now = boost::posix_time::microsec_clock::local_time();
+	const boost::posix_time::time_duration td = boost::get_system_time().time_of_day();
+	int hh = td.hours();
+	int mm = td.minutes();
+	int ss = td.seconds();
+	int ms = td.total_microseconds() - ((hh * 3600 + mm * 60 + ss) * 1000);
+
+	return ms;
+}
+
 std::string numtoIp(unsigned int ipNum)
 {
 	std::string strIP;
@@ -103,24 +116,24 @@ void FakeCamera::MainLoop()//线程
 		}
 		else {
 			sleep_time_us = 100000;
-			next_timestamp_us = m_pdeviceInfo->getcurrentTime() + sleep_time_us;
+			next_timestamp_us = getcurrentTime() + sleep_time_us;
 		}
 
-		//boost::this_thread::sleep(boost::get_system_time()+boost::posix_time::seconds(1));
-		boost::this_thread::sleep(boost::get_system_time() + boost::posix_time::milliseconds(10));
-		//boost::posix_time::milliseconds(100);
+		boost::this_thread::sleep(boost::get_system_time() + boost::posix_time::milliseconds(50));
 		std::string strAdr = m_pdeviceInfo->controler_address.to_string();
 		if (strAdr != "0.0.0.0")
 		{
-		do {
+		do {//超时逻辑存在问题
+
+			//相机连接后存在自动掉线问题
 				int timeout_ms = 0;
-				timeout_ms = min(100, (next_timestamp_us - m_pdeviceInfo->getcurrentTime()) / 1000);
+				timeout_ms = min(100, (next_timestamp_us - getcurrentTime()) / 10000);
 				if (timeout_ms < 0)
 					timeout_ms = 0;
 				//超时判断
 				{
-					uint64_t time = m_pdeviceInfo->getcurrentTime();
-					uint64_t elapsed_ms = (time - m_pdeviceInfo->getCtroller_time()) / 1000;
+					uint64_t time = getcurrentTime();
+					uint64_t elapsed_ms = (time - m_pdeviceInfo->getCtroller_time()) / 10000;
 					uint32_t ntimeout = m_pdeviceInfo->GetHeartbeatTimeout();
 					if (elapsed_ms > ntimeout)
 					{
@@ -130,17 +143,13 @@ void FakeCamera::MainLoop()//线程
 					}
 				}
 
-			} while (!bStop&& m_pdeviceInfo->getcurrentTime() < next_timestamp_us);
+			} while (!bStop&& getcurrentTime() < next_timestamp_us);
 		}
 		//m_pdeviceInfo->SetControlChannelPrivilege(1);
-		if (m_pdeviceInfo->GetControlChannelPrivilege() ==0/* || m_pdeviceInfo->GetAcquisitionStatus() ==0*/)
+		
+		
+		if (m_pdeviceInfo->GetControlChannelPrivilege() ==0 || m_pdeviceInfo->GetAcquisitionStatus() ==0)
 		{
-// 			if (stream_address != NULL) {
-// 
-// 				stream_address = NULL;
-// 				image_buffer = NULL;
-// 				cout<<"[GvFakeCamera::thread] Stop stream";
-// 			}
 			is_streaming = FALSE;
 		}
 		else 
@@ -165,8 +174,8 @@ void FakeCamera::MainLoop()//线程
 				//image_buffer->size = m_pdeviceInfo->GetPayload();
 				image_buffer->status = ARV_BUFFER_STATUS_SUCCESS;
 				image_buffer->payload_type = ARV_BUFFER_PAYLOAD_TYPE_IMAGE;
-				image_buffer->timestamp_ns = m_pdeviceInfo->getcurrentTime() / 1000;
-				image_buffer->system_timestamp_ns = m_pdeviceInfo->getcurrentTime() / 1000;
+				image_buffer->timestamp_ns = getcurrentTime() / 1000;
+				image_buffer->system_timestamp_ns = getcurrentTime() / 1000;
 				//image_buffer->frame_id = image_buffer->frame_id+1;
 				image_buffer->pixel_format = m_pdeviceInfo->GetRegisterData(ARV_FAKE_CAMERA_REGISTER_PIXEL_FORMAT);
 			}
@@ -185,7 +194,6 @@ void FakeCamera::MainLoop()//线程
 				image_buffer->width, image_buffer->height,
 				image_buffer->x_offset, image_buffer->y_offset,
 				sendLeaderData);
-			mutex::scoped_lock l(m_writeQueueMutex);
 			m_pGVSPDevice->sendData(sendLeaderData);//发送数据
 			{
 				//TODO 发送失败的一些基本数据处理
@@ -209,7 +217,7 @@ void FakeCamera::MainLoop()//线程
 				string str = sendblockData.fromPoint.address().to_string() +":"+ to_string(sendblockData.fromPoint.port());
 				m_pGVSPDevice->sendData(sendblockData);//blob数据发送
 
-				unsigned char* p = sendblockData._byteData->data();
+/*				unsigned char* p = sendblockData._byteData->data();*/
 				{
 					//TODO 发送失败的一些基本数据处理
 				}
