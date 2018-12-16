@@ -2,9 +2,7 @@
 #define  ARV_GV_FAKE_CAMERA_BUFFER_SIZE 65536
 GVSPDevice::GVSPDevice()
 {
-	m_udpSocket = boost::make_shared<UDPService>("192.168.8.160", 2500);
-	m_udpSocket->setCallbackFunc(boost::bind(&GVSPDevice::handMsgCallBack, this, _1));
-	m_udpSocket->startThread();
+
 }
 
 
@@ -13,9 +11,17 @@ GVSPDevice::~GVSPDevice()
 
 }
 
+void GVSPDevice::InitDevice()
+{
+	m_udpSocket = boost::make_shared<udpSender>(m_iosServer);
+// 	m_udpSocket = boost::make_shared<UDPService>("192.168.8.160", 9001);
+// 	m_udpSocket->setCallbackFunc(boost::bind(&GVSPDevice::handMsgCallBack, this, _1));
+// 	m_udpSocket->startThread();
+// 	m_udpSocket->setObjName("GVSP obj");
+}
 void GVSPDevice::handMsgCallBack(tagUdpData tagData)
 {
-
+	int a = 0;
 }
 
 ArvGvspPacket * GVSPDevice::arv_gvsp_packet_new(ArvGvspContentType content_type, guint16 frame_id, guint32 packet_id, size_t data_size, 
@@ -58,12 +64,14 @@ ArvGvspPacket * GVSPDevice::gvsp_packet_data_leader(guint16 frame_id, guint32 pa
 		leader->height = htonl(height);
 		leader->x_offset = htonl(x_offset);
 		leader->y_offset = htonl(y_offset);
+		leader->x_padding = 0;
+		leader->y_padding = 0;
 	}
 
 	return packet;
 }
 
-ArvGvspPacket *GVSPDevice::gvsp_packet_data_trailer(guint16 frame_id, guint32 packet_id,
+ArvGvspPacket * GVSPDevice::gvsp_packet_data_trailer(guint16 frame_id, guint32 packet_id, guint32 data0,
 	tagUdpData &packdata)
 {
 	ArvGvspPacket *packet = arv_gvsp_packet_new(ARV_GVSP_CONTENT_TYPE_DATA_TRAILER,
@@ -74,7 +82,7 @@ ArvGvspPacket *GVSPDevice::gvsp_packet_data_trailer(guint16 frame_id, guint32 pa
 
 		trailer = (ArvGvspDataTrailer *)&packet->data;
 		trailer->payload_type = htonl(ARV_GVSP_PAYLOAD_TYPE_IMAGE);
-		trailer->data0 = 0;
+		trailer->data0 = htonl(data0);
 	}
 
 	return packet;
@@ -87,7 +95,10 @@ ArvGvspPacket *GVSPDevice::gvsp_packet_data_block(guint16 frame_id, guint32 pack
 		frame_id, packet_id, size, packdata);
 
 	if (packet != NULL)
-		memcpy(packet->data, data, size);
+	{
+		unsigned char* pTaget = (unsigned char*)&packet->data;
+		memcpy(pTaget, (unsigned char*)data, size);
+	}
 
 	return packet;
 }
@@ -209,7 +220,7 @@ size_t GVSPDevice::arv_gvsp_packet_get_data_size(size_t packet_size)
 
 void GVSPDevice::sendData(tagUdpData &packData)
 {
-	packData.fromPoint = _targetPoint;
+	//packData.fromPoint = _targetPoint;
 	std::string straddress = packData.fromPoint.address().to_string() + ":" + to_string(packData.fromPoint.port());
 	m_udpSocket->writeRaw(packData);
 }

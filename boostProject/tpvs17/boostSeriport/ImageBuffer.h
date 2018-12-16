@@ -50,6 +50,10 @@ typedef enum {
 	ARV_BUFFER_PAYLOAD_TYPE_H264 = 0x0008,
 	ARV_BUFFER_PAYLOAD_TYPE_MULTIZONE_IMAGE = 0x0009
 } BufferPayloadType;
+typedef struct ARAVIS_PACKED_STRUCTURE {
+	unsigned int id;
+	unsigned int size;
+} ArvChunkInfos;
 typedef unsigned int ArvPixelFormat;
 typedef struct _ArvBufferPrivate {
 	size_t size;
@@ -80,11 +84,9 @@ public:
 	ImageBuffer();
 	~ImageBuffer();
 
-	ArvBuffer *			arv_buffer_new_allocate(size_t size);
 	ArvBuffer *			arv_buffer_new(size_t size, void *preallocated);
-	//ArvBuffer * 		arv_buffer_new_full(size_t size, void *preallocated,void *user_data, GDestroyNotify user_data_destroy_func);
+	ArvBuffer * 		arv_buffer_new_full(size_t size, void *preallocated);
 	BufferStatus		arv_buffer_get_status(ArvBuffer *buffer);
-	const void *		arv_buffer_get_user_data(ArvBuffer *buffer);
 	BufferPayloadType arv_buffer_get_payload_type(ArvBuffer *buffer);
 	unsigned long long	arv_buffer_get_timestamp(ArvBuffer *buffer);
 	void				arv_buffer_set_timestamp(ArvBuffer *buffer, unsigned long long timestamp_ns);

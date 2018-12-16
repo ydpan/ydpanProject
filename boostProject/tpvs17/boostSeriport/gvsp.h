@@ -98,6 +98,8 @@ typedef struct {
 	unsigned int	height;
 	unsigned int	x_offset;
 	unsigned int	y_offset;
+	unsigned int    x_padding;
+	unsigned int    y_padding;
 } ArvGvspDataLeader,GVSP_Image_Data_Leader;
 
 /**
@@ -108,8 +110,8 @@ typedef struct {
  * GVSP data trailer packet data area.
  */
 typedef struct {
-	unsigned int payload_type;
-	unsigned int data0;
+	unsigned int payload_type;//数据包类型（IMAGE）
+	unsigned int data0;//可用于作为图像的高度
 } ArvGvspDataTrailer,GVSP_Image_Data_Trailer;
 
 /**

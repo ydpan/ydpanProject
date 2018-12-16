@@ -103,15 +103,15 @@ bool DeviceInfo::InitDevice()
     SetRegisterData((uint32)ARV_GVBS_HEARTBEAT_TIMEOUT_OFFSET, 30000);
     SetRegisterData((uint32)ARV_GVBS_TIMESTAMP_TICK_FREQUENCY_HIGH_OFFSET, 0);
     SetRegisterData((uint32)ARV_GVBS_TIMESTAMP_TICK_FREQUENCY_LOW_OFFSET, 1000000000);
-    SetRegisterData((uint32)ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_OFFSET, 2000);
+    SetRegisterData((uint32)ARV_GVBS_STREAM_CHANNEL_0_PACKET_SIZE_OFFSET, 8192);
     SetRegisterData((uint32)ARV_GVBS_N_STREAM_CHANNELS_OFFSET, 1);
 	SetRegisterData((uint32_t)0x670,1000);
 	SetRegisterData((uint32_t)0xd00, 0);
 	SetRegisterData((uint32_t)0xd08, 1000);
 
 
-	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_WIDTH, ARV_FAKE_CAMERA_WIDTH_DEFAULT);
-	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_HEIGHT, ARV_FAKE_CAMERA_HEIGHT_DEFAULT);
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_WIDTH, 1920);//ARV_FAKE_CAMERA_WIDTH_DEFAULT
+	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_HEIGHT,1200);// ARV_FAKE_CAMERA_HEIGHT_DEFAULT
 	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_PIXEL_FORMAT, ARV_PIXEL_FORMAT_MONO_8);
 	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_SENSOR_WIDTH, ARV_FAKE_CAMERA_SENSOR_WIDTH);
 	SetRegisterData((uint32_t)ARV_FAKE_CAMERA_REGISTER_SENSOR_HEIGHT, ARV_FAKE_CAMERA_SENSOR_HEIGHT);
@@ -153,6 +153,7 @@ bool DeviceInfo::SetRegisterData(uint32 RegAddr, const uint32_t &Data)
 
 bool DeviceInfo::GetMemoryData(uint32 MemAddr, void* Data, const size_t Count)
 {
+	boost::mutex::scoped_lock lock(m_udpMutex);
     if (MemAddr <= m_totalMemSize)
     {
         uint8_t *pMemdata = m_pMemory + MemAddr;
@@ -168,6 +169,7 @@ bool DeviceInfo::GetMemoryData(uint32 MemAddr, void* Data, const size_t Count)
 
 bool DeviceInfo::SetMemoryData(uint32 MemAddr, const void* Data, const size_t Count)
 {
+	boost::mutex::scoped_lock lock(m_udpMutex);
     if (MemAddr <= m_totalMemSize)
     {
         uint8_t *pMemAddr = m_pMemory + MemAddr;
@@ -602,12 +604,13 @@ uint64_t DeviceInfo::Get_Sleep_time_for_next_frame(uint64_t next_timestamp)
 
 int DeviceInfo::getcurrentTime()
 {
-	const boost::posix_time::ptime time_now = boost::posix_time::microsec_clock::local_time();
-	const boost::posix_time::time_duration td = time_now.time_of_day();
+	//const boost::posix_time::ptime time_now = boost::posix_time::microsec_clock::local_time();
+	const boost::posix_time::time_duration td = boost::get_system_time().time_of_day();
 	int hh = td.hours();
 	int mm = td.minutes();
 	int ss = td.seconds();
 	int ms = td.total_microseconds() - ((hh * 3600 + mm * 60 + ss) * 1000);
+	
 	return ms;
 }
 

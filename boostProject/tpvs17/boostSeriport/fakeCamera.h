@@ -7,7 +7,10 @@
 #include "GVSPDevice.h"
 #include <boost/thread/thread.hpp>
 #include <boost/make_shared.hpp>
-//#include <QImage>
+#include "opencv.hpp"
+
+using namespace cv;
+
 class FakeCamera
 {
 public:
@@ -20,6 +23,7 @@ public:
 	void MainLoop();
 
 	void ReadImageData();
+	void GetNextFrame(ArvBuffer *pbuffer);
 private:
 	bool bInit{ false };
 	bool bStop{ false };
@@ -41,6 +45,9 @@ private:
 
 	//QImage image;
 	ArvBuffer *image_buffer{ NULL };
+	mutex	m_writeQueueMutex;//∂”¡–ª•≥‚À¯
+	vector<cv::Mat> vecMat;
+	cv::Mat readMat;
 };
 
 #endif

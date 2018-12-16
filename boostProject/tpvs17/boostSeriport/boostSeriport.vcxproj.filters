@@ -72,6 +72,9 @@
     <ClCompile Include="FakeCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="udpSender.cpp">
+      <Filter>udp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\..\src\boostSeriport.ui">
@@ -131,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="pixformat.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="udpSender.h">
+      <Filter>udp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -79,6 +79,15 @@ bool UDPService::writeRaw(const ByteVector &rawData)
 		writeOnce();
 		return true;
 	}
+	else
+	{
+		//for(int i=0;i<m_writeQueue.size();i++)
+		while (m_writeQueue.size())
+		{
+			writeOnce();
+		}
+		//	m_writeQueue.pop();
+	}
 	return false;
 }
 
@@ -92,6 +101,16 @@ bool UDPService::writeRaw(const tagUdpData &tagData)
 	{
 		writeOnce();
 		return true;
+	}
+	else
+	{
+		string strObj = strObjName;
+		while (m_writeQueue.size())
+		{
+			writeOnce();
+		}
+// 		for (int i = 0; i < m_writeQueue.size(); i++)
+// 			m_writeQueue.pop();
 	}
 	return false;
 }
@@ -184,13 +203,21 @@ void UDPService::readHandler(const system::error_code &ec, size_t bytesTransferr
 void UDPService::writeHandler(boost::shared_ptr<std::string> st, const boost::system::error_code& ec, std::size_t)
 {
 	if (ec) {
+		string strobj = strObjName;
 		string s = ec.message();
 		int a = 0;
+		if (m_writeQueue.size() > 0)
+		{
+			string str = m_writeQueue.front().fromPoint.address().to_string();
+			int port = m_writeQueue.front().fromPoint.port();
+			int b = 0;
+		}
 		mutex::scoped_lock lock(m_writeQueueMutex);
 		m_writeQueue.pop();
 	}
 	else
 	{
+		string strObj = strObjName;
 		mutex::scoped_lock lock(m_writeQueueMutex);
 		m_writeQueue.pop();
 		if (m_writeQueue.empty() == false)

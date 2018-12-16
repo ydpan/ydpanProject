@@ -24,15 +24,11 @@ GVCPDevice::~GVCPDevice()
 
 void GVCPDevice::InitDevice()
 {
-	readDeViceInfo();
+	//readDeViceInfo();
 	m_pUdpServer = boost::make_shared<UDPService>("192.168.8.160",ARV_GVCP_PORT);
 	m_pUdpServer->setCallbackFunc(boost::bind(&GVCPDevice::handMsgCallBack, this, _1));
 	m_pUdpServer->startThread();
-}
-
-void GVCPDevice::readDeViceInfo()
-{
-	//m_device.Init();
+	m_pUdpServer->setObjName("GVCP");
 }
 
 void GVCPDevice::handMsgCallBack(tagUdpData tagData)

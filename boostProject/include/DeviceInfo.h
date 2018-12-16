@@ -2,6 +2,7 @@
 #define _DEVICEINFO_H
 #include "IDevice.h"
 #include "pixformat.h"
+#include <boost/thread/mutex.hpp>
 class DeviceInfo:public IDevice//设备信息
 {
   public:
@@ -95,6 +96,8 @@ private:
 	std::string strLocalIP;				//本设备IP地址
 	std::string strSubNetMask;			//掩码
 	std::string strDefaultGateWay;		//网关
+
+	boost::mutex m_udpMutex;
 };
 
 

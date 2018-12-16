@@ -28,6 +28,7 @@ std::string numtoIp(unsigned int ipNum)
 FakeCamera::FakeCamera()
 {
 	image_buffer = new ArvBuffer();
+	image_buffer->frame_id = 0;
 }
 
 
@@ -38,6 +39,9 @@ FakeCamera::~FakeCamera()
 		delete m_pdeviceInfo;
 		m_pdeviceInfo = NULL;
 	}
+	if (image_buffer) {
+		delete image_buffer;
+	}
 }
 
 void FakeCamera::Init()
@@ -45,7 +49,7 @@ void FakeCamera::Init()
 	m_pdeviceInfo = new DeviceInfo();
 	m_pGVCPD = boost::make_shared<GVCPDevice>(m_pdeviceInfo);
 	m_pGVSPDevice = boost::make_shared<GVSPDevice>();
-	m_pGVCPD->InitDevice();
+	
 }
 
 bool FakeCamera::camera_start()
@@ -55,6 +59,8 @@ bool FakeCamera::camera_start()
 
 	//2、设备信息初始化
 	m_pdeviceInfo->Init();
+	m_pGVCPD->InitDevice();
+	m_pGVSPDevice->InitDevice();
 	//3、GVCP初始化
 	//4、GVSP初始化
 
@@ -100,7 +106,9 @@ void FakeCamera::MainLoop()//线程
 			next_timestamp_us = m_pdeviceInfo->getcurrentTime() + sleep_time_us;
 		}
 
-		boost::this_thread::sleep(boost::posix_time::seconds(1));//boost::get_system_time() + 
+		//boost::this_thread::sleep(boost::get_system_time()+boost::posix_time::seconds(1));
+		boost::this_thread::sleep(boost::get_system_time() + boost::posix_time::milliseconds(10));
+		//boost::posix_time::milliseconds(100);
 		std::string strAdr = m_pdeviceInfo->controler_address.to_string();
 		if (strAdr != "0.0.0.0")
 		{
@@ -120,46 +128,46 @@ void FakeCamera::MainLoop()//线程
 						//重置 
 						m_pdeviceInfo->SetControlChannelPrivilege(1);
 					}
-					
 				}
 
 			} while (!bStop&& m_pdeviceInfo->getcurrentTime() < next_timestamp_us);
 		}
-		m_pdeviceInfo->SetControlChannelPrivilege(1);
+		//m_pdeviceInfo->SetControlChannelPrivilege(1);
 		if (m_pdeviceInfo->GetControlChannelPrivilege() ==0/* || m_pdeviceInfo->GetAcquisitionStatus() ==0*/)
 		{
-			if (stream_address != NULL) {
-
-				stream_address = NULL;
-				image_buffer = NULL;
-				cout<<"[GvFakeCamera::thread] Stop stream";
-			}
+// 			if (stream_address != NULL) {
+// 
+// 				stream_address = NULL;
+// 				image_buffer = NULL;
+// 				cout<<"[GvFakeCamera::thread] Stop stream";
+// 			}
 			is_streaming = FALSE;
 		}
 		else 
 		{
-			//continue;
-			//if (stream_address == NULL)
-			//{
 				/*
 				获取数据流地址，获取图像数据
 				*/
+			GetNextFrame(image_buffer);
 				// 获取要发送数据的IP地址和端口号
-			std::string strAddr = numtoIp(m_pdeviceInfo->GetDestinationAddress());//IP
-			if (strAddr == "0.0.0.0")
-				strAddr = "127.0.0.1";
+			//std::string strAddr = numtoIp();//IP
+			uint32_t nIp = m_pdeviceInfo->GetDestinationAddress();
+			if (nIp == 0)
+				strAdr = "192.168.8.160";
+			else
+				strAdr = numtoIp(nIp);
 			uint32_t nPort = m_pdeviceInfo->GetDestinationPort();//端口
 			if (nPort == 0)
-				nPort = 21200;
+				nPort = 20021;
 			boost::asio::ip::udp::endpoint targetEndpoint(boost::asio::ip::address::from_string(strAdr), nPort);
-
+			string strIP = targetEndpoint.address().to_string();
 			{
-				image_buffer->size = m_pdeviceInfo->GetPayload();
+				//image_buffer->size = m_pdeviceInfo->GetPayload();
 				image_buffer->status = ARV_BUFFER_STATUS_SUCCESS;
 				image_buffer->payload_type = ARV_BUFFER_PAYLOAD_TYPE_IMAGE;
 				image_buffer->timestamp_ns = m_pdeviceInfo->getcurrentTime() / 1000;
 				image_buffer->system_timestamp_ns = m_pdeviceInfo->getcurrentTime() / 1000;
-				image_buffer->frame_id = image_buffer->frame_id++;
+				//image_buffer->frame_id = image_buffer->frame_id+1;
 				image_buffer->pixel_format = m_pdeviceInfo->GetRegisterData(ARV_FAKE_CAMERA_REGISTER_PIXEL_FORMAT);
 			}
 			image_buffer->pixel_format = ARV_PIXEL_FORMAT_MONO_8;
@@ -177,46 +185,45 @@ void FakeCamera::MainLoop()//线程
 				image_buffer->width, image_buffer->height,
 				image_buffer->x_offset, image_buffer->y_offset,
 				sendLeaderData);
+			mutex::scoped_lock l(m_writeQueueMutex);
 			m_pGVSPDevice->sendData(sendLeaderData);//发送数据
-		
 			{
 				//TODO 发送失败的一些基本数据处理
 			}
-
 			block_id++;
 			offset = 0;
 			tagUdpData sendblockData;
 			sendblockData.fromPoint = targetEndpoint;
 			payload = image_buffer->size;
-			uint32_t sendpackit = 512;// m_pdeviceInfo->GetStream_Channel_0_Packet_Size();
+			uint32_t sendpackit = m_pdeviceInfo->GetStream_Channel_0_Packet_Size();
 			while (offset < payload) {
 				size_t data_size;
-
+				int headerSize = sizeof(ArvGvspPacket);
+				int testsize = ARV_GVSP_PACKET_PROTOCOL_OVERHEAD;
 				data_size = min(sendpackit - ARV_GVSP_PACKET_PROTOCOL_OVERHEAD,payload - offset);
 
 				packet_size = ARV_GV_FAKE_CAMERA_BUFFER_SIZE;
 				m_pGVSPDevice->gvsp_packet_data_block(image_buffer->frame_id, block_id,
 					data_size, ((char *)image_buffer->data) + offset,
 					sendblockData);
+				string str = sendblockData.fromPoint.address().to_string() +":"+ to_string(sendblockData.fromPoint.port());
 				m_pGVSPDevice->sendData(sendblockData);//blob数据发送
-				
+
+				unsigned char* p = sendblockData._byteData->data();
 				{
 					//TODO 发送失败的一些基本数据处理
 				}
 				offset += data_size;
 				block_id++;
 			}
-
-
 			//trailer数据打包
 			tagUdpData sendtrailerData;
 			sendtrailerData.fromPoint = targetEndpoint;
-			m_pGVSPDevice->gvsp_packet_data_trailer(image_buffer->frame_id, block_id,sendtrailerData);
+			m_pGVSPDevice->gvsp_packet_data_trailer(image_buffer->frame_id, block_id, image_buffer->height,sendtrailerData);
 			m_pGVSPDevice->sendData(sendtrailerData);//发送trailer数据
 			{
 				//TODO 发送失败的一些基本数据处理
 			}
-
 			is_streaming = TRUE;
 		}
 	} while (!bStop/*!g_atomic_int_get(&gv_fake_camera->priv->cancel)*/);
@@ -228,43 +235,47 @@ void FakeCamera::MainLoop()//线程
 
 void FakeCamera::ReadImageData()
 {
- 	string strpath = "E:\\LeaperProject\\ydpanProject\\1.png";
-// 	{
-// 		image.load(strpath.c_str());
-// 		_nImageLen= image.byteCount();
-// 		_nSizeX = image.width();
-// 		_nSizeY = image.height();
-// 		_pImageData = image.bits();
-// 	}
-	std::fstream file;
-	_pImageData = new unsigned char[IMAGE_FILE_MAX_SIZE];
-	file.open(strpath.c_str(), ios::in | ios::binary);
+//  	string strpath1 = "E:\\LeaperProject\\ydpanProject\\1.png";
+// 	string strpath2 = "E:\\LeaperProject\\ydpanProject\\2.png";
+// 	string strpath3 = "E:\\LeaperProject\\ydpanProject\\3.png";
+// 	string strpath4 = "E:\\LeaperProject\\ydpanProject\\4.png";
+// 	string strpath5 = "E:\\LeaperProject\\ydpanProject\\5.png";
+// 	string strpath6 = "E:\\LeaperProject\\ydpanProject\\6.png";
 
-	if (file.is_open())
-	{
-		file.seekg(0, ios::end);
-		_nImageLen = file.tellg();
-		file.seekg(0, ios::beg);
-		if (_nImageLen <= IMAGE_FILE_MAX_SIZE)
-		{
-			_nSizeX = _nSizeY = 100;
-			file.read((char*)_pImageData, _nImageLen);
-			file.close();
-		}
-		else
-		{
-			_nImageLen = 0;
-			_pImageData = NULL;
-			_nSizeX = _nSizeY = 0;
-		}
+	for (int i = 1; i < 6; i++) {
+		string strPath = "E:\\LeaperProject\\ydpanProject\\" + to_string(i)+".png";
+		cv::Mat readData = imread(strPath.c_str(), 0);
+		vecMat.push_back(readData);
 	}
-	image_buffer->data = _pImageData;
-	image_buffer->frame_id = 1;
-	image_buffer->height = 512;
-	image_buffer->size = 512 * 512;// _nImageLen;
-	image_buffer->width = 512;
-	image_buffer->x_offset = 0;
-	image_buffer->y_offset = 0;
-	image_buffer->pixel_format = 1;
+// 	image_buffer->data = readMat.data;
+// 	image_buffer->frame_id = 1;
+// 	image_buffer->height = readMat.rows;
+// 	image_buffer->size =  readMat.cols*readMat.rows*readMat.channels();
+// 	image_buffer->width = readMat.cols;
+// 	image_buffer->x_offset = 0;
+// 	image_buffer->y_offset = 0;
+// 	image_buffer->pixel_format = ARV_PIXEL_FORMAT_MONO_8;
+}
+
+void FakeCamera::GetNextFrame(ArvBuffer *pbuffer)
+{
+	if (pbuffer == NULL)
+		return;
+	static int nIndex = 0;
+	if (nIndex >= vecMat.size())
+		nIndex = 0;
+	cv::Mat pMat = vecMat[nIndex];
+	{
+		pbuffer->data = pMat.data;
+		pbuffer->frame_id = pbuffer->frame_id++;
+		pbuffer->height = pMat.rows;
+		pbuffer->width = pMat.cols;
+		pbuffer->size = pMat.cols*pMat.rows*pMat.channels();
+		pbuffer->x_offset = 0;
+		pbuffer->y_offset = 0;
+		pbuffer->pixel_format = ARV_PIXEL_FORMAT_MONO_8;
+		nIndex++;
+	}
+	
 }
 

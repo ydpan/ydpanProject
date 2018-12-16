@@ -3,6 +3,7 @@
 #include <string>
 #include "DeviceDefine.h"
 #include <boost/asio/ip/udp.hpp>
+
 class IDevice {
 public:
 	IDevice() {};
@@ -27,6 +28,7 @@ public:
 	uint64_t controller_time{ 0 };
 	bool bWrite_Access{ false };
 	boost::asio::ip::address controler_address;
+	
 };
 
 

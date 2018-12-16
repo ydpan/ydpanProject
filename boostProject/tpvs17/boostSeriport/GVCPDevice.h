@@ -16,7 +16,6 @@ public:
 	GVCPDevice(IDevice *pDev);
 	~GVCPDevice();
 	void InitDevice();
-	void readDeViceInfo();
 
 	void handMsgCallBack(tagUdpData tagData);
 private:

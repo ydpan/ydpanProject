@@ -48,6 +48,7 @@ public:
 	bool writeRaw(const ByteVector &rawData);
 	bool writeRaw(const tagUdpData &tagData);
 	bool writeRaw(const boost::asio::ip::udp::endpoint _endpoint, const ByteVector &rawData);
+	void setObjName(std::string strObj) { strObjName = strObj; };
 private:
 	boost::shared_ptr<deadline_timer> m_ptimer;//超时定时器
 	io_service m_pios;//io_service 
@@ -78,6 +79,7 @@ private:
 
 	udp::socket _socket;
 	udp::endpoint _endpointRemote;//远程发送数据的端点  接收数据时获取 IP及端口号
+	std::string strObjName;
 };
 
 #endif // _SERIALPORT_H_

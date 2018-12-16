@@ -6,6 +6,7 @@
 #include "DeviceInfo.h"
 #include "gvsp.h"
 #include "ImageBuffer.h"
+#include "udpSender.h"
 using namespace boost;
 typedef unsigned int ArvPixelFormat;
 class GVSPDevice
@@ -14,6 +15,7 @@ public:
 	GVSPDevice();
 	~GVSPDevice();
 
+	void InitDevice();
 	void handMsgCallBack(tagUdpData tagData);
 
 	ArvGvspPacket *arv_gvsp_packet_new(
@@ -38,6 +40,7 @@ public:
 	ArvGvspPacket *gvsp_packet_data_trailer(
 		guint16 frame_id, 
 		guint32 packet_id, 
+		guint32 data0, 
 		tagUdpData &packdata);//生成结束数据包
 
 	ArvGvspPacket *gvsp_packet_data_block(
@@ -62,11 +65,11 @@ public:
 
 	void sendData(tagUdpData &packData);
 private:
-	boost::shared_ptr<UDPService> m_udpSocket;
+	//boost::shared_ptr<UDPService> m_udpSocket;
+	boost::shared_ptr<udpSender> m_udpSocket;
 	boost::asio::ip::udp::endpoint _fromPoint;
 	boost::asio::ip::udp::endpoint _targetPoint;
-	DeviceInfo m_device;
-	
+	boost::asio::io_service m_iosServer;
 };
 
 #endif
