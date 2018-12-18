@@ -28,9 +28,6 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="udp">
-      <UniqueIdentifier>{266d9ba2-f6d9-4367-b344-efba61b6467d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\boostSeriport.cpp">
@@ -45,42 +42,9 @@
     <ClCompile Include="..\..\src\SerialPortDevice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QUdpTestUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\udpserver.cpp">
-      <Filter>udp</Filter>
-    </ClCompile>
-    <ClCompile Include="GVSPDevice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GVCPDevice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gvcp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\include\DeviceInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gvsp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FakeCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="udpSender.cpp">
-      <Filter>udp</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\..\src\boostSeriport.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="QUdpTestUI.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -88,55 +52,13 @@
     <QtMoc Include="..\..\include\boostSeriport.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="QUdpTestUI.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\DataGram.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\robotwheel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\SerialPortDevice.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\udpserver.h">
-      <Filter>udp</Filter>
-    </ClInclude>
-    <ClInclude Include="GVSPDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GVCPDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gvcp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\DeviceInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceDefine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gvsp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FakeCamera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixformat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="udpSender.h">
-      <Filter>udp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

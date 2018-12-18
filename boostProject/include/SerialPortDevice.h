@@ -9,7 +9,7 @@
 #include <vector>
 #include <queue>
 #include <inttypes.h>
-#include "DataGram.h"
+#include "BaseDataDefine.h"
 using namespace std;
 using namespace boost;
 using namespace boost::asio;
@@ -40,7 +40,12 @@ public:
 		stopBits = _stopBits;
 	}
 };
-
+typedef struct tagDataGram
+{
+	uint8_t sender;
+	uint8_t receiver;
+	ByteVector data;
+}DataGram;
 typedef boost::shared_ptr<ByteVector> pByteVector;
 typedef boost::shared_ptr<DataGram> DataGramPtr;
 class SerialPortDevice

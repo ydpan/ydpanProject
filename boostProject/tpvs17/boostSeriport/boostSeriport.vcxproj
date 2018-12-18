@@ -11,48 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\include\DeviceInfo.cpp" />
     <ClCompile Include="..\..\src\boostSeriport.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\robotwheel.cpp" />
     <ClCompile Include="..\..\src\SerialPortDevice.cpp" />
-    <ClCompile Include="..\..\src\udpserver.cpp" />
-    <ClCompile Include="ImageBuffer.cpp" />
-    <ClCompile Include="FakeCamera.cpp" />
-    <ClCompile Include="gvcp.cpp" />
-    <ClCompile Include="GVCPDevice.cpp" />
-    <ClCompile Include="gvsp.cpp" />
-    <ClCompile Include="GVSPDevice.cpp" />
-    <ClCompile Include="QUdpTestUI.cpp" />
-    <ClCompile Include="udpSender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\..\src\boostSeriport.ui" />
-    <QtUic Include="QUdpTestUI.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\include\boostSeriport.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\DataGram.h" />
     <ClInclude Include="..\..\include\robotwheel.h" />
     <ClInclude Include="..\..\include\SerialPortDevice.h" />
-    <ClInclude Include="..\..\include\udpserver.h" />
-    <ClInclude Include="..\..\include\DeviceInfo.h" />
-    <ClInclude Include="IDevice.h" />
-    <ClInclude Include="ImageBuffer.h" />
-    <ClInclude Include="DeviceDefine.h" />
-    <ClInclude Include="FakeCamera.h" />
-    <ClInclude Include="gvcp.h" />
-    <ClInclude Include="GVCPDevice.h" />
-    <ClInclude Include="gvsp.h" />
-    <ClInclude Include="GVSPDevice.h" />
-    <ClInclude Include="pixformat.h" />
-    <ClInclude Include="udpSender.h" />
-    <QtMoc Include="QUdpTestUI.h">
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtPrintSupport;.\..\..\..\..\boost_1_64_0;.\..\..\include</IncludePath>
-      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtPrintSupport</IncludePath>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="..\..\Resources\boostSeriport.qrc" />
