@@ -25,6 +25,7 @@ public :
 	Q_SLOT void onTimer();
 	Q_SLOT void onTimer2();
 	Q_SLOT void onClicked();
+	Q_SLOT void onLogInOut(QString strName, int level, int state);
 private:
 	Ui::customGUIDemoClass ui;
 	CGridLayoutView *m_pgridView{ nullptr };

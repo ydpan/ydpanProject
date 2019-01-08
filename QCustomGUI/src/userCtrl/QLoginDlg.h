@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "ui_QLoginDlg.h"
 #include "QUserDB.h"
+//µÇÂ¼´°¿Ú
 class QLoginDlg : public QDialog
 {
 	Q_OBJECT
@@ -25,7 +26,6 @@ private:
 	QUserDB* _pUserDB;
 signals:
 	void sgLogin(QString userName, int nLevel);
-	void sgLogout();
 };
 
 #endif // _QLOGINDLG_H_

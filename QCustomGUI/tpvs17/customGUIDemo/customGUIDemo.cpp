@@ -1,6 +1,7 @@
 #include "customGUIDemo.h"
 #include "QSearchEdit.h"
 #include <QLayout>
+#pragma execution_character_set("utf-8")
 customGUIDemo::customGUIDemo(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -19,9 +20,14 @@ customGUIDemo::customGUIDemo(QWidget *parent)
 	m_timer.start(500);
 	m_timer2.start(500);
 
-	connect(ui.m_pbLogin, SIGNAL(clicked()), this, SLOT(onClicked()));
-	connect(ui.m_pbLogOut, SIGNAL(clicked()), this, SLOT(onClicked()));
+	connect(ui.m_pbLogin_Out, SIGNAL(clicked()), this, SLOT(onClicked()));
+	connect(ui.m_pbUserMgr, SIGNAL(clicked()), this, SLOT(onClicked()));
 	_pUserCtrl = new QUserCtrl(this);
+	connect(_pUserCtrl, SIGNAL(sgCurrentUserInfo(QString, int, int)), this, SLOT(onLogInOut(QString, int, int)));
+
+	ui.pushButton->setVisible(false);
+	ui.pushButton_2->setVisible(false);
+	ui.pushButton_3->setVisible(false);
 }
 
 customGUIDemo::~customGUIDemo()
@@ -178,14 +184,40 @@ Q_SLOT void customGUIDemo::onTimer2()
 Q_SLOT void customGUIDemo::onClicked()
 {
 	QString strObj = sender()->objectName();
-	if (strObj == "m_pbLogin") {
+	if (strObj == "m_pbLogin_Out") {
 		if (_pUserCtrl) {
-			_pUserCtrl->CheckLogin();
+			if (_pUserCtrl->getLoginState() == EM_LOGIN)
+				_pUserCtrl->LogOutUser();
+			else
+				_pUserCtrl->CheckLogin();
 		}
 	}
-	else if (strObj == "m_pbLogOut") {
+	else if (strObj == "m_pbUserMgr") {
 		if (_pUserCtrl) {
 			_pUserCtrl->ShowUserMgrDlg();
 		}
+	}
+}
+
+Q_SLOT void customGUIDemo::onLogInOut(QString strName, int level, int state)
+{
+	ui.label->setText(strName);
+	if (state == 0) {
+		if (level == 1) {
+				ui.pushButton->setVisible(true);
+		}
+		if (level == 9) {
+			ui.pushButton->setVisible(true);
+			ui.pushButton_2->setVisible(true);
+			ui.pushButton_3->setVisible(true);
+		}
+		ui.m_pbLogin_Out->setText("×¢Ïú");
+	}
+	else
+	{
+		ui.pushButton->setVisible(false);
+		ui.pushButton_2->setVisible(false);
+		ui.pushButton_3->setVisible(false);
+		ui.m_pbLogin_Out->setText("µÇÂ¼");
 	}
 }

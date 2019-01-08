@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>512</width>
-    <height>212</height>
+    <width>176</width>
+    <height>95</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,21 +19,14 @@
      <item>
       <widget class="QPushButton" name="login_OKpb">
        <property name="text">
-        <string>OK</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="login_Logoutpb">
-       <property name="text">
-        <string>Logout</string>
+        <string>登录</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="login_Cancelpb">
        <property name="text">
-        <string>Cancel</string>
+        <string>取消</string>
        </property>
       </widget>
      </item>

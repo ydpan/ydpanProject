@@ -78,6 +78,12 @@
     <ClCompile Include="..\..\src\framelesswindow\windowdragger.cpp">
       <Filter>framelesswindow</Filter>
     </ClCompile>
+    <ClCompile Include="QLoginModify.cpp">
+      <Filter>userCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="QUserAddNew.cpp">
+      <Filter>userCtrl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="customGUIDemo.h">
@@ -110,6 +116,12 @@
     <QtMoc Include="..\..\src\framelesswindow\windowdragger.h">
       <Filter>framelesswindow</Filter>
     </QtMoc>
+    <QtMoc Include="QLoginModify.h">
+      <Filter>userCtrl</Filter>
+    </QtMoc>
+    <QtMoc Include="QUserAddNew.h">
+      <Filter>userCtrl</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="customGUIDemo.ui">
@@ -124,9 +136,18 @@
     <QtUic Include="..\..\src\framelesswindow\framelesswindow.ui">
       <Filter>framelesswindow</Filter>
     </QtUic>
+    <QtUic Include="QLoginModify.ui">
+      <Filter>userCtrl</Filter>
+    </QtUic>
+    <QtUic Include="QUserAddNew.ui">
+      <Filter>userCtrl</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\userCtrl\QUserDB.h">
+      <Filter>userCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="UserLoginDefine.h">
       <Filter>userCtrl</Filter>
     </ClInclude>
   </ItemGroup>

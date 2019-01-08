@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
-    <height>755</height>
+    <width>340</width>
+    <height>287</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,25 +16,53 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="3" column="0">
-     <widget class="QWidget" name="widget_2" native="true"/>
-    </item>
-    <item row="2" column="0">
      <widget class="QWidget" name="widget" native="true"/>
     </item>
-    <item row="0" column="0">
+    <item row="7" column="0">
+     <widget class="QWidget" name="widget_2" native="true"/>
+    </item>
+    <item row="1" column="0">
      <widget class="QLineEdit" name="lineEdit"/>
     </item>
-    <item row="0" column="1">
-     <widget class="QPushButton" name="m_pbLogin">
+    <item row="9" column="0">
+     <widget class="QPushButton" name="m_pbLogin_Out">
       <property name="text">
        <string>登陆</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="m_pbLogOut">
+    <item row="8" column="0">
+     <widget class="QLabel" name="label">
       <property name="text">
-       <string>注销</string>
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>PushButton1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>PushButton2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>PushButton3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0">
+     <widget class="QPushButton" name="m_pbUserMgr">
+      <property name="text">
+       <string>用户管理</string>
       </property>
      </widget>
     </item>
@@ -45,8 +73,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1100</width>
-     <height>37</height>
+     <width>340</width>
+     <height>23</height>
     </rect>
    </property>
   </widget>

@@ -8,23 +8,8 @@
 #include <QByteArray>
 #include <QVariant>
 #include <QCryptographicHash>
+#include "UserLoginDefine.h"
 
-enum USER_LEVEL
-{
-	USER_LEVEL_LOWEST = 0,
-	USER_LEVEL_NOUSER = 1,
-	USER_LEVEL_OPT = 4,
-	USER_LEVEL_ADM = 5,
-	USER_LEVEL_FULL = 9
-};
-
-#define NO_USER_NAME "nouser"
-typedef struct tag_UserInfo {
-	QString strName;
-	QString strpasswd;
-	int nlevel{ 0 };
-}ST_UserInfo;
-typedef QMap<int, ST_UserInfo> map_userInfos;
 
 class QZkDbSqlite : public QSqlDatabase
 {

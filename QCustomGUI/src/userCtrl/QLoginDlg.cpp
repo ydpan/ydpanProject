@@ -29,13 +29,7 @@ QLoginDlg::QLoginDlg(QUserDB* pUserDB)
 	_PasswdLineEdit->setDisabled(true);
 
 	connect(_UserNameComboBox, SIGNAL(editTextChanged(const QString &)), this, SLOT(OnEditTextChanged(const QString &)));
-// 	QStringList strList;
-// 	strList << "root" << "testUser" << "test";
-// 	AddItems2List(strList);
-// 	_UserNameComboBox->setCurrentIndex(-1);
-
 	connect(ui.login_OKpb, SIGNAL(clicked()), this, SLOT(OnClicked()));
-	connect(ui.login_Logoutpb, SIGNAL(clicked()), this, SLOT(OnClicked()));
 	connect(ui.login_Cancelpb, SIGNAL(clicked()), this, SLOT(OnClicked()));
 }
 
@@ -92,7 +86,6 @@ Q_SLOT void QLoginDlg::OnClicked()
 	}
 	else if (strObj == "login_Logoutpb") {
 		_pUserDB->Logout();
-		emit(sgLogout());
 		accept();
 	}
 	else if (strObj == "login_Cancelpb") {

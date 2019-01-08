@@ -13,15 +13,18 @@ class QUserManagerDlg : public QDialog
 public:
 	QUserManagerDlg(QUserDB* pUserDB);
 	~QUserManagerDlg();
-private slots:
-	void on_tp_button_add_user_clicked();
-	void OnDbClickToDel(QListWidgetItem * item);
+	void SetUserAndLevel(QString strName, int level);
 	void OnUpdateUserList();
+private slots:
+	void onAddUser();
+	void onDelUser();
+	void onModifyUser();
 private:
-
-private:
+	QString m_strName;
+	int m_level{ 0 };
 	Ui::QUserManagerDlg ui;
-	QUserDB* _pUserDB{ nullptr };
+	QUserDB* m_pUserDB{ nullptr };
 	QSharedPointer<QStandardItemModel> plistModel;
+	QMap<QString, UserInfo> mMapUserInfos;
 };
 #endif // !QUSERMANAGERDLG_H_

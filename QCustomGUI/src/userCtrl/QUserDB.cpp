@@ -9,6 +9,7 @@
 , salt BLOB \
 , password BLOB \
 , level INT(32) \
+, about VARCHAR(255)\
 , stamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP \
 , PRIMARY KEY(id))"
 
@@ -23,7 +24,7 @@
 #define _DB_PS      "hzleaper_administrator"
 
 QUserDB::QUserDB(const QString& dbPath)
-    : QZkDbSqlite(dbPath + "users.db", _DB_USER, _DB_PS)
+    : QZkDbSqlite(dbPath + "usersInfo.db", _DB_USER, _DB_PS)
 	, m_strCurUser(NO_USER_NAME)
 	, m_nCurLevel(USER_LEVEL_NOUSER)
 {
@@ -58,15 +59,17 @@ bool QUserDB::Replace(const QString& user, const QString& password, int level /*
     {
         salt.append(QUuid::createUuid().toRfc4122());
     }
-    ps.append(salt);
-    ps = QCryptographicHash::hash(ps, QCryptographicHash::Sha3_512);
+	std::string s =salt.toStdString();
+    //ps.append(salt);
+	
+    //ps = QCryptographicHash::hash(ps, QCryptographicHash::Sha3_512);
 
     QString strCmd(_TP_QSQLITE_REPLACE_USER);
     strCmd = strCmd.arg(user, QString::number(level));
     QSqlQuery sql(*this);
     sql.prepare(strCmd);
     sql.bindValue(":data_salt", salt, QSql::In);
-    sql.bindValue(":data_password", ps, QSql::In);
+    sql.bindValue(":data_password", ps.toBase64()/*ps*/, QSql::In);
     return sql.exec();
 }
 
@@ -97,10 +100,11 @@ map_userInfos QUserDB::getAllUserInfos()
 	int nIndex = 0;
 	while (sql.next())
 	{
-		ST_UserInfo itemInfo;
+		UserInfo itemInfo;
 		itemInfo.strName = sql.value("id").toString();
-		itemInfo.nlevel = sql.value("level").toInt();
-		itemInfo.strpasswd = sql.value("password").toString();
+		itemInfo.mLevel = sql.value("level").toInt();
+		QByteArray mArray = sql.value("password").toByteArray();
+		itemInfo.passwd = QString(QByteArray::fromBase64(mArray));
 		rltInfos[nIndex] = itemInfo;
 		nIndex++;
 	}
@@ -118,14 +122,17 @@ bool QUserDB::Login(const QString& user, const QString& password, int& level)
     }
     QByteArray salt = sql.value("salt").toByteArray();
     QByteArray ps = sql.value("password").toByteArray();
+	//QString str = QString(QByteArray::fromBase64(ps));
     //
-    QByteArray origin = password.toUtf8();
-    origin.append(salt);
-    origin = QCryptographicHash::hash(origin, QCryptographicHash::Sha3_512);
+    //QByteArray origin = password.toUtf8();
+	QByteArray origin = password.toUtf8().toBase64();
+    //origin.append(salt);
+   // origin = QCryptographicHash::hash(origin, QCryptographicHash::Sha3_512);
     if (!qtByteArrayEqual(origin, ps))
     {
         return false;
     }
+	
     level = sql.value("level").toInt();
     
 	m_strCurUser = user;

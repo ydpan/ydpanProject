@@ -1,15 +1,13 @@
 #include "QUserManagerDlg.h"
 #include <QMessageBox>
+#include "QUserAddNew.h"
+#include "UserLoginDefine.h"
+#pragma execution_character_set("utf-8")
 
-static const QMap<int, QString> sc_level = {
-	{ USER_LEVEL_ADM, QString::fromLocal8Bit("管理员") },
-	{ USER_LEVEL_OPT, QString::fromLocal8Bit("操作员") },
-	{ USER_LEVEL_ADM, QString::fromLocal8Bit("根管理员") }
-};
 
 
 QString levelName(int nLevel) {
-	QString strLevel = QString::fromLocal8Bit("无用户");
+	QString strLevel = QString("无用户");
 	if (sc_level.contains(nLevel))
 		strLevel = sc_level[nLevel];
 	return strLevel;
@@ -17,113 +15,131 @@ QString levelName(int nLevel) {
 
 QUserManagerDlg::QUserManagerDlg(QUserDB* pLogic)
 	: QDialog(nullptr)
-	, _pUserDB(pLogic)
+	, m_pUserDB(pLogic)
 {
 	ui.setupUi(this);
-	ui.tableView;
 	QStringList headerList;
-	headerList << "userName" << "level";
+	headerList << "用户名" << "等级";
 	plistModel = QSharedPointer<QStandardItemModel>(new QStandardItemModel);
-	//plistModel->setColumnCount(headerList.size());
 	plistModel->setHorizontalHeaderLabels(headerList);
 	ui.tableView->setModel(plistModel.data());
-
-	map_userInfos v =  pLogic->getAllUserInfos();
-	int i = 0;
-	for each(ST_UserInfo item in v)
-	{
-		plistModel->setItem(i, 0, new QStandardItem(item.strName));
-		//设置字符颜色 
-		plistModel->item(i, 0)->setForeground(QBrush(QColor(255, 0, 0)));
-		//设置字符位置 
-		plistModel->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-		plistModel->setItem(i, 1, new QStandardItem(QString("%1").arg(item.nlevel)));
-	}
-
-
-	connect(ui.tp_listwidget_users, &QListWidget::itemDoubleClicked, this, &QUserManagerDlg::OnDbClickToDel);
-
-	QStringList lstUser = _pUserDB->Users(-1);
-	ui.tp_listwidget_users->addItems(lstUser);
+	ui.tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	ui.tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+	connect(ui.m_pbAddUser,SIGNAL(clicked()),this,SLOT(onAddUser()));
+	connect(ui.m_pbDelUser, SIGNAL(clicked()), this, SLOT(onDelUser()));
+	connect(ui.m_pbModifyUser, SIGNAL(clicked()), this, SLOT(onModifyUser()));
+	ui.label_Status->setText("");
 }
 
 QUserManagerDlg::~QUserManagerDlg()
 {
 }
 
-void QUserManagerDlg::on_tp_button_add_user_clicked()
-{	
-	if (_pUserDB->CurUser() != "root")
-	{
-		QMessageBox::warning(this, "Warning", QString::fromLocal8Bit("仅有根用户有此权限！"));
-		return;
-	}
-
-	QString user = ui.tp_edit_new_user->text();
-
-	QStringList users = _pUserDB->Users(-1);
-	if (users.contains(user))
-	{
-		return;
-	}
-
-	int nLevel = USER_LEVEL_NOUSER;	
-
-	QVariant vLevel = ui.tp_cmb_add_user_level->currentData();
-	if (!vLevel.isNull())
-	{
-		nLevel = vLevel.toInt();
-	}
-
-	if (_pUserDB->Replace(user, "123456", nLevel))
-	{
-		ui.tp_listwidget_users->addItem(user);
-	}
-	
-	OnUpdateUserList();
+void QUserManagerDlg::SetUserAndLevel(QString strName, int level)
+{
+	m_strName = strName; 
+	m_level = level;
+	ui.label_UserName->setText(m_strName);
+	ui.label_Status->setText("");
 }
 
-void QUserManagerDlg::OnDbClickToDel(QListWidgetItem * item)
-{	
-	QString str = item->text();
-	if (str == "root")
-	{
-		QMessageBox::warning(this, "Warning", QString::fromLocal8Bit("不能删除根用户！"));
-		return;
-	}
-	if (_pUserDB->CurUser() != "root")
-	{
-		QMessageBox::warning(this, "Warning", QString::fromLocal8Bit("仅有根用户有此权限！"));
-		return;
-	}
 
-	if (QMessageBox::Ok ==
-		QMessageBox::warning(this
-			, "Warning"
-			, QString::fromLocal8Bit("确定删除用户: %1?").arg(str)
-			, QMessageBox::Cancel | QMessageBox::Ok
-			, QMessageBox::Cancel))
+void QUserManagerDlg::onAddUser()
+{
+	if (m_level <= 1)
 	{
-		if (_pUserDB->Delete(str))
+		QMessageBox::warning(this, "Warning", QString("你当前没有权限添加用户，请登录！"));
+		return;
+	}
+	QUserAddNew dlg;
+	if (dlg.exec() == QDialog::Accepted)
+	{
+		UserInfo m_userInfo = dlg.getUserInfo();
+		if (m_pUserDB->Replace(m_userInfo.strName, m_userInfo.passwd, m_userInfo.mLevel))
 		{
-			ui.tp_listwidget_users->removeItemWidget(item);
-			delete item;
-			
-			//OnUpdateUserList();
+			ui.label_Status->setText(QString("%1 添加完成！！！").arg(m_userInfo.strName));
+			OnUpdateUserList();
 		}
+
 	}
 }
 
+void QUserManagerDlg::onDelUser()
+{
+	int row = ui.tableView->currentIndex().row();
+	QAbstractItemModel *model = ui.tableView->model();
+	QModelIndex index = model->index(row, 0);//选中行第一列的内容
+	QVariant data = model->data(index);
+	QString strName = data.toString();
+	if (strName.isEmpty())
+	{
+		QMessageBox::warning(this, "Warning", QString("请选中你要删除的用户！"));
+		return;
+	}
+	if (strName == "root")
+	{
+		QMessageBox::warning(this, "Warning", QString("你当前没有权限删除root用户，请联系超超级管理员！"));
+		return;
+	}
+
+	if (QMessageBox::Ok ==QMessageBox::warning(this, "Warning", QString("确定删除用户: %1?").arg(strName), QMessageBox::Cancel | QMessageBox::Ok, QMessageBox::Cancel))
+ 	{
+ 		if (m_pUserDB->Delete(strName))
+ 		{
+			ui.label_Status->setText(QString("%1 已删除！").arg(strName));
+ 			OnUpdateUserList();
+ 		}
+ 	}
+}
+
+void QUserManagerDlg::onModifyUser()
+{
+	/*设置选择用户的信息*/
+	int row = ui.tableView->currentIndex().row();
+	QAbstractItemModel *model = ui.tableView->model();
+	QModelIndex index = model->index(row, 0);//选中行第一列的内容
+	QVariant data = model->data(index);
+	QString strName = data.toString();
+
+ 	QUserAddNew dlg;
+	UserInfo mUserInfo = mMapUserInfos[strName];
+	dlg.setUserInfo(mUserInfo);
+	if (dlg.exec() == QDialog::Accepted)
+	{
+		UserInfo m_userInfo = dlg.getUserInfo();
+		if (m_pUserDB->Replace(m_userInfo.strName, m_userInfo.passwd, m_userInfo.mLevel))
+		{
+			ui.label_Status->setText(QString("%1 修改完成！！！").arg(m_userInfo.strName));
+			OnUpdateUserList();
+		}
+
+	}
+}
 
 void QUserManagerDlg::OnUpdateUserList()
 {
-	for (int i = 0; i < 3; i++)
+	mMapUserInfos.clear();
+	map_userInfos v = m_pUserDB->getAllUserInfos();
+	int i = 0;
+	plistModel->clear();
+	QStringList headerList;
+	headerList << "用户名" << "职位"<<"权限等级";
+	plistModel->setHorizontalHeaderLabels(headerList);
+	
+	for each(UserInfo item in v)
 	{
-		plistModel->setItem(i, 0, new QStandardItem("2009441676"));
+		if (item.strName.isEmpty())
+			continue;
+		if (item.mLevel > m_level)
+			continue;
+		plistModel->setItem(i, 0, new QStandardItem(item.strName));
 		//设置字符颜色 
-		plistModel->item(i, 0)->setForeground(QBrush(QColor(255, 0, 0)));
-		//设置字符位置 
-		plistModel->item(i, 0)->setTextAlignment(Qt::AlignCenter);
-		plistModel->setItem(i, 1, new QStandardItem(QString::fromLocal8Bit("哈哈")));
+ 		//plistModel->item(i, 0)->setForeground(QBrush(QColor(255, 0, 0)));
+ 		//设置字符位置 
+ 		plistModel->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+		plistModel->setItem(i, 1, new QStandardItem(item.strAbout));
+		plistModel->setItem(i, 2, new QStandardItem(QString("%1").arg(sc_level[item.mLevel])));
+		i++;
+		mMapUserInfos.insert(item.strName, item);
 	}
 }

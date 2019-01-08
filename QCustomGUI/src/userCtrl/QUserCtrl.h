@@ -4,7 +4,7 @@
 #include "QUserDB.h"
 #include "QUserManagerDlg.h"
 #include "QLoginDlg.h"
-
+#include "UserLoginDefine.h"
 class QUserCtrl :public QObject
 {
 	Q_OBJECT
@@ -14,17 +14,18 @@ public:
 
     void CheckLogin();	
 	void ShowUserMgrDlg();
-
-	QString CurUser() { return _CurrentUserName; }
-	int CurUserLevel() { return m_nLevel; }
-	
+	void LogOutUser();
+	QString CurUser() { return _CurrentUserName; }			//当前登录用户的用户名
+	int CurUserLevel() { return m_nLevel; }					//当前登录用户的等级
+	int getLoginState() { return (int)m_State; }			//查询登录状态
 private:
 	Q_SLOT void OnGetUserLevel(QString strName, int nLevel);
-	Q_SLOT void OnLogOutState();
 public:
-    QString          _CurrentUserName;
-	int              m_nLevel{ 0 };
-
+    QString				_CurrentUserName;
+	int					m_nLevel{ 0 };
+	LogIndState			m_State{ EM_LOGOUT };
+signals:
+	void sgCurrentUserInfo(QString userName, int level,int state);
 private:
 	QWidget*			m_pMainWnd{ nullptr };
     QUserDB*			_pUserDBSqlite{ nullptr };
