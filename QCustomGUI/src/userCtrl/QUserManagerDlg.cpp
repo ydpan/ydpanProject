@@ -1,10 +1,8 @@
 #include "QUserManagerDlg.h"
 #include <QMessageBox>
 #include "QUserAddNew.h"
-#include "UserLoginDefine.h"
+#include "QUserBase.h"
 #pragma execution_character_set("utf-8")
-
-
 
 QString levelName(int nLevel) {
 	QString strLevel = QString("无用户");
@@ -18,6 +16,8 @@ QUserManagerDlg::QUserManagerDlg(QUserDB* pLogic)
 	, m_pUserDB(pLogic)
 {
 	ui.setupUi(this);
+	setWindowFlags(Qt::WindowCloseButtonHint);
+	setWindowIcon(QIcon(":/userinfo"));
 	QStringList headerList;
 	headerList << "用户名" << "等级";
 	plistModel = QSharedPointer<QStandardItemModel>(new QStandardItemModel);
@@ -40,18 +40,32 @@ void QUserManagerDlg::SetUserAndLevel(QString strName, int level)
 	m_strName = strName; 
 	m_level = level;
 	ui.label_UserName->setText(m_strName);
+	if (m_strName.isEmpty())
+		ui.label_UserName->setText("未登录");
 	ui.label_Status->setText("");
 }
 
 
 void QUserManagerDlg::onAddUser()
 {
+	if (m_strName.isEmpty())
+	{
+		QMessageBox::warning(this, "错误警告", QString("你还没登录，请登录或请联系管理员！"));
+		return;
+	}
 	if (m_level <= 1)
 	{
-		QMessageBox::warning(this, "Warning", QString("你当前没有权限添加用户，请登录！"));
+		QMessageBox::warning(this, "错误警告", QString("你当前没有权限添加用户，请登录！"));
 		return;
 	}
 	QUserAddNew dlg;
+	dlg.setTitle("添加新用户");
+	UserInfo info;
+	info.mLevel = m_level;
+	info.strName = m_strName;
+	dlg.setCurrentUser(info);
+	QStringList strList = m_pUserDB->Users(-1);
+	dlg.SetFilterList(strList);
 	if (dlg.exec() == QDialog::Accepted)
 	{
 		UserInfo m_userInfo = dlg.getUserInfo();
@@ -60,7 +74,6 @@ void QUserManagerDlg::onAddUser()
 			ui.label_Status->setText(QString("%1 添加完成！！！").arg(m_userInfo.strName));
 			OnUpdateUserList();
 		}
-
 	}
 }
 
@@ -71,18 +84,27 @@ void QUserManagerDlg::onDelUser()
 	QModelIndex index = model->index(row, 0);//选中行第一列的内容
 	QVariant data = model->data(index);
 	QString strName = data.toString();
+	if (m_strName.isEmpty())
+	{
+		QMessageBox::warning(this, "错误警告", QString("你还没登录，请登录或请联系管理员！"));
+		return;
+	}
 	if (strName.isEmpty())
 	{
-		QMessageBox::warning(this, "Warning", QString("请选中你要删除的用户！"));
+		QMessageBox::warning(this, "错误警告", QString("请选中你要删除的用户！"));
 		return;
 	}
 	if (strName == "root")
 	{
-		QMessageBox::warning(this, "Warning", QString("你当前没有权限删除root用户，请联系超超级管理员！"));
+		QMessageBox::warning(this, "错误警告", QString("你当前没有权限删除root用户，请联系超超级管理员！"));
 		return;
 	}
-
-	if (QMessageBox::Ok ==QMessageBox::warning(this, "Warning", QString("确定删除用户: %1?").arg(strName), QMessageBox::Cancel | QMessageBox::Ok, QMessageBox::Cancel))
+	if (strName == m_strName)
+	{
+		QMessageBox::warning(this, "错误警告", QString("你当前没有权限删除自己的账户，请联系管理员！"));
+		return;
+	}
+	if (QMessageBox::Ok ==QMessageBox::warning(this, "错误警告", QString("确定删除用户: %1 ?").arg(strName), QMessageBox::Cancel | QMessageBox::Ok, QMessageBox::Cancel))
  	{
  		if (m_pUserDB->Delete(strName))
  		{
@@ -100,8 +122,22 @@ void QUserManagerDlg::onModifyUser()
 	QModelIndex index = model->index(row, 0);//选中行第一列的内容
 	QVariant data = model->data(index);
 	QString strName = data.toString();
-
+	if (m_strName.isEmpty())
+	{
+		QMessageBox::warning(this, "错误警告", QString("你还没登录，请登录或请联系管理员！"));
+		return;
+	}
+	if (strName.isEmpty())
+	{
+		QMessageBox::warning(this, "错误警告", QString("你没有选中需要修改的用户，请联系管理员！"));
+		return;
+	}
  	QUserAddNew dlg;
+	dlg.setTitle("修改用户信息");
+	UserInfo info;
+	info.mLevel = m_level;
+	info.strName = m_strName;
+	dlg.setCurrentUser(info);
 	UserInfo mUserInfo = mMapUserInfos[strName];
 	dlg.setUserInfo(mUserInfo);
 	if (dlg.exec() == QDialog::Accepted)
@@ -112,7 +148,6 @@ void QUserManagerDlg::onModifyUser()
 			ui.label_Status->setText(QString("%1 修改完成！！！").arg(m_userInfo.strName));
 			OnUpdateUserList();
 		}
-
 	}
 }
 

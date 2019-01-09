@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="userinfo">Resources/administrator.png</file>
+    </qresource>
+</RCC>

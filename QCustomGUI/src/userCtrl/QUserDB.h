@@ -8,8 +8,7 @@
 #include <QByteArray>
 #include <QVariant>
 #include <QCryptographicHash>
-#include "UserLoginDefine.h"
-
+#include "QUserBase.h"
 
 class QZkDbSqlite : public QSqlDatabase
 {

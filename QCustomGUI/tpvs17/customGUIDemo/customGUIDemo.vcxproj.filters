@@ -31,9 +31,6 @@
     <Filter Include="gridItem">
       <UniqueIdentifier>{7c33914e-af41-40cb-a489-4d4a13cc599c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="userCtrl">
-      <UniqueIdentifier>{bbb165e9-581f-4ee0-81f1-571c5fa97069}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Style">
       <UniqueIdentifier>{70c8b969-cd72-4e97-9094-5058c652ce85}</UniqueIdentifier>
     </Filter>
@@ -47,18 +44,6 @@
     </ClCompile>
     <ClCompile Include="customGUIDemo.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\userCtrl\QLoginDlg.cpp">
-      <Filter>userCtrl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\userCtrl\QUserCtrl.cpp">
-      <Filter>userCtrl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\userCtrl\QUserDB.cpp">
-      <Filter>userCtrl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\userCtrl\QUserManagerDlg.cpp">
-      <Filter>userCtrl</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\style\DarkStyle.cpp">
       <Filter>Style</Filter>
@@ -78,25 +63,10 @@
     <ClCompile Include="..\..\src\framelesswindow\windowdragger.cpp">
       <Filter>framelesswindow</Filter>
     </ClCompile>
-    <ClCompile Include="QLoginModify.cpp">
-      <Filter>userCtrl</Filter>
-    </ClCompile>
-    <ClCompile Include="QUserAddNew.cpp">
-      <Filter>userCtrl</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="customGUIDemo.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\src\userCtrl\QLoginDlg.h">
-      <Filter>userCtrl</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\src\userCtrl\QUserCtrl.h">
-      <Filter>userCtrl</Filter>
-    </QtMoc>
-    <QtMoc Include="..\..\src\userCtrl\QUserManagerDlg.h">
-      <Filter>userCtrl</Filter>
     </QtMoc>
     <QtMoc Include="..\..\src\style\DarkStyle.h">
       <Filter>Style</Filter>
@@ -116,40 +86,14 @@
     <QtMoc Include="..\..\src\framelesswindow\windowdragger.h">
       <Filter>framelesswindow</Filter>
     </QtMoc>
-    <QtMoc Include="QLoginModify.h">
-      <Filter>userCtrl</Filter>
-    </QtMoc>
-    <QtMoc Include="QUserAddNew.h">
-      <Filter>userCtrl</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="customGUIDemo.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="..\..\src\userCtrl\QLoginDlg.ui">
-      <Filter>userCtrl</Filter>
-    </QtUic>
-    <QtUic Include="..\..\src\userCtrl\QUserManagerDlg.ui">
-      <Filter>userCtrl</Filter>
-    </QtUic>
     <QtUic Include="..\..\src\framelesswindow\framelesswindow.ui">
       <Filter>framelesswindow</Filter>
     </QtUic>
-    <QtUic Include="QLoginModify.ui">
-      <Filter>userCtrl</Filter>
-    </QtUic>
-    <QtUic Include="QUserAddNew.ui">
-      <Filter>userCtrl</Filter>
-    </QtUic>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\userCtrl\QUserDB.h">
-      <Filter>userCtrl</Filter>
-    </ClInclude>
-    <ClInclude Include="UserLoginDefine.h">
-      <Filter>userCtrl</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\style\darkstyle\darkstyle.qss">

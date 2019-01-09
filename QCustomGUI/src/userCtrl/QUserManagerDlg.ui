@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>QUserManagerDlg</class>
  <widget class="QDialog" name="QUserManagerDlg">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -28,6 +31,12 @@
      </item>
      <item>
       <widget class="QLabel" name="label_UserName">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>UserName</string>
        </property>
@@ -63,6 +72,12 @@
    </item>
    <item row="3" column="1">
     <widget class="QPushButton" name="m_pbModifyUser">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
      <property name="text">
       <string>修改</string>
      </property>
@@ -70,6 +85,12 @@
    </item>
    <item row="2" column="1">
     <widget class="QPushButton" name="m_pbDelUser">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
      <property name="text">
       <string>删除用户</string>
      </property>
@@ -80,6 +101,12 @@
    </item>
    <item row="1" column="1">
     <widget class="QPushButton" name="m_pbAddUser">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
      <property name="text">
       <string>添加用户</string>
      </property>

@@ -4,12 +4,9 @@
 #include "ui_customGUIDemo.h"
 #include "GridLayout.h"
 #include "GridTray.h"
-
 #include <QSharedpointer>
-
 #include <QTimer>
-#include "QUserCtrl.h"
-
+#include "quserinfo_global.h"
 class customGUIDemo : public QMainWindow
 {
 	Q_OBJECT
@@ -20,7 +17,7 @@ public:
 	template<typename _Widget>
 	_Widget* replaceWidget(QWidget *pWidget);
 	void InitTrayLayout();
-
+	void LoadUserLib();
 public :
 	Q_SLOT void onTimer();
 	Q_SLOT void onTimer2();
@@ -33,7 +30,7 @@ private:
 	QTimer m_timer;
 	QTimer m_timer2;
 
-	QUserCtrl *_pUserCtrl{ nullptr };
+	IUserCtrl *_pUserCtrl{ nullptr };
 };
 
 

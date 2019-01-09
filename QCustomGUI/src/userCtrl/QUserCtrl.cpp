@@ -1,6 +1,17 @@
 ﻿#include "QUserCtrl.h"
 #pragma execution_character_set("utf-8")
 
+QUSERINFO_EXPORT IUserCtrl* UserCtrlCreate() {
+	return new QUserCtrl();
+}
+QUSERINFO_EXPORT void UserCtrlDelete(IUserCtrl* pCtrl)
+{
+	if (pCtrl) {
+		delete pCtrl;
+	}
+	pCtrl = NULL;
+}
+
 QUserCtrl::QUserCtrl(QWidget* parent)
 	: m_pMainWnd(parent)
 {
@@ -51,7 +62,9 @@ QUserCtrl::~QUserCtrl()
 
 void QUserCtrl::CheckLogin()
 {
-	_LoginDlg->setCurrentUser(_CurrentUserName);
+	//_LoginDlg->setCurrentUser(_CurrentUserName);
+	QStringList strList = _pUserDBSqlite->Users(-1);
+	_LoginDlg->AddItems2List(strList);
 	_LoginDlg->show();
 }
 

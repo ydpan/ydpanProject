@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QGraphviewGUI", "QGraphview
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "customGUIDemo", "customGUIDemo\customGUIDemo.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QUserInfo", "QUserInfo\QUserInfo.vcxproj", "{B37FF411-9D96-42DB-871C-4FED7842EADB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -37,12 +39,18 @@ Global
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.Build.0 = Release|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.ActiveCfg = Release|x64
+		{B37FF411-9D96-42DB-871C-4FED7842EADB}.Debug|x64.ActiveCfg = Debug|x64
+		{B37FF411-9D96-42DB-871C-4FED7842EADB}.Debug|x64.Build.0 = Debug|x64
+		{B37FF411-9D96-42DB-871C-4FED7842EADB}.Debug|x86.ActiveCfg = Debug|x64
+		{B37FF411-9D96-42DB-871C-4FED7842EADB}.Release|x64.ActiveCfg = Release|x64
+		{B37FF411-9D96-42DB-871C-4FED7842EADB}.Release|x64.Build.0 = Release|x64
+		{B37FF411-9D96-42DB-871C-4FED7842EADB}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		Qt5Version = qt5.9.4_msvc2017
 		SolutionGuid = {0AF55009-3C54-4BE0-AA47-035D22BD1558}
+		Qt5Version = qt5.9.4_msvc2017
 	EndGlobalSection
 EndGlobal

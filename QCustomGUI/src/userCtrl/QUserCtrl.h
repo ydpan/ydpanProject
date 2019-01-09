@@ -4,8 +4,9 @@
 #include "QUserDB.h"
 #include "QUserManagerDlg.h"
 #include "QLoginDlg.h"
-#include "UserLoginDefine.h"
-class QUserCtrl :public QObject
+#include "QUserBase.h"
+#include "quserinfo_global.h"
+class QUserCtrl :public IUserCtrl
 {
 	Q_OBJECT
 public:
@@ -24,8 +25,8 @@ public:
     QString				_CurrentUserName;
 	int					m_nLevel{ 0 };
 	LogIndState			m_State{ EM_LOGOUT };
-signals:
-	void sgCurrentUserInfo(QString userName, int level,int state);
+//signals:
+//	void sgCurrentUserInfo(QString userName, int level,int state);
 private:
 	QWidget*			m_pMainWnd{ nullptr };
     QUserDB*			_pUserDBSqlite{ nullptr };

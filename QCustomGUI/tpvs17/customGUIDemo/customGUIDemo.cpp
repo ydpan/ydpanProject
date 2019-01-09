@@ -1,6 +1,7 @@
 #include "customGUIDemo.h"
 #include "QSearchEdit.h"
 #include <QLayout>
+#include <QLibrary>
 #pragma execution_character_set("utf-8")
 customGUIDemo::customGUIDemo(QWidget *parent)
 	: QMainWindow(parent)
@@ -14,20 +15,18 @@ customGUIDemo::customGUIDemo(QWidget *parent)
  	QSearchEdit *p = replaceWidget<QSearchEdit>(pwidg);
 
 	InitTrayLayout();
-
 	connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimer()));
 	connect(&m_timer2, SIGNAL(timeout()), this, SLOT(onTimer2()));
 	m_timer.start(500);
 	m_timer2.start(500);
-
 	connect(ui.m_pbLogin_Out, SIGNAL(clicked()), this, SLOT(onClicked()));
 	connect(ui.m_pbUserMgr, SIGNAL(clicked()), this, SLOT(onClicked()));
-	_pUserCtrl = new QUserCtrl(this);
-	connect(_pUserCtrl, SIGNAL(sgCurrentUserInfo(QString, int, int)), this, SLOT(onLogInOut(QString, int, int)));
 
 	ui.pushButton->setVisible(false);
 	ui.pushButton_2->setVisible(false);
 	ui.pushButton_3->setVisible(false);
+
+	LoadUserLib();
 }
 
 customGUIDemo::~customGUIDemo()
@@ -67,6 +66,14 @@ void customGUIDemo::InitTrayLayout()
 	_pCGridProject->LoadAndInit("C:\\1Documents\\PersonProject\\MyQtCustomLib\\layout_tray.txt");
 	if (m_pgridView)
 		m_pgridView->setScene(_pCGridProject->getScenePtr());
+}
+
+void customGUIDemo::LoadUserLib()
+{
+	QLibrary lib("QUserInfo");//¿âÎÄ¼þÃû
+	_UserCtrlCreate func = (_UserCtrlCreate)lib.resolve("UserCtrlCreate");
+	_pUserCtrl =  func();
+	connect(_pUserCtrl, SIGNAL(sgCurrentUserInfo(QString, int, int)), this, SLOT(onLogInOut(QString, int, int)));
 }
 
 Q_SLOT void customGUIDemo::onTimer()

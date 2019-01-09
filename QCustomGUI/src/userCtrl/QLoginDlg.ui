@@ -2,22 +2,31 @@
 <ui version="4.0">
  <class>QLoginDlg</class>
  <widget class="QDialog" name="QLoginDlg">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>176</width>
-    <height>95</height>
+    <width>225</width>
+    <height>122</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>登陆</string>
+   <string>用户登录</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="0" colspan="3">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="login_OKpb">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>登录</string>
        </property>
@@ -25,6 +34,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="login_Cancelpb">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="text">
         <string>取消</string>
        </property>
@@ -35,22 +50,39 @@
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>User Name:</string>
+      <string>用户名：</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Password:</string>
+      <string>密 码：</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1" colspan="2">
-    <widget class="QLineEdit" name="login_Passwd"/>
+    <widget class="QLineEdit" name="login_Passwd">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
    </item>
    <item row="0" column="1" colspan="2">
-    <widget class="QComboBox" name="login_UserName"/>
+    <widget class="QComboBox" name="login_UserName">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

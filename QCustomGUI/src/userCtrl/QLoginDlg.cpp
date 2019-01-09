@@ -18,10 +18,13 @@
 直接关闭窗口，不做任何反应
 
 */
+#pragma execution_character_set("utf-8")
 QLoginDlg::QLoginDlg(QUserDB* pUserDB)
 	: _pUserDB(pUserDB)
 {
 	ui.setupUi(this);
+	setWindowFlags(Qt::WindowCloseButtonHint);
+	setWindowIcon(QIcon(":/userinfo"));
 	_UserNameComboBox = ui.login_UserName;
 	_PasswdLineEdit = ui.login_Passwd;
 	_UserNameComboBox->setEditable(true);
@@ -58,21 +61,21 @@ Q_SLOT void QLoginDlg::OnClicked()
 
 		if (strUser.isEmpty())
 		{
-			QString strText = QString::fromLocal8Bit("<html><head / ><body><p><span style = color:#ff0000;>用户名不能为空！！！< / span>< / p>< / body>< / html>");
-			QMessageBox::information(this, "警告", strText, QMessageBox::Ok);
+			QString strText = QString("<html><head / ><body><p><span style = color:#ff0000;>用户名不能为空！！！< / span>< / p>< / body>< / html>");
+			QMessageBox::information(this, "错误警告", strText, QMessageBox::Ok);
 			return;
 		}
 		if (password.isEmpty())
 		{
-			QString strText = QString::fromLocal8Bit("<html><head / ><body><p><span style = color:#ff0000;>密码不能为空！！！< / span>< / p>< / body>< / html>");
-			QMessageBox::information(this, "警告", strText, QMessageBox::Ok);
+			QString strText = QString("<html><head / ><body><p><span style = color:#ff0000;>密码不能为空！！！< / span>< / p>< / body>< / html>");
+			QMessageBox::information(this, "错误警告", strText, QMessageBox::Ok);
 			return;
 		}
 
 		int nLevel = 0;
 		if (_pUserDB->Login(strUser, password, nLevel))
 		{
-			QString strText = QString::fromLocal8Bit("<html><head / ><body><p><span style = color:#00ff00;>登录成功< / span>< / p>< / body>< / html>");
+			QString strText = QString("<html><head / ><body><p><span style = color:#00ff00;>登录成功< / span>< / p>< / body>< / html>");
 			_pUserDB->CurUser();
 			_PasswdLineEdit->clear();
 			emit(sgLogin(strUser, nLevel));
@@ -80,8 +83,8 @@ Q_SLOT void QLoginDlg::OnClicked()
 		}
 		else
 		{
-			QString strText = QString::fromLocal8Bit("<html><head / ><body><p><span style = color:#ff0000;>密码错误！！！< / span>< / p>< / body>< / html>");
-			QMessageBox::information(this, "Error", strText, QMessageBox::Ok);
+			QString strText = QString("<html><head / ><body><p><span style = color:#ff0000;>密码错误！！！< / span>< / p>< / body>< / html>");
+			QMessageBox::information(this, "错误警告", strText, QMessageBox::Ok);
 		}
 	}
 	else if (strObj == "login_Logoutpb") {
@@ -98,6 +101,8 @@ void QLoginDlg::AddItems2List(QStringList strList)
 	if (_UserNameComboBox) {
 		_UserNameComboBox->clear();
 		_UserNameComboBox->clearEditText();
+		if (strList.contains("root"))
+			strList.removeAll("root");
 		_UserNameComboBox->addItems(strList);
 	}
 }
