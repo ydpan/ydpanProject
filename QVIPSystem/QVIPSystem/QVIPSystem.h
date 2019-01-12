@@ -3,6 +3,8 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_QVIPSystem.h"
+
+#include "QSqliteVipSystemDB.h"
 /*
 需求：
 1、人员信息录取
@@ -17,8 +19,10 @@ class QVIPSystem : public QMainWindow
 
 public:
 	QVIPSystem(QWidget *parent = Q_NULLPTR);
-
+	Q_SLOT void onAction();
 private:
 	Ui::QVIPSystemClass ui;
+
+	QSqliteVipSystemDB *m_pDb;
 };
 #endif

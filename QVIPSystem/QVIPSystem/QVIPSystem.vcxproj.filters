@@ -28,6 +28,9 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Sql">
+      <UniqueIdentifier>{83a3856f-e2c1-439d-bd61-830c3d4a2282}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,9 +39,24 @@
     <ClCompile Include="QVIPSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QVipMemberInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sqlite\qsqlitemodeltemplate.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sqlite\QSqliteBase.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sqlite\QSqliteVipSystemDB.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QVIPSystem.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QVipMemberInfo.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -46,10 +64,27 @@
     <QtUic Include="QVIPSystem.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="QVipMemberInfo.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="QVIPSystem.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="baseStructDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sqlite\qsqlitemodeltemplate.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sqlite\QSqliteBase.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sqlite\QSqliteVipSystemDB.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

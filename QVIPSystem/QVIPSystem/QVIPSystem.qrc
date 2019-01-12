@@ -1,4 +1,56 @@
 <RCC>
-    <qresource prefix="QVIPSystem">
+    <qresource prefix="/memu">
+        <file>Resources/ToolBarpic/3d12.png</file>
+        <file>Resources/ToolBarpic/2447.png</file>
+        <file>Resources/ToolBarpic/administrator.png</file>
+        <file>Resources/ToolBarpic/app8.png</file>
+        <file>Resources/ToolBarpic/attachment6.png</file>
+        <file>Resources/ToolBarpic/audio_wave.png</file>
+        <file alias="Addmembers">Resources/ToolBarpic/authorship.png</file>
+        <file>Resources/ToolBarpic/bars30.png</file>
+        <file>Resources/ToolBarpic/bars31.png</file>
+        <file>Resources/ToolBarpic/bars35.png</file>
+        <file>Resources/ToolBarpic/bars39.png</file>
+        <file>Resources/ToolBarpic/camera28.png</file>
+        <file>Resources/ToolBarpic/card16.png</file>
+        <file>Resources/ToolBarpic/clip5.png</file>
+        <file>Resources/ToolBarpic/clipboard109.png</file>
+        <file>Resources/ToolBarpic/clock59.png</file>
+        <file>Resources/ToolBarpic/conference.png</file>
+        <file>Resources/ToolBarpic/education19.png</file>
+        <file>Resources/ToolBarpic/education24.png</file>
+        <file>Resources/ToolBarpic/fileexplorer.png</file>
+        <file>Resources/ToolBarpic/gear20.png</file>
+        <file>Resources/ToolBarpic/help.png</file>
+        <file>Resources/ToolBarpic/link24.png</file>
+        <file>Resources/ToolBarpic/logo-8-blude.png</file>
+        <file>Resources/ToolBarpic/mastercard2.png</file>
+        <file>Resources/ToolBarpic/messenger.png</file>
+        <file>Resources/ToolBarpic/meter3.png</file>
+        <file>Resources/ToolBarpic/multiple22.png</file>
+        <file>Resources/ToolBarpic/multiple26.png</file>
+        <file>Resources/ToolBarpic/multiple29.png</file>
+        <file>Resources/ToolBarpic/multiple32.png</file>
+        <file>Resources/ToolBarpic/newspaper.png</file>
+        <file>Resources/ToolBarpic/pair.png</file>
+        <file>Resources/ToolBarpic/pen38.png</file>
+        <file>Resources/ToolBarpic/receipt4.png</file>
+        <file>Resources/ToolBarpic/right63.png</file>
+        <file>Resources/ToolBarpic/ruler2.png</file>
+        <file>Resources/ToolBarpic/ruler3.png</file>
+        <file>Resources/ToolBarpic/setting.png</file>
+        <file>Resources/ToolBarpic/settings38.png</file>
+        <file>Resources/ToolBarpic/show2.png</file>
+        <file>Resources/ToolBarpic/square.png</file>
+        <file>Resources/ToolBarpic/stats.png</file>
+        <file>Resources/ToolBarpic/stats_pie_chart.png</file>
+        <file>Resources/ToolBarpic/system_preferences.png</file>
+        <file>Resources/ToolBarpic/tape_measure.png</file>
+        <file>Resources/ToolBarpic/toolbox3.png</file>
+        <file>Resources/ToolBarpic/up52.png</file>
+        <file>Resources/ToolBarpic/volume34.png</file>
+        <file>Resources/ToolBarpic/web-development-icon.png</file>
+        <file>Resources/ToolBarpic/world15.png</file>
+        <file>Resources/ToolBarpic/zip7.png</file>
     </qresource>
 </RCC>
