@@ -66,9 +66,17 @@ public:
 	virtual void    FreeDatabase();
 
 	bool AddNewVipMemberInfo(VipMemberInfo &info);
+	bool ModifyVipMemberInfo(VipMemberInfo &info);
+	bool DelVipMemberInfo(VipMemberInfo &info);
+	bool GetAllVipMemberInfos(QMap<int, VipMemberInfo> &mMap);
+
 	int getVipMemberMaxID();
+	bool AddNewConsumeInfo(MonetaryRecord &info);
+
 	virtual bool CreateTables(QString m_tableName, QString m_primary, QVariantMap m_map);
 	virtual bool InsertOneData(QString m_tableName, QVariantMap m_map);
+
+
 	virtual bool ModefyOneData(QString m_tableName, QVariantMap m_map);
 	virtual bool DeleteOneData(QString m_tableName, QString m_map);
 	virtual QStringList GetModelsByCamera(const QString& camKey);

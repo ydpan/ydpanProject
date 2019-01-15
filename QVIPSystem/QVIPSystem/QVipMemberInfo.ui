@@ -6,14 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>391</width>
-    <height>324</height>
+    <width>454</width>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QVipMemberInfo</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>晒单数量：</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1" colspan="2">
+    <widget class="QLineEdit" name="m_pAddress_lineEdit"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>微信名*：</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QPushButton" name="m_pbCancle">
+     <property name="text">
+      <string>取消</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="2">
+    <widget class="QLineEdit" name="m_pName_lineEdit"/>
+   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
@@ -21,18 +48,15 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1" colspan="2">
-    <widget class="QLineEdit" name="m_pVipNumber_lineEdit"/>
+   <item row="2" column="1" colspan="2">
+    <widget class="QLineEdit" name="m_pPhoneNum_lineEdit"/>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_2">
+   <item row="7" column="0" colspan="2">
+    <widget class="QPushButton" name="m_pbOK">
      <property name="text">
-      <string>名   称*：</string>
+      <string>确定</string>
      </property>
     </widget>
-   </item>
-   <item row="1" column="1" colspan="2">
-    <widget class="QLineEdit" name="m_pName_lineEdit"/>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="label_3">
@@ -41,42 +65,38 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="1" colspan="2">
-    <widget class="QLineEdit" name="m_pPhoneNum_lineEdit"/>
-   </item>
    <item row="3" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>微信名：</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1" colspan="2">
-    <widget class="QLineEdit" name="m_pChatName_lineEdit"/>
-   </item>
-   <item row="4" column="0">
     <widget class="QLabel" name="label_5">
      <property name="text">
       <string>地址：</string>
      </property>
     </widget>
    </item>
+   <item row="0" column="1" colspan="2">
+    <widget class="QLineEdit" name="m_pVipNumber_lineEdit"/>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>消费总金额：</string>
+     </property>
+    </widget>
+   </item>
    <item row="4" column="1" colspan="2">
-    <widget class="QLineEdit" name="m_pAddress_lineEdit"/>
+    <widget class="QLineEdit" name="m_ptotalMeny_lineEdit"/>
    </item>
-   <item row="5" column="0" colspan="2">
-    <widget class="QPushButton" name="m_pbOK">
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_7">
      <property name="text">
-      <string>确定</string>
+      <string>总积分：</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="2">
-    <widget class="QPushButton" name="m_pbCancle">
-     <property name="text">
-      <string>取消</string>
-     </property>
-    </widget>
+   <item row="5" column="1" colspan="2">
+    <widget class="QLineEdit" name="m_pdrylist_lineEdit"/>
+   </item>
+   <item row="6" column="1" colspan="2">
+    <widget class="QLineEdit" name="m_pIntertion_lineEdit"/>
    </item>
   </layout>
  </widget>

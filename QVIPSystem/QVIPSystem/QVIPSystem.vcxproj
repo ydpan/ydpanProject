@@ -117,6 +117,7 @@
     <ClCompile Include="..\src\sqlite\QSqliteBase.cpp" />
     <ClCompile Include="..\src\sqlite\qsqlitemodeltemplate.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="QConsumeDlg.cpp" />
     <ClCompile Include="QVipMemberInfo.cpp" />
     <ClCompile Include="QVIPSystem.cpp" />
   </ItemGroup>
@@ -124,6 +125,7 @@
     <QtMoc Include="QVIPSystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="QConsumeDlg.ui" />
     <QtUic Include="QVipMemberInfo.ui" />
     <QtUic Include="QVIPSystem.ui" />
   </ItemGroup>
@@ -135,6 +137,12 @@
     <ClInclude Include="..\src\sqlite\QSqliteBase.h" />
     <ClInclude Include="..\src\sqlite\qsqlitemodeltemplate.h" />
     <ClInclude Include="baseStructDefine.h" />
+    <QtMoc Include="QConsumeDlg.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtWidgets;C:\1Documents\LeaperProject\ydpanProject\QVIPSystem\src\sqlite</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_WIDGETS_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtWidgets</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_WIDGETS_LIB</Define>
+    </QtMoc>
     <QtMoc Include="QVipMemberInfo.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtWidgets</IncludePath>
       <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_WIDGETS_LIB</Define>

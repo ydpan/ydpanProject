@@ -5,6 +5,7 @@
 #include "ui_QVIPSystem.h"
 
 #include "QSqliteVipSystemDB.h"
+#include <QStandardItemModel>
 /*
 需求：
 1、人员信息录取
@@ -19,10 +20,22 @@ class QVIPSystem : public QMainWindow
 
 public:
 	QVIPSystem(QWidget *parent = Q_NULLPTR);
+	~QVIPSystem();
 	Q_SLOT void onAction();
+	Q_SLOT void onShowUserInfo();
+	Q_SLOT void onModifyUserInfo();
+	Q_SLOT void onDelUserInfo();
+	Q_SLOT void onAddNewUserInfo();
+	Q_SLOT void onModify();
+	Q_SLOT void onTableViewClick(QModelIndex);
+
+	Q_SLOT void onAddRecord();
 private:
 	Ui::QVIPSystemClass ui;
 
-	QSqliteVipSystemDB *m_pDb;
+	QSqliteVipSystemDB *m_pDb{NULL};
+	QStandardItemModel *m_pModel{ NULL };
+	QMap<int, VipMemberInfo> mMap;
+	int currentID{0};
 };
 #endif

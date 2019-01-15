@@ -24,36 +24,28 @@ bool QSqliteVipSystemDB::InitDatabase()
 	vMap.insert("strName", "VARCHAR(32)");//成员名称
 	vMap.insert("phoneNum", "VARCHAR(32)");//电话号码
 	vMap.insert("chartName", "VARCHAR(32)");//微信名
-	vMap.insert("address", "VARCHAR(32)");//地址
-	vMap.insert("about", "VARCHAR(32)");
+	vMap.insert("address", "VARCHAR(255)");//地址
+	vMap.insert("about", "VARCHAR(32)");	
+	vMap.insert(_MONETARY_, "REAL(100)");
+	vMap.insert(_DRYLIST_, "INT(100)");
+	vMap.insert(_INTEGRATION_, "REAL(100)");
 	vMap.insert("reserve1", "VARCHAR(32)");
-	vMap.insert("reserve2", "VARCHAR(32)");
-	vMap.insert("reserve3", "VARCHAR(32)");
-	vMap.insert("time", "DATETIME");
+	vMap.insert(_RESERVE2_, "VARCHAR(32)");
+	vMap.insert(_RESERVE3_, "VARCHAR(32)");
+	vMap.insert(_TIME_, "DATETIME");
+	vMap.insert(_UPDATETIME_, "DATETIME");
 	CreateTables(_TABLE_USERINFO_TABLE_, _PRIMARY_KEY_, vMap);
-
-
-	vMap.clear();//总数据统计表
-	vMap.insert("vipiD", "INT(100)");//VIP编号
-	vMap.insert("monetary", "REAL(100)");
-	vMap.insert("Drying_list", "INT(100)");
-	vMap.insert("Integration", "REAL(100)");
-	vMap.insert("time", "DATETIME");//更新时间
-	CreateTables(_TABLE_TOTAL_TABLE_, _MD_PRIMARY_KEY, vMap);
 	
 	vMap.clear();//消费记录表 记录每天消费的金额
 	vMap.insert("vipiD", "INT(100)");//VIP编号
+	vMap.insert("strName", "VARCHAR(32)");//成员名称
 	vMap.insert("monetary", "REAL(100)");
+	vMap.insert("drylist", "REAL(100)");
+	vMap.insert("about", "VARCHAR(255)");
+	vMap.insert("flag", "INT");
 	vMap.insert("time", "DATETIME");//消费时间
-	vMap.insert("updatetime", "DATETIME");//记录时间
 	CreateTables(_TABLE_MOMEY_TABLE_, _MD_PRIMARY_KEY, vMap);
 
-	vMap.clear();//晒单数据记录表
-	vMap.insert("vipiD", "INT(100)");//VIP编号
-	vMap.insert("drylist", "REAL(100)");
-	vMap.insert("time", "DATETIME");
-	vMap.insert("updatetime", "DATETIME");
-	CreateTables(_TABLE_DRY_TABLE_, _MD_PRIMARY_KEY, vMap);
 
 	vMap.clear();//积分消费记录
 	vMap.insert("vipiD", "INT(100)");//VIP编号
@@ -125,6 +117,77 @@ bool QSqliteVipSystemDB::AddNewVipMemberInfo(VipMemberInfo &info)
 	return true;
 }
 
+bool QSqliteVipSystemDB::ModifyVipMemberInfo(VipMemberInfo &info)
+{
+	QVariantMap m_insertmap;
+	QString strVIP = QString("%1 = '%2'").arg(_VIPIP_).arg(info.nVipNum);
+	QString strName = QString("%1 = '%2'").arg(_STRNAME_).arg(info.strName);
+	QString strphone = QString("%1 = '%2'").arg(_PHONENUM_).arg(info.nPhoneNumber);
+	QString strAddress = QString("%1 = '%2'").arg(_ADDRESS_).arg(info.strAddress);
+	QString strAbout = QString("%1 = '%2'").arg(_ABOUT_).arg(info.strAbout);
+	QString strintegration = QString("%1 = '%2'").arg(_INTEGRATION_).arg(info.nIntegration);
+	QString strmonetary = QString("%1 = '%2'").arg(_MONETARY_).arg(info.nMonetary);
+	QString strdrylist = QString("%1 = '%2'").arg(_DRYLIST_).arg(info.nDrying_list);
+	QString strData = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+
+	QString strupdate = QString("%1 = '%2'").arg(_UPDATETIME_).arg(strData);
+	QString update_sql = QString("update ") + _TABLE_USERINFO_TABLE_\
+		+ QString(" set %1 ,%2 ,%3 ,%4 ,%5 ,%6 ,%7 ,%8 ,%9 where ")\
+		.arg(strVIP).arg(strName).arg(strphone).\
+		arg(strAddress).arg(strAbout).arg(strupdate).\
+		arg(strintegration).arg(strmonetary).arg(strdrylist)\
+		+ QString("%1 = '%2'").arg(_PRIMARY_KEY_).arg(info.nUid);
+	QSqlQuery sql = exec(update_sql);
+	QSqlError err = sql.lastError();
+	int t = err.type();
+	if (t != QSqlError::NoError)
+	{
+		return false;
+	}
+	
+	return true;
+}
+
+bool QSqliteVipSystemDB::DelVipMemberInfo(VipMemberInfo &info) 
+{
+	QString m_map = genClass(_VIPIP_, QString::number(info.nVipNum));//!>生成where条件语句
+	QString strSql = genDeleteData(_TABLE_USERINFO_TABLE_, m_map);
+	exec(strSql);
+	if (lastError().isValid())
+	{
+		return false;
+	}
+	return true;
+}
+
+bool QSqliteVipSystemDB::GetAllVipMemberInfos(QMap<int, VipMemberInfo> &mMap)
+{
+	QString select_sql = QString("select * from ") + _TABLE_USERINFO_TABLE_;
+	QSqlQuery sql = exec(select_sql);
+	QSqlError err = sql.lastError();
+	int t = err.type();
+	if (t != QSqlError::NoError)
+	{
+	 	return false;
+	}
+	while (sql.next())
+	{
+		VipMemberInfo mTmpInfo;
+		int nIndex = sql.value(_PRIMARY_KEY_).toInt();
+		mTmpInfo.nUid = nIndex;
+		mTmpInfo.nVipNum = sql.value(_VIPIP_).toInt();
+		mTmpInfo.strName = sql.value(_STRNAME_).toString();
+		mTmpInfo.nPhoneNumber = sql.value(_PHONENUM_).toString();
+		mTmpInfo.strAddress = sql.value(_ADDRESS_).toString();
+		mTmpInfo.strTime = sql.value(_TIME_).toString();
+		mTmpInfo.strUpdateTime = sql.value(_UPDATETIME_).toString();
+		mTmpInfo.nMonetary = sql.value(_MONETARY_).toDouble();
+		mTmpInfo.nDrying_list = sql.value(_DRYLIST_).toInt();
+		mTmpInfo.nIntegration = sql.value(_INTEGRATION_).toInt();
+		mMap.insert(mTmpInfo.nVipNum, mTmpInfo);
+	}
+	return true;
+}
 
 int QSqliteVipSystemDB::getVipMemberMaxID()
 {
@@ -140,6 +203,44 @@ int QSqliteVipSystemDB::getVipMemberMaxID()
 	}
 	max += 1;
 	return max;
+}
+
+bool QSqliteVipSystemDB::AddNewConsumeInfo(MonetaryRecord &info)
+{
+	QVariantMap m_map;
+	m_map.insert("vipiD", info.nVipNum);//VIP编号
+	m_map.insert("strName", info.strName);//成员名称
+	m_map.insert("monetary", info.nDailyMoney);//电话号码
+	m_map.insert("drylist", info.nDryListCount);//微信名
+	m_map.insert("about", info.strAbout);
+	QString strData = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss.zzz");
+	m_map.insert("time", strData);
+
+	QString strInsert = "INSERT INTO %1(%2) VALUES(%3)";
+	QString strHeader;//
+	QString strValue;// 
+
+	QStringList strKeys = m_map.keys();
+	for (int i = 0; i < strKeys.size(); i++) {
+		strHeader += strKeys[i];
+		if (i + 1 < strKeys.size())
+			strHeader += ",";
+		strValue += ":" + strKeys[i] + "";
+
+		if (i + 1 < strKeys.size())
+			strValue += ",";
+	}
+	strInsert = strInsert.arg(_TABLE_MOMEY_TABLE_, strHeader, strValue);
+	QSqlQuery query = exec();
+	query.prepare(strInsert);
+	for (int i = 0; i < strKeys.size(); i++)
+	{
+		QString m_keys = strKeys.at(i);
+		QString str = ":" + m_keys;
+		query.bindValue(str, m_map.value(m_keys));
+	}
+	query.exec();
+	return true;
 }
 
 // bool QSqliteApplication::ReadOutTimeData(QMap<QString, TimeStruct> &m_MapTimeMatch)
@@ -186,14 +287,14 @@ int QSqliteVipSystemDB::getVipMemberMaxID()
 
 // bool QSqliteApplication::DelOneTime(TimeStruct &m_timestruct)
 // {
-// // 	QString m_map = genClass(_MD_TYPE,m_timestruct.m_name);//!>生成where条件语句
-// // 	QString strSql = genDeleteData(_MD_TIMETABLE, m_map);
-// // 	exec(strSql);
-// // 	if (lastError().isValid())
-// // 	{
-// // 		return false;
-// // 	}
-// 	return true;
+// 	QString m_map = genClass(_MD_TYPE,m_timestruct.m_name);//!>生成where条件语句
+// 		QString strSql = genDeleteData(_MD_TIMETABLE, m_map);
+// 		exec(strSql);
+// 		if (lastError().isValid())
+// 		{
+// 			return false;
+// 		}
+// 		return true;
 // }
 
 bool QSqliteVipSystemDB::ReadOutTimeData(QMap<QString, QMap<QString, QTime>> &m_MapString)

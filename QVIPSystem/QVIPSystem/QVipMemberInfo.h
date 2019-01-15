@@ -12,6 +12,8 @@ public:
 	QVipMemberInfo(QWidget *parent = Q_NULLPTR);
 	~QVipMemberInfo();
 	void setBestID(int nID);
+	void setModifyMoney();
+	void setInfo(VipMemberInfo &info);
 	tag_VipMemberInfo getNewInfo() { return m_Info; };
 	Q_SLOT void onOK();
 	Q_SLOT void onCancle();
