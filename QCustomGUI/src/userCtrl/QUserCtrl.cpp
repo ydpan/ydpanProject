@@ -1,4 +1,5 @@
 ﻿#include "QUserCtrl.h"
+#include <QDesktopWidget>
 #pragma execution_character_set("utf-8")
 
 QUSERINFO_EXPORT IUserCtrl* UserCtrlCreate() {
@@ -62,7 +63,7 @@ QUserCtrl::~QUserCtrl()
 
 void QUserCtrl::CheckLogin()
 {
-	//_LoginDlg->setCurrentUser(_CurrentUserName);
+
 	QStringList strList = _pUserDBSqlite->Users(-1);
 	_LoginDlg->AddItems2List(strList);
 	_LoginDlg->show();
@@ -70,6 +71,8 @@ void QUserCtrl::CheckLogin()
 
 void QUserCtrl::ShowUserMgrDlg()
 {
+	QDesktopWidget* desktop = QApplication::desktop();//
+	_pDlgUsersMgr->move((desktop->width() - _pDlgUsersMgr->width()) / 2, (desktop->height() - _pDlgUsersMgr->height()) / 2);
 	_pDlgUsersMgr->SetUserAndLevel(_CurrentUserName, m_nLevel);
 	_pDlgUsersMgr->OnUpdateUserList();
 	_pDlgUsersMgr->show();

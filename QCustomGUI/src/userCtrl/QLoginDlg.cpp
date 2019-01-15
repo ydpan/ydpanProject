@@ -30,7 +30,10 @@ QLoginDlg::QLoginDlg(QUserDB* pUserDB)
 	_UserNameComboBox->setEditable(true);
 	
 	_PasswdLineEdit->setDisabled(true);
-
+// 	QRegExp rx1;
+// 	rx1.setPattern("^[-|0-9|a-z|^\s]{1,16}$");
+// 	QValidator *validator_16 = new QRegExpValidator(rx1, this);
+// 	_UserNameComboBox->setValidator(validator_16);
 	connect(_UserNameComboBox, SIGNAL(editTextChanged(const QString &)), this, SLOT(OnEditTextChanged(const QString &)));
 	connect(ui.login_OKpb, SIGNAL(clicked()), this, SLOT(OnClicked()));
 	connect(ui.login_Cancelpb, SIGNAL(clicked()), this, SLOT(OnClicked()));
