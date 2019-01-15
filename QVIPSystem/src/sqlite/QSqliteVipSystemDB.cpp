@@ -73,8 +73,34 @@ void QSqliteVipSystemDB::FreeDatabase()
 {
 	close();
 }
-
-
+bool QSqliteVipSystemDB::GetAllNames(QMap<QString, int> &mList) 
+{
+	QString select_sql = QString("select * from ") + _TABLE_USERINFO_TABLE_;
+	QSqlQuery sql = exec(select_sql);
+	QSqlError err = sql.lastError();
+	int t = err.type();
+	if (t != QSqlError::NoError)
+	{
+		return false;
+	}
+	while (sql.next())
+	{
+		VipMemberInfo mTmpInfo;
+		int nIndex = sql.value(_PRIMARY_KEY_).toInt();
+		mTmpInfo.nUid = nIndex;
+		mTmpInfo.nVipNum = sql.value(_VIPIP_).toInt();
+		mTmpInfo.strName = sql.value(_STRNAME_).toString();
+		mTmpInfo.nPhoneNumber = sql.value(_PHONENUM_).toString();
+		mTmpInfo.strAddress = sql.value(_ADDRESS_).toString();
+		mTmpInfo.strTime = sql.value(_TIME_).toString();
+		mTmpInfo.strUpdateTime = sql.value(_UPDATETIME_).toString();
+		mTmpInfo.nMonetary = sql.value(_MONETARY_).toDouble();
+		mTmpInfo.nDrying_list = sql.value(_DRYLIST_).toInt();
+		mTmpInfo.nIntegration = sql.value(_INTEGRATION_).toInt();
+		mList.insert(mTmpInfo.strName, mTmpInfo.nUid);
+	}
+	return true;
+}
 bool QSqliteVipSystemDB::AddNewVipMemberInfo(VipMemberInfo &info)
 {
 	QVariantMap m_map;
@@ -240,6 +266,39 @@ bool QSqliteVipSystemDB::AddNewConsumeInfo(MonetaryRecord &info)
 		query.bindValue(str, m_map.value(m_keys));
 	}
 	query.exec();
+	return true;
+}
+
+bool QSqliteVipSystemDB::GetRecords(QMap<int, MonetaryRecord> &mMap, QString strtime)
+{
+	QString select_sql;
+	if (strtime.isEmpty()) {
+		select_sql = QString("select * from ") + _TABLE_MOMEY_TABLE_;
+	}
+	else
+	{
+		QString strFifter = QString(" where time >'%1'").arg(strtime);
+		select_sql = QString("select * from ") +_TABLE_MOMEY_TABLE_ + strFifter;
+	}
+	QSqlQuery sql = exec(select_sql);
+	QSqlError err = sql.lastError();
+	int t = err.type();
+	if (t != QSqlError::NoError)
+	{
+		return false;
+	}
+	while (sql.next())
+	{
+		MonetaryRecord mTmpInfo;
+		int nIndex = sql.value(_PRIMARY_KEY_).toInt();
+		mTmpInfo.nUid = nIndex;
+		mTmpInfo.nVipNum = sql.value(_VIPIP_).toInt();
+		mTmpInfo.strName = sql.value(_STRNAME_).toString();
+		mTmpInfo.strTime = sql.value(_TIME_).toString();
+		mTmpInfo.nDailyMoney = sql.value("monetary").toDouble();
+		mTmpInfo.nDryListCount = sql.value("drylist").toInt();
+		mMap.insert(nIndex, mTmpInfo);
+	}
 	return true;
 }
 

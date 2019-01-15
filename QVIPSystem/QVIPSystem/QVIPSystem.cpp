@@ -25,6 +25,12 @@ QVIPSystem::QVIPSystem(QWidget *parent)
 	onShowUserInfo();
 
 
+	m_pRecord = new QStandardItemModel;
+	ui.tableView_2->setModel(m_pRecord);
+	ui.tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	ui.tableView_2->setSelectionBehavior(QAbstractItemView::SelectRows);
+	connect(ui.tableView_2, SIGNAL(clicked(QModelIndex)), this, SLOT(onTableViewRecordClick(QModelIndex)));
+
 	connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(onAddRecord()));
 }
 
@@ -58,8 +64,8 @@ Q_SLOT void QVIPSystem::onShowUserInfo()
 	m_pModel->clear();
 	m_pModel->setHorizontalHeaderItem(0, new QStandardItem(QString("VIP编号")));
 	m_pModel->setHorizontalHeaderItem(1, new QStandardItem(QString("姓名")));
-	m_pModel->setHorizontalHeaderItem(2, new QStandardItem(QString("消费总金额(元)")));
-	m_pModel->setHorizontalHeaderItem(3, new QStandardItem(QString("积分")));
+	m_pModel->setHorizontalHeaderItem(2, new QStandardItem(QString("积分")));
+	m_pModel->setHorizontalHeaderItem(3, new QStandardItem(QString("消费总金额(元)")));
 	m_pModel->setHorizontalHeaderItem(4, new QStandardItem(QString("晒单次数")));
 	m_pModel->setHorizontalHeaderItem(5, new QStandardItem(QString("电话")));
 	m_pModel->setHorizontalHeaderItem(6, new QStandardItem(QString("地址")));
@@ -74,13 +80,36 @@ Q_SLOT void QVIPSystem::onShowUserInfo()
 	{
 		m_pModel->setItem(nIndex, 0, new QStandardItem(QString("%1").arg(its->nVipNum)));
 		m_pModel->setItem(nIndex, 1, new QStandardItem(QString("%1").arg(its->strName)));
-		m_pModel->setItem(nIndex, 2, new QStandardItem(QString("%1").arg(its->nMonetary)));
-		m_pModel->setItem(nIndex, 3, new QStandardItem(QString("%1").arg(its->nIntegration)));
+		m_pModel->setItem(nIndex, 3, new QStandardItem(QString("%1").arg(its->nMonetary)));
+		m_pModel->setItem(nIndex, 2, new QStandardItem(QString("%1").arg(its->nIntegration)));
 		m_pModel->setItem(nIndex, 4, new QStandardItem(QString("%1").arg(its->nDrying_list)));
 		m_pModel->setItem(nIndex, 5, new QStandardItem(QString("%1").arg(its->nPhoneNumber)));
 		m_pModel->setItem(nIndex, 6, new QStandardItem(QString("%1").arg(its->strAddress)));
 		m_pModel->setItem(nIndex, 7, new QStandardItem(QString("%1").arg(its->strTime)));
 		m_pModel->setItem(nIndex, 8, new QStandardItem(QString("%1").arg(its->strUpdateTime)));
+		nIndex++;
+	}
+}
+
+Q_SLOT void QVIPSystem::onShowRecord()
+{
+	m_pRecord->clear();
+	m_pRecord->setHorizontalHeaderItem(0, new QStandardItem(QString("VIP编号")));
+	m_pRecord->setHorizontalHeaderItem(1, new QStandardItem(QString("姓名")));
+	m_pRecord->setHorizontalHeaderItem(2, new QStandardItem(QString("消费总金额(元)")));
+	m_pRecord->setHorizontalHeaderItem(3, new QStandardItem(QString("晒单次数")));
+	m_pRecord->setHorizontalHeaderItem(4, new QStandardItem(QString("时间")));
+
+	QMap<int, MonetaryRecord> mRecordMap;
+	m_pDb->GetRecords(mRecordMap,"");
+	int nIndex = 0;
+	for (QMap<int, MonetaryRecord>::iterator its = mRecordMap.begin(); its != mRecordMap.end(); ++its)
+	{
+		m_pRecord->setItem(nIndex, 0, new QStandardItem(QString("%1").arg(its->nVipNum)));
+		m_pRecord->setItem(nIndex, 1, new QStandardItem(QString("%1").arg(its->strName)));
+		m_pRecord->setItem(nIndex, 2, new QStandardItem(QString("%1").arg(its->nDailyMoney)));
+		m_pRecord->setItem(nIndex, 3, new QStandardItem(QString("%1").arg(its->nDryListCount)));
+		m_pRecord->setItem(nIndex, 4, new QStandardItem(QString("%1").arg(its->strTime)));
 		nIndex++;
 	}
 }
@@ -153,12 +182,34 @@ Q_SLOT void QVIPSystem::onTableViewClick(QModelIndex mIndex)
 	*/
 }
 
+Q_SLOT void QVIPSystem::onTableViewRecordClick(QModelIndex mIndex)
+{
+	QModelIndex ItemIndex = m_pModel->index(mIndex.row(), 0);
+	currentID = ItemIndex.data().toInt();
+}
+
 Q_SLOT void QVIPSystem::onAddRecord()
 {
 	QConsumeDlg dlg;
+	QMap<QString, int> mList;
+	m_pDb->GetAllNames(mList);
+	dlg.setMap(mList);
 	if (dlg.exec() == QDialog::Accepted)
 	{
 		tag_MonetaryRecord mRecord = dlg.getMonetaryRecord();
 		m_pDb->AddNewConsumeInfo(mRecord);
+
+		//计算积分
+		QString strName = mRecord.strName;
+		int vipNum = mRecord.nVipNum;
+
+		VipMemberInfo info = mMap.value(vipNum);
+		info.nMonetary += mRecord.nDailyMoney;
+		info.nDrying_list += mRecord.nDryListCount;
+		info.nIntegration = info.nMonetary / 50.0+info.nDrying_list;
+		m_pDb->ModifyVipMemberInfo(info);
+
 	}
+	onShowRecord();
+	onShowUserInfo();
 }

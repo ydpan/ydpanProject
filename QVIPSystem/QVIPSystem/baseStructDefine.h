@@ -21,6 +21,7 @@ typedef struct tag_VipMemberInfo{
 }VipMemberInfo;
 
 typedef struct tag_MonetaryRecord{
+	int nUid{ 0 };
 	int nVipNum{ 0 };
 	QString strName;
 	double nDailyMoney{ 0.0 };

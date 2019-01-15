@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1236</width>
-    <height>692</height>
+    <width>615</width>
+    <height>478</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
     <item row="2" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -64,6 +64,12 @@
         </item>
         <item row="3" column="1">
          <widget class="QPushButton" name="m_pbDel">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="text">
            <string>删除成员信息</string>
           </property>
@@ -71,6 +77,12 @@
         </item>
         <item row="2" column="1">
          <widget class="QPushButton" name="m_pbModify">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="text">
            <string>修改成员信息</string>
           </property>
@@ -78,6 +90,12 @@
         </item>
         <item row="0" column="1">
          <widget class="QPushButton" name="pushButton">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="text">
            <string>刷新显示</string>
           </property>
@@ -88,6 +106,12 @@
         </item>
         <item row="1" column="1">
          <widget class="QPushButton" name="m_pbAdd">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="text">
            <string>添加新成员</string>
           </property>
@@ -95,6 +119,12 @@
         </item>
         <item row="4" column="1">
          <widget class="QPushButton" name="m_pbMod">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="text">
            <string>数据修改</string>
           </property>
@@ -106,42 +136,50 @@
        <attribute name="title">
         <string>成员消费记录表</string>
        </attribute>
-       <widget class="QTableView" name="tableView_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>571</width>
-          <height>561</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="geometry">
-         <rect>
-          <x>890</x>
-          <y>50</y>
-          <width>191</width>
-          <height>46</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>添加消费记录</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="geometry">
-         <rect>
-          <x>890</x>
-          <y>120</y>
-          <width>191</width>
-          <height>46</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>删除消费记录</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>添加消费记录</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>删除消费记录</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="0" rowspan="3">
+         <widget class="QTableView" name="tableView_2"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -150,7 +188,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="AddVIPMember_action">
    <property name="icon">
-    <iconset>
+    <iconset resource="QVIPSystem.qrc">
      <normaloff>:/memu/Resources/ToolBarpic/messenger.png</normaloff>:/memu/Resources/ToolBarpic/messenger.png</iconset>
    </property>
    <property name="text">

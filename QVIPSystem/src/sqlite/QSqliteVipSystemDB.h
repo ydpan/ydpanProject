@@ -65,6 +65,7 @@ public:
 	virtual bool    InitDatabase();
 	virtual void    FreeDatabase();
 
+	bool GetAllNames(QMap<QString, int> &mList);
 	bool AddNewVipMemberInfo(VipMemberInfo &info);
 	bool ModifyVipMemberInfo(VipMemberInfo &info);
 	bool DelVipMemberInfo(VipMemberInfo &info);
@@ -73,6 +74,7 @@ public:
 	int getVipMemberMaxID();
 	bool AddNewConsumeInfo(MonetaryRecord &info);
 
+	bool GetRecords(QMap<int, MonetaryRecord> &mMap, QString time);
 	virtual bool CreateTables(QString m_tableName, QString m_primary, QVariantMap m_map);
 	virtual bool InsertOneData(QString m_tableName, QVariantMap m_map);
 
