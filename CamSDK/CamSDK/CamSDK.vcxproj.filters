@@ -31,6 +31,18 @@
     <Filter Include="udp">
       <UniqueIdentifier>{7dbed2bc-29ca-48df-a536-a20517b1772d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{fb4a1fad-d6e3-417d-8aa2-7c042584e6d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Genicam">
+      <UniqueIdentifier>{afc2eed3-b696-42d8-864f-2b4416173c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dom">
+      <UniqueIdentifier>{89adb580-f720-462b-9b6a-c02758394b64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{960c0217-9f8b-4cbf-b09b-c98872ad66c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,8 +51,74 @@
     <ClCompile Include="CamSDK.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\boostProject\src\udpserver.cpp">
-      <Filter>udp</Filter>
+    <ClCompile Include="Arv.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvCamera.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvChunkParser.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvDevice.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvInterface.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvStream.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImageBuffer.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvDomCharacterData.cpp">
+      <Filter>dom</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvDomDocument.cpp">
+      <Filter>dom</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvDomElement.cpp">
+      <Filter>dom</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvDomNamedNodeMap.cpp">
+      <Filter>dom</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvDomNode.cpp">
+      <Filter>dom</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvDomNodeList.cpp">
+      <Filter>dom</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvDomText.cpp">
+      <Filter>dom</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvGc.cpp">
+      <Filter>Genicam</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvGcPropertyNode.cpp">
+      <Filter>Genicam</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvZip.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvEvaluator.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvGst.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvStatistic.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvStr.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvValue.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ArvXmlSchema.cpp">
+      <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,11 +137,77 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\boostProject\include\udpserver.h">
-      <Filter>udp</Filter>
+    <ClInclude Include="Arv.h">
+      <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\boostProject\include\DataGram.h">
-      <Filter>udp</Filter>
+    <ClInclude Include="ArvCamera.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvChunkParser.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvDevice.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvInterface.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvStream.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImageBuffer.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvGc.h">
+      <Filter>Genicam</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvGcPropertyNode.h">
+      <Filter>Genicam</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvZip.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvXmlSchema.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvValue.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvStr.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvStatistic.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvGst.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvEvaluator.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvDomCharacterData.h">
+      <Filter>dom</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvDomDocument.h">
+      <Filter>dom</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvDomElement.h">
+      <Filter>dom</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvDomNamedNodeMap.h">
+      <Filter>dom</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvDomNode.h">
+      <Filter>dom</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvDomNodeList.h">
+      <Filter>dom</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvDomText.h">
+      <Filter>dom</Filter>
+    </ClInclude>
+    <ClInclude Include="ICamDevice.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

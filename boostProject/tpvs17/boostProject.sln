@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boostSeriport", "boostSeriport\boostSeriport.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boostThread", "boostThread\boostThread.vcxproj", "{08F17D85-51EF-4A18-A7EB-91EF6F57233F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,12 +17,16 @@ Global
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x64.Build.0 = Debug|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.Build.0 = Release|x64
+		{08F17D85-51EF-4A18-A7EB-91EF6F57233F}.Debug|x64.ActiveCfg = Debug|x64
+		{08F17D85-51EF-4A18-A7EB-91EF6F57233F}.Debug|x64.Build.0 = Debug|x64
+		{08F17D85-51EF-4A18-A7EB-91EF6F57233F}.Release|x64.ActiveCfg = Release|x64
+		{08F17D85-51EF-4A18-A7EB-91EF6F57233F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		Qt5Version = qt5.9.4_msvc2017
 		SolutionGuid = {81D85DE4-F36B-49D7-8616-1E9DE1596D01}
+		Qt5Version = qt5.9.4_msvc2017
 	EndGlobalSection
 EndGlobal

@@ -53,7 +53,7 @@
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;E:\LeaperProject\boost_1_64_0;E:\LeaperProject\ydpanProject\boostProject\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;E:\LeaperProject\boost_1_64_0;E:\LeaperProject\ydpanProject\boostProject\include;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src\CamDevice;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src\GigeVision;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src\lpSysUtils;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src\udpSocket;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -69,7 +69,7 @@
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;E:\LeaperProject\boost_1_64_0;E:\LeaperProject\ydpanProject\boostProject\include;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;E:\LeaperProject\boost_1_64_0;E:\LeaperProject\ydpanProject\boostProject\include;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src\CamDevice;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src\GigeVision;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src\lpSysUtils;E:\LeaperProject\ydpanProject\CamSDK\CamSDK\src\udpSocket;%(AdditionalIncludeDirectories)</IncludePath>
       <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
@@ -113,9 +113,31 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\boostProject\src\udpserver.cpp" />
+    <ClCompile Include="Arv.cpp" />
+    <ClCompile Include="ArvCamera.cpp" />
+    <ClCompile Include="ArvChunkParser.cpp" />
+    <ClCompile Include="ArvDevice.cpp" />
+    <ClCompile Include="ArvDomCharacterData.cpp" />
+    <ClCompile Include="ArvDomDocument.cpp" />
+    <ClCompile Include="ArvDomElement.cpp" />
+    <ClCompile Include="ArvDomNamedNodeMap.cpp" />
+    <ClCompile Include="ArvDomNode.cpp" />
+    <ClCompile Include="ArvDomNodeList.cpp" />
+    <ClCompile Include="ArvDomText.cpp" />
+    <ClCompile Include="ArvEvaluator.cpp" />
+    <ClCompile Include="ArvGc.cpp" />
+    <ClCompile Include="ArvGcPropertyNode.cpp" />
+    <ClCompile Include="ArvGst.cpp" />
+    <ClCompile Include="ArvInterface.cpp" />
+    <ClCompile Include="ArvStatistic.cpp" />
+    <ClCompile Include="ArvStr.cpp" />
+    <ClCompile Include="ArvStream.cpp" />
+    <ClCompile Include="ArvValue.cpp" />
+    <ClCompile Include="ArvXmlSchema.cpp" />
+    <ClCompile Include="ArvZip.cpp" />
     <ClCompile Include="CamSDK.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\ImageBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CamSDK.h" />
@@ -127,8 +149,30 @@
     <QtRcc Include="CamSDK.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\boostProject\include\DataGram.h" />
-    <ClInclude Include="..\..\boostProject\include\udpserver.h" />
+    <ClInclude Include="Arv.h" />
+    <ClInclude Include="ArvCamera.h" />
+    <ClInclude Include="ArvChunkParser.h" />
+    <ClInclude Include="ArvDevice.h" />
+    <ClInclude Include="ArvDomCharacterData.h" />
+    <ClInclude Include="ArvDomDocument.h" />
+    <ClInclude Include="ArvDomElement.h" />
+    <ClInclude Include="ArvDomNamedNodeMap.h" />
+    <ClInclude Include="ArvDomNode.h" />
+    <ClInclude Include="ArvDomNodeList.h" />
+    <ClInclude Include="ArvDomText.h" />
+    <ClInclude Include="ArvEvaluator.h" />
+    <ClInclude Include="ArvGc.h" />
+    <ClInclude Include="ArvGcPropertyNode.h" />
+    <ClInclude Include="ArvGst.h" />
+    <ClInclude Include="ArvInterface.h" />
+    <ClInclude Include="ArvStatistic.h" />
+    <ClInclude Include="ArvStr.h" />
+    <ClInclude Include="ArvStream.h" />
+    <ClInclude Include="ArvValue.h" />
+    <ClInclude Include="ArvXmlSchema.h" />
+    <ClInclude Include="ArvZip.h" />
+    <ClInclude Include="ICamDevice.h" />
+    <ClInclude Include="src\ImageBuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
