@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{54315444-7215-4caa-aead-f560b8556e3b}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{225c2615-4b21-4987-8b05-1d0645362393}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="genAPI">
+      <UniqueIdentifier>{47c3ff93-305f-42ab-9242-d918a9a0f46a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genicam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_genicam.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_genicam.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_genicam.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="imagelist.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="interface.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="stream.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="system.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="cport.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="device.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="exception.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="buffer.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="gentl_wrapper_win32.cpp">
+      <Filter>genAPI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="genicam.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="genicam.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="genicam.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_genicam.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="imagelist.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="interface.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="pixel_formats.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="stream.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="system.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="cport.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="device.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="exception.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="gentl_wrapper.h">
+      <Filter>genAPI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
