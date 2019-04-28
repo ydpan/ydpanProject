@@ -4,8 +4,9 @@
 #include <QSerialPortInfo>
 #include <QIntValidator>
 #include <QLineEdit>
+#include <QSettings>
 
-
+#pragma execution_character_set("utf-8")
 
 static const char blankString[] = "SettingsDialog";
 
@@ -14,7 +15,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
-
+	this->setWindowIcon(QIcon(":/images/logo.png"));
     intValidator = new QIntValidator(0, 4000000, this);
 
     ui->baudRateBox->setInsertPolicy(QComboBox::NoInsert);
@@ -30,6 +31,9 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
     fillPortsParameters();
     fillPortsInfo();
+	/*read setting */
+	readComConfig();
+	updateConfig();
 
     updateSettings();
 }
@@ -42,6 +46,12 @@ SettingsDialog::~SettingsDialog()
 SettingsDialog::Settings SettingsDialog::settings() const
 {
     return currentSettings;
+}
+
+bool SettingsDialog::setSettings(SettingsDialog::Settings setVal)
+{
+	currentSettings = setVal;
+	return true;
 }
 
 void SettingsDialog::showPortInfo(int idx)
@@ -61,6 +71,7 @@ void SettingsDialog::showPortInfo(int idx)
 void SettingsDialog::apply()
 {
     updateSettings();
+	writeComConfig();
     hide();
 }
 
@@ -168,5 +179,48 @@ void SettingsDialog::updateSettings()
                 ui->flowControlBox->itemData(ui->flowControlBox->currentIndex()).toInt());
     currentSettings.stringFlowControl = ui->flowControlBox->currentText();
 
-    currentSettings.localEchoEnabled = ui->localEchoCheckBox->isChecked();
+    currentSettings.localEchoEnabled = false;
+}
+
+void SettingsDialog::updateConfig()
+{
+	
+	int fNum = ui->serialPortInfoListBox->findText(currentSettings.name);
+	if (fNum != (-1))
+	{
+		ui->serialPortInfoListBox->setCurrentText(currentSettings.name);
+		ui->baudRateBox->setCurrentText(currentSettings.stringBaudRate);
+		ui->dataBitsBox->setCurrentText(currentSettings.stringDataBits);
+		ui->parityBox->setCurrentText(currentSettings.stringParity);
+		ui->stopBitsBox->setCurrentText(currentSettings.stringStopBits);
+		ui->flowControlBox->setCurrentText(currentSettings.stringFlowControl);
+	}
+}
+
+void SettingsDialog::readComConfig()
+{
+	QSettings settings("config.ini", QSettings::IniFormat);
+	settings.beginGroup("comConfig");
+	currentSettings.name = settings.value("name", "COM1").toString();
+	currentSettings.stringBaudRate = settings.value("baudRate", "115200").toString();
+	currentSettings.stringDataBits = settings.value("dataBits", "8").toString();
+	currentSettings.stringParity = settings.value("parity", "None").toString();
+	currentSettings.stringStopBits = settings.value("stopBits", "1").toString();
+	currentSettings.stringFlowControl = settings.value("flowControl", "None").toString();
+	currentSettings.localEchoEnabled = settings.value("localEchoEnabled", false).toBool();
+	settings.endGroup();
+}
+
+void SettingsDialog::writeComConfig()
+{
+	QSettings settings("config.ini", QSettings::IniFormat);
+	settings.beginGroup("comConfig");
+	settings.setValue("name", currentSettings.name);
+	settings.setValue("baudRate", currentSettings.stringBaudRate);
+	settings.setValue("dataBits", currentSettings.stringDataBits);
+	settings.setValue("parity", currentSettings.stringParity);
+	settings.setValue("stopBits", currentSettings.stringStopBits);
+	settings.setValue("flowControl", currentSettings.stringFlowControl);
+	settings.setValue("localEchoEnabled", currentSettings.localEchoEnabled);
+	settings.endGroup();
 }

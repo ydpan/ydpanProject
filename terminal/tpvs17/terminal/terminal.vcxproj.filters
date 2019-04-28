@@ -95,10 +95,19 @@
     <Image Include="..\..\src\images\settings.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\src\images\logo.ico" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="..\..\src\terminal.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="terminal.rc" />
   </ItemGroup>
 </Project>

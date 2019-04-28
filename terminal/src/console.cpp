@@ -1,7 +1,7 @@
 #include "console.h"
 #include <QScrollBar>
 #include <QtCore/QDebug>
-
+#pragma execution_character_set("utf-8")
 Console::Console(QWidget *parent)
     : QPlainTextEdit(parent)
     , localEchoEnabled(false)
@@ -29,6 +29,7 @@ void Console::setLocalEchoEnabled(bool set)
 
 void Console::keyPressEvent(QKeyEvent *e)
 {
+	//int key = e->key();
     switch (e->key()) {
     case Qt::Key_Backspace:
     case Qt::Key_Left:
@@ -37,9 +38,11 @@ void Console::keyPressEvent(QKeyEvent *e)
     case Qt::Key_Down:
         break;
     default:
-        if (localEchoEnabled)
-            QPlainTextEdit::keyPressEvent(e);
+		QString str = e->text().toLocal8Bit();
         emit getData(e->text().toLocal8Bit());
+// 		if (localEchoEnabled)
+//             QPlainTextEdit::keyPressEvent(e);
+		break;
     }
 }
 
