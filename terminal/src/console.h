@@ -21,6 +21,7 @@ signals:
 private:
     bool localEchoEnabled;
 
+	QStringList m_cmdList;
 };
 
 #endif // CONSOLE_H
