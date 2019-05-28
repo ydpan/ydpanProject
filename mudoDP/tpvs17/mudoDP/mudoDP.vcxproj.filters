@@ -39,38 +39,38 @@
     <ClCompile Include="mudoDP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MThread.cpp">
+    <ClCompile Include="..\..\src\base\MAsynLogging.cpp">
       <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MThreadPool.cpp">
+    <ClCompile Include="..\..\src\base\MBlockingQueue.cpp">
       <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MTimestamp.cpp">
+    <ClCompile Include="..\..\src\base\MDate.cpp">
       <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MTimeZone.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\base\MException.cpp">
+      <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MDate.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\base\MLogFile.cpp">
+      <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MLogFile.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\base\MLogging.cpp">
+      <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MLogging.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\base\MLogStream.cpp">
+      <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MLogStream.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\base\MThread.cpp">
+      <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MException.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\base\MThreadPool.cpp">
+      <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MAsynLogging.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\base\MTimestamp.cpp">
+      <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="MBlockingQueue.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\src\base\MTimeZone.cpp">
+      <Filter>base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,38 +89,38 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MTimestamp.h">
+    <ClInclude Include="..\..\src\base\MAsynLogging.h">
       <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MThreadPool.h">
+    <ClInclude Include="..\..\src\base\MBlockingQueue.h">
       <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MThread.h">
+    <ClInclude Include="..\..\src\base\MDate.h">
       <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MTimeZone.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\base\MException.h">
+      <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MDate.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\base\MLogFile.h">
+      <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MLogFile.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\base\MLogging.h">
+      <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MLogging.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\base\MLogStream.h">
+      <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MLogStream.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\base\MThread.h">
+      <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MException.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\base\MThreadPool.h">
+      <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MAsynLogging.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\base\MTimestamp.h">
+      <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="MBlockingQueue.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\src\base\MTimeZone.h">
+      <Filter>base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

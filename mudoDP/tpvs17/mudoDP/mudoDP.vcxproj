@@ -53,7 +53,7 @@
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\..\..\src\base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -69,7 +69,7 @@
     <QtMoc>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;.\..\..\src\base;%(AdditionalIncludeDirectories)</IncludePath>
       <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</Define>
     </QtMoc>
     <QtUic>
@@ -113,18 +113,18 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\base\MAsynLogging.cpp" />
+    <ClCompile Include="..\..\src\base\MBlockingQueue.cpp" />
+    <ClCompile Include="..\..\src\base\MDate.cpp" />
+    <ClCompile Include="..\..\src\base\MException.cpp" />
+    <ClCompile Include="..\..\src\base\MLogFile.cpp" />
+    <ClCompile Include="..\..\src\base\MLogging.cpp" />
+    <ClCompile Include="..\..\src\base\MLogStream.cpp" />
+    <ClCompile Include="..\..\src\base\MThread.cpp" />
+    <ClCompile Include="..\..\src\base\MThreadPool.cpp" />
+    <ClCompile Include="..\..\src\base\MTimestamp.cpp" />
+    <ClCompile Include="..\..\src\base\MTimeZone.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MAsynLogging.cpp" />
-    <ClCompile Include="MBlockingQueue.cpp" />
-    <ClCompile Include="MDate.cpp" />
-    <ClCompile Include="MException.cpp" />
-    <ClCompile Include="MLogFile.cpp" />
-    <ClCompile Include="MLogging.cpp" />
-    <ClCompile Include="MLogStream.cpp" />
-    <ClCompile Include="MThread.cpp" />
-    <ClCompile Include="MThreadPool.cpp" />
-    <ClCompile Include="MTimestamp.cpp" />
-    <ClCompile Include="MTimeZone.cpp" />
     <ClCompile Include="mudoDP.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,17 +137,17 @@
     <QtRcc Include="mudoDP.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MAsynLogging.h" />
-    <ClInclude Include="MBlockingQueue.h" />
-    <ClInclude Include="MDate.h" />
-    <ClInclude Include="MException.h" />
-    <ClInclude Include="MLogFile.h" />
-    <ClInclude Include="MLogging.h" />
-    <ClInclude Include="MLogStream.h" />
-    <ClInclude Include="MThread.h" />
-    <ClInclude Include="MThreadPool.h" />
-    <ClInclude Include="MTimestamp.h" />
-    <ClInclude Include="MTimeZone.h" />
+    <ClInclude Include="..\..\src\base\MAsynLogging.h" />
+    <ClInclude Include="..\..\src\base\MBlockingQueue.h" />
+    <ClInclude Include="..\..\src\base\MDate.h" />
+    <ClInclude Include="..\..\src\base\MException.h" />
+    <ClInclude Include="..\..\src\base\MLogFile.h" />
+    <ClInclude Include="..\..\src\base\MLogging.h" />
+    <ClInclude Include="..\..\src\base\MLogStream.h" />
+    <ClInclude Include="..\..\src\base\MThread.h" />
+    <ClInclude Include="..\..\src\base\MThreadPool.h" />
+    <ClInclude Include="..\..\src\base\MTimestamp.h" />
+    <ClInclude Include="..\..\src\base\MTimeZone.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
