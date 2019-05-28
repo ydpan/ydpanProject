@@ -72,6 +72,9 @@
     <ClCompile Include="..\..\src\base\MTimeZone.cpp">
       <Filter>base</Filter>
     </ClCompile>
+    <ClCompile Include="MWorkThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mudoDP.h">
@@ -120,6 +123,12 @@
       <Filter>base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\base\MTimeZone.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="MWorkThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="basedefine.h">
       <Filter>base</Filter>
     </ClInclude>
   </ItemGroup>
