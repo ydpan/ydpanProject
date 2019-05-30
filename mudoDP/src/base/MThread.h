@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MTHREAD_H_
+#define _MTHREAD_H_
 class MThread
 {
 public:
@@ -6,3 +7,4 @@ public:
 	~MThread();
 };
 
+#endif

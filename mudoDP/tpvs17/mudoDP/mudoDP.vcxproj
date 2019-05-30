@@ -125,6 +125,7 @@
     <ClCompile Include="..\..\src\base\MTimestamp.cpp" />
     <ClCompile Include="..\..\src\base\MTimeZone.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MThreadGroup.cpp" />
     <ClCompile Include="mudoDP.cpp" />
     <ClCompile Include="MWorkThread.cpp" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="..\..\src\base\MTimestamp.h" />
     <ClInclude Include="..\..\src\base\MTimeZone.h" />
     <ClInclude Include="basedefine.h" />
+    <ClInclude Include="MThreadGroup.h" />
     <ClInclude Include="MWorkThread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MTHREADPOOL_H_
+#define _MTHREADPOOL_H_
 class MThreadPool
 {
 public:
@@ -6,3 +7,4 @@ public:
 	~MThreadPool();
 };
 
+#endif

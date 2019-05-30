@@ -1,7 +1,5 @@
 #include "MThreadPool.h"
 
-
-
 MThreadPool::MThreadPool()
 {
 }

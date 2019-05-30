@@ -75,6 +75,9 @@
     <ClCompile Include="MWorkThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MThreadGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mudoDP.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="basedefine.h">
       <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="MThreadGroup.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

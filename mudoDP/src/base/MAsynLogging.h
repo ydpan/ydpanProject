@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MASYNLOGGING_H_
+#define _MASYNLOGGING_H_
 class MAsynLogging
 {
 public:
@@ -6,3 +7,4 @@ public:
 	~MAsynLogging();
 };
 
+#endif

@@ -1,7 +1,5 @@
 #include "MAsynLogging.h"
 
-
-
 MAsynLogging::MAsynLogging()
 {
 }
