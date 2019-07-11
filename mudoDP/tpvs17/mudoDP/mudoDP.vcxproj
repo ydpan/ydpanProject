@@ -124,6 +124,7 @@
     <ClCompile Include="..\..\src\base\MThreadPool.cpp" />
     <ClCompile Include="..\..\src\base\MTimestamp.cpp" />
     <ClCompile Include="..\..\src\base\MTimeZone.cpp" />
+    <ClCompile Include="FileUtil.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MThreadGroup.cpp" />
     <ClCompile Include="mudoDP.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="..\..\src\base\MTimestamp.h" />
     <ClInclude Include="..\..\src\base\MTimeZone.h" />
     <ClInclude Include="basedefine.h" />
+    <ClInclude Include="FileUtil.h" />
     <ClInclude Include="MThreadGroup.h" />
     <ClInclude Include="MWorkThread.h" />
   </ItemGroup>
