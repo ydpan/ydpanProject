@@ -4,7 +4,7 @@
 // that can be found in the License file.
 //
 // Author: Shuo Chen (chenshuo at chenshuo dot com)
-
+/*
 
 #include "Logging.h"
 
@@ -181,3 +181,4 @@ template int FileUtil::ReadSmallFile::readToString(
 	string* content,
 	int64_t*, int64_t*, int64_t*);
 
+	*/

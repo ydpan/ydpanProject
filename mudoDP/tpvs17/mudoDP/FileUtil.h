@@ -1,5 +1,5 @@
 #pragma once
-#include "muduo/base/noncopyable.h"
+/*#include "muduo/base/noncopyable.h"
 #include "muduo/base/StringPiece.h"
 #include <sys/types.h>  // for off_t
 
@@ -76,3 +76,4 @@ namespace muduo
 	}  // namespace FileUtil
 }  // namespace muduo
 
+*/

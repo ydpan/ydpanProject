@@ -8,7 +8,7 @@ namespace mudoDP {
 class MLogFile
 {
 public:
-	MLogFile(const string& basename,
+	MLogFile(const std::string& basename,
 		off_t rollSize,
 		bool threadStafe = true,
 		int flushInterval = 3,
@@ -20,7 +20,7 @@ public:
 
 private:
 	void append_unlock(const char* logline, int len);
-	static string getLogFileName(const string& basename, time_t* now);
+	static std::string getLogFileName(const string& basename, time_t* now);
 	const string basename_;
 	const off_t roolSize_;
 	const int flushInterval_;
@@ -31,7 +31,7 @@ private:
 	time_t startOfPeriod_;
 	time_t lastRoll_;
 	time_t lastFlush_;
-	std::unique_ptr<FileUtil::AppendFile> file_;
+	//std::unique_ptr<FileUtil::AppendFile> file_;
 	const static int kRollPerSeconds_ = 60 * 60 * 24;
 };
 };
