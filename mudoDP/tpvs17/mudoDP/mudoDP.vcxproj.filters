@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
@@ -28,59 +24,9 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="base">
-      <UniqueIdentifier>{f0f73152-a4aa-417b-beeb-e8a70b55bf9e}</UniqueIdentifier>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{00977124-b73e-47a5-a0de-26d254486802}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mudoDP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MAsynLogging.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MBlockingQueue.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MDate.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MException.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MLogFile.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MLogging.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MLogStream.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MThread.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MThreadPool.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MTimestamp.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\base\MTimeZone.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="MWorkThread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MThreadGroup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileUtil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mudoDP.h">
@@ -96,52 +42,5 @@
     <QtRcc Include="mudoDP.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\base\MAsynLogging.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MBlockingQueue.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MDate.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MException.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MLogFile.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MLogging.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MLogStream.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MThread.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MThreadPool.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MTimestamp.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\base\MTimeZone.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="MWorkThread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="basedefine.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="MThreadGroup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

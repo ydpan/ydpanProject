@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mudoDP", "mudoDP\mudoDP.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testmodel", "testmodel\testmodel.vcxproj", "{84B798A8-EBDB-40FE-B446-A59CCB7A4605}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hello", "..\..\..\..\Linux_NetThread\OnLine-Disk\Client\Hello.vcxproj", "{5C522690-FC49-3BC9-929A-A51AE55E1233}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,11 +19,20 @@ Global
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x64.Build.0 = Debug|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.ActiveCfg = Release|x64
 		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x64.Build.0 = Release|x64
+		{84B798A8-EBDB-40FE-B446-A59CCB7A4605}.Debug|x64.ActiveCfg = Debug|x64
+		{84B798A8-EBDB-40FE-B446-A59CCB7A4605}.Debug|x64.Build.0 = Debug|x64
+		{84B798A8-EBDB-40FE-B446-A59CCB7A4605}.Release|x64.ActiveCfg = Release|x64
+		{84B798A8-EBDB-40FE-B446-A59CCB7A4605}.Release|x64.Build.0 = Release|x64
+		{5C522690-FC49-3BC9-929A-A51AE55E1233}.Debug|x64.ActiveCfg = Debug|x64
+		{5C522690-FC49-3BC9-929A-A51AE55E1233}.Debug|x64.Build.0 = Debug|x64
+		{5C522690-FC49-3BC9-929A-A51AE55E1233}.Release|x64.ActiveCfg = Release|x64
+		{5C522690-FC49-3BC9-929A-A51AE55E1233}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = qt5.9.4-msvc2017-x64
 		SolutionGuid = {A3B79248-55C3-45AD-AFD1-A4AFAEEC1B3E}
 	EndGlobalSection
 EndGlobal

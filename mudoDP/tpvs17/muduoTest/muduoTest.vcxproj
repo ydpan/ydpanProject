@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
+    <Keyword>QtVS_v301</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">
+    <QtMsBuild>$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>qt5.9.4-msvc2017-x64</QtInstall>
+    <QtModules>core</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>qt5.9.4-msvc2017-x64</QtInstall>
+    <QtModules>core</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <AdditionalIncludeDirectories>C:\1Documents\LeaperProject\ydpanProject\mudoDP\src\calm\base;C:\1Documents\LeaperProject\ydpanProject\mudoDP\src\calm\net;C:\1Documents\LeaperProject\ydpanProject\mudoDP\src\calm\net\Poller;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\calm\base\async_logging.cc" />
+    <ClCompile Include="..\..\src\calm\base\config_file_reader.cc" />
+    <ClCompile Include="..\..\src\calm\base\count_down_latch.cc" />
+    <ClCompile Include="..\..\src\calm\base\file_util.cc" />
+    <ClCompile Include="..\..\src\calm\base\logging.cc" />
+    <ClCompile Include="..\..\src\calm\base\log_file.cc" />
+    <ClCompile Include="..\..\src\calm\base\log_stream.cc" />
+    <ClCompile Include="..\..\src\calm\base\thread_pool.cc" />
+    <ClCompile Include="..\..\src\calm\base\timestamp.cc" />
+    <ClCompile Include="..\..\src\calm\base\win_time.cc" />
+    <ClCompile Include="..\..\src\calm\net\Acceptor.cc" />
+    <ClCompile Include="..\..\src\calm\net\Buffer.cc" />
+    <ClCompile Include="..\..\src\calm\net\Channel.cc" />
+    <ClCompile Include="..\..\src\calm\net\Connector.cc" />
+    <ClCompile Include="..\..\src\calm\net\EventLoop.cc" />
+    <ClCompile Include="..\..\src\calm\net\EventLoopThread.cc" />
+    <ClCompile Include="..\..\src\calm\net\EventLoopThreadPool.cc" />
+    <ClCompile Include="..\..\src\calm\net\InetAddress.cc" />
+    <ClCompile Include="..\..\src\calm\net\Poller.cc" />
+    <ClCompile Include="..\..\src\calm\net\Poller\SelectPoller.cc" />
+    <ClCompile Include="..\..\src\calm\net\Socket.cc" />
+    <ClCompile Include="..\..\src\calm\net\SocketsOps.cc" />
+    <ClCompile Include="..\..\src\calm\net\TcpClient.cc" />
+    <ClCompile Include="..\..\src\calm\net\TcpConnection.cc" />
+    <ClCompile Include="..\..\src\calm\net\TcpServer.cc" />
+    <ClCompile Include="..\..\src\calm\net\Timer.cc" />
+    <ClCompile Include="..\..\src\calm\net\TimerQueue.cc" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\calm\base\async_logging.h" />
+    <ClInclude Include="..\..\src\calm\base\blocking_queue.h" />
+    <ClInclude Include="..\..\src\calm\base\bounded_blocking_queue.h" />
+    <ClInclude Include="..\..\src\calm\base\config_file_reader.h" />
+    <ClInclude Include="..\..\src\calm\base\copyable.h" />
+    <ClInclude Include="..\..\src\calm\base\count_down_latch.h" />
+    <ClInclude Include="..\..\src\calm\base\file_util.h" />
+    <ClInclude Include="..\..\src\calm\base\logging.h" />
+    <ClInclude Include="..\..\src\calm\base\log_file.h" />
+    <ClInclude Include="..\..\src\calm\base\log_stream.h" />
+    <ClInclude Include="..\..\src\calm\base\Singleton.h" />
+    <ClInclude Include="..\..\src\calm\base\stringpiece.h" />
+    <ClInclude Include="..\..\src\calm\base\thread.h" />
+    <ClInclude Include="..\..\src\calm\base\ThreadPool.h" />
+    <ClInclude Include="..\..\src\calm\base\thread_pool.h" />
+    <ClInclude Include="..\..\src\calm\base\timestamp.h" />
+    <ClInclude Include="..\..\src\calm\base\types.h" />
+    <ClInclude Include="..\..\src\calm\base\uncopyable.h" />
+    <ClInclude Include="..\..\src\calm\base\win_time.h" />
+    <ClInclude Include="..\..\src\calm\net\Acceptor.h" />
+    <ClInclude Include="..\..\src\calm\net\Buffer.h" />
+    <ClInclude Include="..\..\src\calm\net\Callbacks.h" />
+    <ClInclude Include="..\..\src\calm\net\Channel.h" />
+    <ClInclude Include="..\..\src\calm\net\Connector.h" />
+    <ClInclude Include="..\..\src\calm\net\Endian.h" />
+    <ClInclude Include="..\..\src\calm\net\EventLoop.h" />
+    <ClInclude Include="..\..\src\calm\net\EventLoopThread.h" />
+    <ClInclude Include="..\..\src\calm\net\EventLoopThreadPool.h" />
+    <ClInclude Include="..\..\src\calm\net\InetAddress.h" />
+    <ClInclude Include="..\..\src\calm\net\poll.h" />
+    <ClInclude Include="..\..\src\calm\net\Poller.h" />
+    <ClInclude Include="..\..\src\calm\net\Poller\SelectPoller.h" />
+    <ClInclude Include="..\..\src\calm\net\Socket.h" />
+    <ClInclude Include="..\..\src\calm\net\SocketsOps.h" />
+    <ClInclude Include="..\..\src\calm\net\TcpClient.h" />
+    <ClInclude Include="..\..\src\calm\net\TcpConnection.h" />
+    <ClInclude Include="..\..\src\calm\net\TcpServer.h" />
+    <ClInclude Include="..\..\src\calm\net\TimeMinHeap.h" />
+    <ClInclude Include="..\..\src\calm\net\Timer.h" />
+    <ClInclude Include="..\..\src\calm\net\TimerId.h" />
+    <ClInclude Include="..\..\src\calm\net\TimerQueue.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" MocOptions="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

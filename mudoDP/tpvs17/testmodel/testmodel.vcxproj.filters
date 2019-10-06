@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{dd9e3768-138c-452f-b810-263a6ab69362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="net">
+      <UniqueIdentifier>{aeac4109-b2ef-4deb-be3f-062ec33dc376}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\async_logging.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\config_file_reader.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\count_down_latch.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\file_util.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\log_file.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\log_stream.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\logging.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\thread_pool.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\timestamp.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\base\win_time.cc">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\Acceptor.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\Buffer.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\Channel.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\Connector.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\EventLoop.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\EventLoopThread.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\EventLoopThreadPool.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\InetAddress.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\Poller.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\Socket.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\SocketsOps.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\TcpClient.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\TcpConnection.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\TcpServer.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\Timer.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\TimerQueue.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\calm\net\Poller\SelectPoller.cc">
+      <Filter>net</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\calm\base\async_logging.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\blocking_queue.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\bounded_blocking_queue.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\config_file_reader.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\copyable.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\count_down_latch.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\file_util.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\log_file.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\log_stream.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\logging.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\Singleton.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\stringpiece.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\thread.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\thread_pool.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\ThreadPool.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\timestamp.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\types.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\uncopyable.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\base\win_time.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Acceptor.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Buffer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Callbacks.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Channel.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Connector.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Endian.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\EventLoop.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\EventLoopThread.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\EventLoopThreadPool.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\InetAddress.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\poll.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Poller.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Socket.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\SocketsOps.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\TcpClient.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\TcpConnection.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\TcpServer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\TimeMinHeap.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Timer.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\TimerId.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\TimerQueue.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\calm\net\Poller\SelectPoller.h">
+      <Filter>net</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
